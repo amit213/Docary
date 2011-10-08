@@ -1,0 +1,12 @@
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.dll
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.pdb
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.csprojResolveAssemblyReference.cache
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.dll
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.pdb
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.dll
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.pdb
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\bin\Debug\Docary.Models.dll
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\bin\Debug\Docary.Models.pdb
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.csprojResolveAssemblyReference.cache
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.dll
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.pdb

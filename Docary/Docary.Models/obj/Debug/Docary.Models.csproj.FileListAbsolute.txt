@@ -1,0 +1,10 @@
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.Models\bin\Debug\Docary.Models.dll
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.Models\bin\Debug\Docary.Models.pdb
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.Models\obj\Debug\Docary.Models.csprojResolveAssemblyReference.cache
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.Models\obj\Debug\Docary.Models.dll
+c:\users\jclaes\documents\visual studio 2010\Projects\Docary\Docary.Models\obj\Debug\Docary.Models.pdb
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\bin\Debug\Docary.Models.dll
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\bin\Debug\Docary.Models.pdb
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\obj\Debug\Docary.Models.csprojResolveAssemblyReference.cache
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\obj\Debug\Docary.Models.dll
+C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\obj\Debug\Docary.Models.pdb

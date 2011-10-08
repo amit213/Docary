@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="70548bb8-89cf-4333-a0fb-fe641a96c33b" name="JClaes@JCLAES-PC 2011-09-30 18:29:47" runUser="JClaes-PC\JClaes" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="ab47060e-8f44-4890-bca8-a8d97dbd8c88">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="JClaes_JCLAES-PC 2011-09-30 18_29_47">
+      <DeploymentItem filename="C:\Users\JClaes\documents\visual studio 2010\Projects\Docary\Docary.Repositories.EF\bin\Debug\Docary.Repositories.EF.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\documents\visual studio 2010\Projects\Docary\Docary.Repositories.EF\Lib\EntityFramework.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\documents\visual studio 2010\Projects\Docary\Docary.Repositories\bin\Debug\Docary.Repositories.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\documents\visual studio 2010\Projects\Docary\Docary.Models\bin\Debug\Docary.Models.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-09-30T18:29:47.8288589+02:00" queuing="2011-09-30T18:29:50.0284627+02:00" start="2011-09-30T18:29:50.1844630+02:00" finish="2011-09-30T18:30:01.0576821+02:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="JCLAES-PC" outcome="Error" timestamp="2011-09-30T18:30:01.0576821+02:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="GetEntriesTest" storage="c:\users\jclaes\documents\visual studio 2010\projects\docary\docary.repositories.ef.tests\bin\debug\docary.repositories.ef.tests.dll" id="304a645a-2374-8a9a-e75d-5fe667f178be">
+      <Execution id="8ee36411-6be4-49a9-a55c-505b6ae3d7fd" />
+      <TestMethod codeBase="C:/Users/JClaes/documents/visual studio 2010/Projects/Docary/Docary.Repositories.EF.Tests/bin/Debug/Docary.Repositories.EF.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Repositories.EF.Tests.EntryRepositoryTest, Docary.Repositories.EF.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetEntriesTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="304a645a-2374-8a9a-e75d-5fe667f178be" executionId="8ee36411-6be4-49a9-a55c-505b6ae3d7fd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="8ee36411-6be4-49a9-a55c-505b6ae3d7fd" testId="304a645a-2374-8a9a-e75d-5fe667f178be" testName="GetEntriesTest" computerName="JCLAES-PC" duration="00:00:10.7172188" startTime="2011-09-30T18:29:50.3404633+02:00" endTime="2011-09-30T18:30:01.0576821+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8ee36411-6be4-49a9-a55c-505b6ae3d7fd">
+    </UnitTestResult>
+  </Results>
+</TestRun>

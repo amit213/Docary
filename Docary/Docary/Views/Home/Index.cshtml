@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model Docary.ViewModels.HomeIndexViewModel
+
+<h2>Docary</h2>
+<table>
+    @foreach (var entry in Model.Entries)
+    {
+        <tr>
+            <td>@entry.CreatedOn</td>
+            <td>@entry.Activity.Name</td>
+            <td>@entry.Location.Name</td>
+            <td>@entry.Meta</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Entry", new { id = entry.Id }, null)</td>
+        </tr>       
+    }        
+</table>
+@Html.ActionLink("Add", "Add", "Entry")
