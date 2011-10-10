@@ -5,7 +5,7 @@ using System.Linq;
 
 using Docary.Repositories;
 using Docary.Repositories.EF;
-using Docary.Tests.Shared;
+using Docary.Repositories.EF.Tests;
 
 namespace Docary.Repositories
 {

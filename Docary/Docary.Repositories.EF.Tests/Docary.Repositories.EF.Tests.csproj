@@ -53,7 +53,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocaryContextStub.cs" />
     <Compile Include="EntryRepositoryTest.cs" />
+    <Compile Include="Fakes\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,10 +71,9 @@
       <Project>{6A2ACFF5-F216-4396-A4CF-E854ED33B254}</Project>
       <Name>Docary.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Docary.Test.Shared\Docary.Test.Shared.csproj">
-      <Project>{DB7203EF-9CCB-4A81-9935-E048763CCB01}</Project>
-      <Name>Docary.Test.Shared</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\EntityFramework.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
