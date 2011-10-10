@@ -1,10 +1,13 @@
-﻿using Docary.Repositories.EF;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Docary.Models;
 using System.Linq;
 
-namespace Docary.Repositories.EF.Tests
+using Docary.Repositories;
+using Docary.Repositories.EF;
+using Docary.Tests.Shared;
+
+namespace Docary.Repositories
 {
     [TestClass()]
     public class EntryRepositoryTest

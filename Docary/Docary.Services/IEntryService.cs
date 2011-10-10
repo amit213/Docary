@@ -10,6 +10,7 @@ namespace Docary.Services
     public interface IEntryService
     {
         IEnumerable<Entry> GetEntries();
-        IEnumerable<Entry> GetEntries(string user);        
+        IEnumerable<Entry> GetEntries(string user);
+        void AddEntry(Entry entry);
     }
 }

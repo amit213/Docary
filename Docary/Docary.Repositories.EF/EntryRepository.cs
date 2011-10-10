@@ -20,5 +20,10 @@ namespace Docary.Repositories.EF
         {
             return _context.Entries;
         }
+        
+        public void AddEntry(Entry entry)
+        {
+            _context.Entries.Add(entry);
+        }
     }
 }

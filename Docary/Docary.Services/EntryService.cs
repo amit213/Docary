@@ -30,7 +30,10 @@ namespace Docary.Services
 
         public void AddEntry(Entry entry)
         {
-            
+            if (entry == null)
+                throw new ArgumentNullException("Entry");            
+
+            _repository.AddEntry(entry);
         }
     }
 }

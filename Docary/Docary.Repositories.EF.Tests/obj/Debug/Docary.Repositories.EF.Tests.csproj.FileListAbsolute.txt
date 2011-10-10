@@ -34,3 +34,5 @@ C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF.Tests\bin\Debug\Docary.Repo
 C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF.Tests\obj\Debug\Docary.Repositories.EF.Tests.csprojResolveAssemblyReference.cache
 C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF.Tests\obj\Debug\Docary.Repositories.EF.Tests.dll
 C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF.Tests\obj\Debug\Docary.Repositories.EF.Tests.pdb
+C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF.Tests\bin\Debug\Docary.Test.Shared.dll
+C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF.Tests\bin\Debug\Docary.Test.Shared.pdb

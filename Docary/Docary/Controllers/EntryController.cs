@@ -30,6 +30,8 @@ namespace Docary.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    _entryService.AddEntry(addEntryViewModel.Entry);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
