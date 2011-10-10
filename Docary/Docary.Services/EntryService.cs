@@ -27,5 +27,10 @@ namespace Docary.Services
         {
             throw new NotImplementedException();
         }
+
+        public void AddEntry(Entry entry)
+        {
+            
+        }
     }
 }

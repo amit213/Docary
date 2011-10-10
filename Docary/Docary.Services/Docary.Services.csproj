@@ -64,6 +64,10 @@
       <Project>{6A2ACFF5-F216-4396-A4CF-E854ED33B254}</Project>
       <Name>Docary.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Docary.ViewModels\Docary.ViewModels.csproj">
+      <Project>{2DFF28A4-78C7-4769-8B82-231A1B25AB60}</Project>
+      <Name>Docary.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\EntityFramework.dll" />

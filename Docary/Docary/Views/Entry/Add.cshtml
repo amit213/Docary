@@ -2,4 +2,16 @@
     ViewBag.Title = "Add";
 }
 
+@model Docary.ViewModels.AddEntryViewModel
+
 <h2>Add</h2>
+@using (Html.BeginForm("Add", "Entry")) 
+{
+    @Html.LabelFor(m => m.Entry.Activity.Name)
+    @Html.TextBoxFor(m => m.Entry.Activity.Name)
+    @Html.LabelFor(m => m.Entry.Location.Name)
+    @Html.TextBoxFor(m => m.Entry.Location.Name)
+    @Html.TextBoxFor(m => m.Entry.Meta)
+    @Html.TextBoxFor(m => m.Entry.Meta)
+    <input type="submit" value="Add" />
+}

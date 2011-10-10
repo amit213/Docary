@@ -4,14 +4,39 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Docary.Models;
+using Docary.ViewModels;
+using Docary.Services;
+
 namespace Docary.Controllers
 {
     public class EntryController : Controller
     {
-        [Authorize]
-        public ActionResult Add()
+        private IEntryService _entryService;
+
+        public EntryController(IEntryService entryService)
         {
-            return View();
+            _entryService = entryService;
+        }
+
+        [Authorize]
+        public ActionResult Add(AddEntryViewModel addEntryViewModel)
+        {
+            if (addEntryViewModel.Entry == null)
+            {
+                return View(new AddEntryViewModel());
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return View(addEntryViewModel);
+                }
+            }
         }
 
         [Authorize]

@@ -10,3 +10,10 @@ C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.csprojResolveAssemblyReference.cache
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.dll
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.pdb
+C:\Users\JClaes\Docary\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.dll
+C:\Users\JClaes\Docary\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.pdb
+C:\Users\JClaes\Docary\Docary\Docary.ViewModels\bin\Debug\Docary.Models.dll
+C:\Users\JClaes\Docary\Docary\Docary.ViewModels\bin\Debug\Docary.Models.pdb
+C:\Users\JClaes\Docary\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.csprojResolveAssemblyReference.cache
+C:\Users\JClaes\Docary\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.dll
+C:\Users\JClaes\Docary\Docary\Docary.ViewModels\obj\Debug\Docary.ViewModels.pdb

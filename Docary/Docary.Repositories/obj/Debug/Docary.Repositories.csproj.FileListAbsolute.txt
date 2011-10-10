@@ -12,3 +12,10 @@ C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Repositori
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Repositories\obj\Debug\Docary.Repositories.csprojResolveAssemblyReference.cache
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Repositories\obj\Debug\Docary.Repositories.dll
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Repositories\obj\Debug\Docary.Repositories.pdb
+C:\Users\JClaes\Docary\Docary\Docary.Repositories\bin\Debug\Docary.Repositories.dll
+C:\Users\JClaes\Docary\Docary\Docary.Repositories\bin\Debug\Docary.Repositories.pdb
+C:\Users\JClaes\Docary\Docary\Docary.Repositories\bin\Debug\Docary.Models.dll
+C:\Users\JClaes\Docary\Docary\Docary.Repositories\bin\Debug\Docary.Models.pdb
+C:\Users\JClaes\Docary\Docary\Docary.Repositories\obj\Debug\Docary.Repositories.csprojResolveAssemblyReference.cache
+C:\Users\JClaes\Docary\Docary\Docary.Repositories\obj\Debug\Docary.Repositories.dll
+C:\Users\JClaes\Docary\Docary\Docary.Repositories\obj\Debug\Docary.Repositories.pdb

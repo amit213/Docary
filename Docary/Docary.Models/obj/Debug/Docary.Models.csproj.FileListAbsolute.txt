@@ -8,3 +8,8 @@ C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\bin
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\obj\Debug\Docary.Models.csprojResolveAssemblyReference.cache
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\obj\Debug\Docary.Models.dll
 C:\Users\JClaes\Dropbox\Projects\Visual Studio Projects\Docary\Docary.Models\obj\Debug\Docary.Models.pdb
+C:\Users\JClaes\Docary\Docary\Docary.Models\bin\Debug\Docary.Models.dll
+C:\Users\JClaes\Docary\Docary\Docary.Models\bin\Debug\Docary.Models.pdb
+C:\Users\JClaes\Docary\Docary\Docary.Models\obj\Debug\Docary.Models.csprojResolveAssemblyReference.cache
+C:\Users\JClaes\Docary\Docary\Docary.Models\obj\Debug\Docary.Models.dll
+C:\Users\JClaes\Docary\Docary\Docary.Models\obj\Debug\Docary.Models.pdb
