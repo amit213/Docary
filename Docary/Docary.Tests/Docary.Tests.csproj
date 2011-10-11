@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="EntryControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\EntryServiceEmptyStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Docary.Models\Docary.Models.csproj">

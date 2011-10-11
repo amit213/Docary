@@ -11,6 +11,7 @@ namespace Docary.App_Start
     using Docary.Services;
     using Docary.Repositories;
     using Docary.Repositories.EF;
+    using Docary.Assemblers;
 
     public static class NinjectMVC3
     {
@@ -41,7 +42,8 @@ namespace Docary.App_Start
         {
             kernel.Bind<IEntryRepository>().To<EntryRepository>();
             kernel.Bind<IDocaryContext>().To<DocaryContext>();
-            kernel.Bind<IEntryService>().To<EntryService>();            
+            kernel.Bind<IEntryService>().To<EntryService>();
+            kernel.Bind<IHomeAssembler>().To<HomeAssembler>();
         }
     }
 }

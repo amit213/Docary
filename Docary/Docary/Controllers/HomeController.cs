@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using Docary.Services;
 using Docary.ViewModels;
+using Docary.Assemblers;
 
 using Ninject;
 
@@ -14,22 +15,19 @@ namespace Docary.Controllers
     public class HomeController : Controller
     {
         private IEntryService _entryService;
+        private IHomeAssembler _homeAssembler;
 
-        public HomeController(IEntryService entryService)
+        public HomeController(IHomeAssembler homeAssembler, IEntryService entryService)
         {
             _entryService = entryService;
+            _homeAssembler = homeAssembler;
         }
 
         public ActionResult Index()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                var indexViewModel = new HomeIndexViewModel()
-                {
-                    Entries = _entryService.GetEntries()
-                };
-
-                ViewData.Model = indexViewModel;
+            {              
+                ViewData.Model = _homeAssembler.AssembleHomeIndexViewModel();
 
                 return View();
             }

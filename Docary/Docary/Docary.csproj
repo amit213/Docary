@@ -167,6 +167,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Docary.Assemblers\Docary.Assemblers.csproj">
+      <Project>{B5A3A843-E5DF-4053-AD7E-464C5014C825}</Project>
+      <Name>Docary.Assemblers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Docary.Models\Docary.Models.csproj">
       <Project>{DE1C8439-CE82-442B-9C6D-6282F553B95B}</Project>
       <Name>Docary.Models</Name>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="c9f96b4b-bb08-4251-8795-3ec1a7731342" name="JClaes@JCLAES-PC 2011-10-11 18:07:49" runUser="JClaes-PC\JClaes" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="ab47060e-8f44-4890-bca8-a8d97dbd8c88">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="JClaes_JCLAES-PC 2011-10-11 18_07_49">
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary\Lib\Ninject.Web.Mvc.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Models\bin\Debug\Docary.Models.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF.Tests\Lib\EntityFramework.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary\Lib\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Repositories\bin\Debug\Docary.Repositories.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary\Lib\WebActivator.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Services\bin\Debug\Docary.Services.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF\bin\Debug\Docary.Repositories.EF.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary\bin\Docary.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-10-11T18:07:49.7731843+02:00" queuing="2011-10-11T18:07:50.3347853+02:00" start="2011-10-11T18:07:50.3971854+02:00" finish="2011-10-11T18:07:51.5203874+02:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="3" executed="3" passed="3" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Add_Does_Not_Redirect_To_Home_Index_Route_When_ModelState_Invalid" storage="c:\users\jclaes\docary\docary\docary.tests\bin\debug\docary.tests.dll" id="3d205c15-2ff6-fb54-479e-0a488893de13">
+      <Execution id="3b1735ce-7c1e-46b8-b243-4c70c30414be" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Tests/bin/Debug/Docary.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Tests.EntryControllerTest, Docary.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Add_Does_Not_Redirect_To_Home_Index_Route_When_ModelState_Invalid" />
+    </UnitTest>
+    <UnitTest name="Test_GetEntries_Returns_More_Than_Zero_Results" storage="c:\users\jclaes\docary\docary\docary.repositories.ef.tests\bin\debug\docary.repositories.ef.tests.dll" id="4e8368e2-4d8a-9ca9-7729-ab600cf8ec26">
+      <Execution id="d0d325bb-0f0f-40ee-903e-5a3855628faf" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Repositories.EF.Tests/bin/Debug/Docary.Repositories.EF.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Repositories.EntryRepositoryTest, Docary.Repositories.EF.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_GetEntries_Returns_More_Than_Zero_Results" />
+    </UnitTest>
+    <UnitTest name="Add_Redirects_To_Home_Index_Route_When_Entry_SuccessFully_Added" storage="c:\users\jclaes\docary\docary\docary.tests\bin\debug\docary.tests.dll" id="20042187-2222-f3c8-bf27-c530c79be41a">
+      <Execution id="95f6622d-5d75-4712-ae46-09ff78c4c1b1" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Tests/bin/Debug/Docary.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Tests.EntryControllerTest, Docary.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Add_Redirects_To_Home_Index_Route_When_Entry_SuccessFully_Added" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="20042187-2222-f3c8-bf27-c530c79be41a" executionId="95f6622d-5d75-4712-ae46-09ff78c4c1b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d205c15-2ff6-fb54-479e-0a488893de13" executionId="3b1735ce-7c1e-46b8-b243-4c70c30414be" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4e8368e2-4d8a-9ca9-7729-ab600cf8ec26" executionId="d0d325bb-0f0f-40ee-903e-5a3855628faf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="95f6622d-5d75-4712-ae46-09ff78c4c1b1" testId="20042187-2222-f3c8-bf27-c530c79be41a" testName="Add_Redirects_To_Home_Index_Route_When_Entry_SuccessFully_Added" computerName="JCLAES-PC" duration="00:00:00.0567603" startTime="2011-10-11T18:07:50.4127854+02:00" endTime="2011-10-11T18:07:50.9587864+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="95f6622d-5d75-4712-ae46-09ff78c4c1b1">
+    </UnitTestResult>
+    <UnitTestResult executionId="3b1735ce-7c1e-46b8-b243-4c70c30414be" testId="3d205c15-2ff6-fb54-479e-0a488893de13" testName="Add_Does_Not_Redirect_To_Home_Index_Route_When_ModelState_Invalid" computerName="JCLAES-PC" duration="00:00:00.0009456" startTime="2011-10-11T18:07:50.9587864+02:00" endTime="2011-10-11T18:07:50.9587864+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3b1735ce-7c1e-46b8-b243-4c70c30414be">
+    </UnitTestResult>
+    <UnitTestResult executionId="d0d325bb-0f0f-40ee-903e-5a3855628faf" testId="4e8368e2-4d8a-9ca9-7729-ab600cf8ec26" testName="Test_GetEntries_Returns_More_Than_Zero_Results" computerName="JCLAES-PC" duration="00:00:00.0447755" startTime="2011-10-11T18:07:50.9743864+02:00" endTime="2011-10-11T18:07:51.4111872+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d0d325bb-0f0f-40ee-903e-5a3855628faf">
+    </UnitTestResult>
+  </Results>
+</TestRun>

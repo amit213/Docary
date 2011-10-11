@@ -2,26 +2,68 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using Docary.Services;
-using Docary.ViewModels;
 using System.Web.Mvc;
 
+using Docary.Services;
+using Docary.ViewModels;
+using Docary.Tests.Stubs;
+using Docary.Models;
+
 namespace Docary.Tests
-{
-    ///</summary>
+{    
     [TestClass()]
     public class EntryControllerTest
     {                
         [TestMethod()]        
-        public void Add_Redirects_To_Home_Index_When_EntryAdded()
+        public void Add_Redirects_To_Home_Index_Route_When_Entry_SuccessFully_Added()
         {
-            var target = new EntryController(null); // TODO: Initialize to an appropriate value
-            AddEntryViewModel addEntryViewModel = null; // TODO: Initialize to an appropriate value
-            ActionResult expected = null; // TODO: Initialize to an appropriate value
-            ActionResult actual;
-            actual = target.Add(addEntryViewModel);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            var addActionResult = (RedirectToRouteResult)GetEntryControllerWithEmptyEntryServiceStub().Add(GetEmptyAddEntryViewModel());
+
+            var actualRouteValues = addActionResult.RouteValues;
+            
+            Assert.AreEqual("Home", actualRouteValues["controller"]);
+            Assert.AreEqual("Index", actualRouteValues["action"]);
+        }
+
+        [TestMethod()]
+        public void Add_Redirects_To_Route_When_Entry_SuccessFully_Added()
+        {
+            var addActionResult = GetEntryControllerWithEmptyEntryServiceStub().Add(GetEmptyAddEntryViewModel());
+
+            var expectedActionResultType = typeof(RedirectToRouteResult);
+            var actualActionResultType = addActionResult.GetType();
+
+            Assert.AreEqual(expectedActionResultType, actualActionResultType);
+        }
+
+        [TestMethod]
+        public void Add_Does_Not_Redirect_To_Route_When_ModelState_Invalid()
+        {
+            var entryController = GetEntryControllerWithEmptyEntryServiceStub();
+               
+            entryController.ModelState.AddModelError("SomeError", "SomeEx");
+                
+            var addActionResult = entryController.Add(GetEmptyAddEntryViewModel());            
+
+            var redirectToRouteResultType = typeof(RedirectToRouteResult);
+            var actualActionResultType = addActionResult.GetType();
+
+            Assert.AreNotEqual(redirectToRouteResultType, actualActionResultType);
+        }
+
+        private static EntryController GetEntryControllerWithEmptyEntryServiceStub()
+        {
+            return new EntryController(new EntryServiceEmptyStub());
+        }
+
+        private static AddEntryViewModel GetEmptyAddEntryViewModel()
+        {
+            var addEntryViewModel = new AddEntryViewModel()
+            {
+                Entry = new Entry()
+            };
+
+            return addEntryViewModel;
         }
     }
 }
