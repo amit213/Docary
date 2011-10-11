@@ -24,6 +24,7 @@ namespace Docary.Repositories.EF
         public void AddEntry(Entry entry)
         {
             _context.Entries.Add(entry);
+            _context.SaveChanges();            
         }
     }
 }

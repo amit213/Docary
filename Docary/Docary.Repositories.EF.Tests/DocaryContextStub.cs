@@ -20,12 +20,14 @@ namespace Docary.Repositories.EF.Tests
         public IDbSet<Entry> Entries { get; set; }
         public IDbSet<Location> Locations { get; set; }
 
-        public void Seed()
+        public int SaveChanges() { return 1; }
+
+        private void Seed()
         {
             Entries = new FakeDbSet<Entry>()
             {
                 new Entry() { Id = 1 }
             };            
-        }
+        }        
     }
 }

@@ -15,7 +15,7 @@ namespace Docary.Tests
     public class EntryControllerTest
     {                
         [TestMethod()]        
-        public void Add_Redirects_To_Home_Index_Route_When_Entry_SuccessFully_Added()
+        public void Test_Add_Redirects_To_Home_Index_Route_When_Entry_SuccessFully_Added()
         {
             var addActionResult = (RedirectToRouteResult)GetEntryControllerWithEmptyEntryServiceStub().Add(GetEmptyAddEntryViewModel());
 
@@ -26,7 +26,7 @@ namespace Docary.Tests
         }
 
         [TestMethod()]
-        public void Add_Redirects_To_Route_When_Entry_SuccessFully_Added()
+        public void Test_Add_Redirects_To_Route_When_Entry_SuccessFully_Added()
         {
             var addActionResult = GetEntryControllerWithEmptyEntryServiceStub().Add(GetEmptyAddEntryViewModel());
 
@@ -37,7 +37,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Add_Does_Not_Redirect_To_Route_When_ModelState_Invalid()
+        public void Test_Add_Does_Not_Redirect_To_Route_When_ModelState_Invalid()
         {
             var entryController = GetEntryControllerWithEmptyEntryServiceStub();
                

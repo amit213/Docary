@@ -13,5 +13,7 @@ namespace Docary.Repositories.EF
         IDbSet<Activity> Activities { get; set; }
         IDbSet<Entry> Entries { get; set; }
         IDbSet<Location> Locations { get; set; }
+
+        int SaveChanges();
     }
 }

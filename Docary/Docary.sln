@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Tests", "Docary.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Assemblers", "Docary.Assemblers\Docary.Assemblers.csproj", "{B5A3A843-E5DF-4053-AD7E-464C5014C825}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Services.Tests", "Docary.Services.Tests\Docary.Services.Tests.csproj", "{73070503-0470-47DA-B686-C4C11489CB05}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Docary.vsmdi
@@ -129,6 +131,16 @@ Global
 		{B5A3A843-E5DF-4053-AD7E-464C5014C825}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B5A3A843-E5DF-4053-AD7E-464C5014C825}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B5A3A843-E5DF-4053-AD7E-464C5014C825}.Release|x86.ActiveCfg = Release|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{73070503-0470-47DA-B686-C4C11489CB05}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
