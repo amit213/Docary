@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Tests", "Docary.Tests\Docary.Tests.csproj", "{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Assemblers", "Docary.Assemblers\Docary.Assemblers.csproj", "{B5A3A843-E5DF-4053-AD7E-464C5014C825}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.ViewModelAssemblers", "Docary.Assemblers\Docary.ViewModelAssemblers.csproj", "{B5A3A843-E5DF-4053-AD7E-464C5014C825}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Services.Tests", "Docary.Services.Tests\Docary.Services.Tests.csproj", "{73070503-0470-47DA-B686-C4C11489CB05}"
 EndProject

@@ -5,7 +5,7 @@ using System.Text;
 
 using Docary.ViewModels;
 
-namespace Docary.Assemblers
+namespace Docary.ViewModelAssemblers
 {
     public interface IHomeAssembler
     {

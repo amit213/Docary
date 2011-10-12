@@ -11,7 +11,7 @@ namespace Docary.App_Start
     using Docary.Services;
     using Docary.Repositories;
     using Docary.Repositories.EF;
-    using Docary.Assemblers;
+    using Docary.ViewModelAssemblers;
 
     public static class NinjectMVC3
     {

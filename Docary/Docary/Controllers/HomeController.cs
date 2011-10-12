@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 using Docary.Services;
 using Docary.ViewModels;
-using Docary.Assemblers;
+using Docary.ViewModelAssemblers;
 
 using Ninject;
 

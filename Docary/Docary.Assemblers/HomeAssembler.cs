@@ -6,7 +6,7 @@ using System.Text;
 using Docary.ViewModels;
 using Docary.Services;
 
-namespace Docary.Assemblers
+namespace Docary.ViewModelAssemblers 
 {
     public class HomeAssembler : IHomeAssembler
     {
