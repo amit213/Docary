@@ -17,5 +17,13 @@ namespace Docary.Services.Tests
 
             target.AddEntry(null);           
         }
+
+        [TestMethod]
+        public void Test_AddEntry_Can_Resolve_Location_By_Name() 
+        {
+            var target = new EntryService(null, null, null);
+
+            target.AddEntry(null);
+        }
     }
 }

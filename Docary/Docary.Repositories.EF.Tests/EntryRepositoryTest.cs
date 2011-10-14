@@ -17,7 +17,7 @@ namespace Docary.Repositories
         {
             var target = new EntryRepository(new DocaryContextStub());
 
-            var actual = target.GetEntries().ToList();
+            var actual = target.Get().ToList();
             var actualContainsResults = actual.Count > 0;
 
             Assert.IsTrue(actualContainsResults);

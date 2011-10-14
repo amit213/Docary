@@ -24,7 +24,7 @@ namespace Docary.Services
 
         public IEnumerable<Entry> GetEntries()
         {
-            return _entryRepository.GetEntries().ToList();
+            return _entryRepository.Get().ToList();
         }
 
         public IEnumerable<Entry> GetEntries(string user)
@@ -43,22 +43,22 @@ namespace Docary.Services
             entry.LocationId = location == null ? AddLocation(entry.Location).Id : location.Id;
             entry.ActivityId = activity == null ? AddActivity(entry.Activity).Id : activity.Id;
 
-            _entryRepository.AddEntry(entry);
+            _entryRepository.Add(entry);
         }
 
         private Location TryToResolveLocation(string name)
         {
-            return _locationRepository.GetLocations().Where(l => l.Name == name).FirstOrDefault();
+            return _locationRepository.Get().Where(l => l.Name == name).FirstOrDefault();
         }
 
         private Activity TryToResolveActivity(string name)
         {
-            return _activityRepository.GetActivities().Where(a => a.Name == name).FirstOrDefault();
+            return _activityRepository.Get().Where(a => a.Name == name).FirstOrDefault();
         }
 
         private Location AddLocation(Location location)
         {
-            var locationId = _locationRepository.AddLocation(location);
+            var locationId = _locationRepository.Add(location);
 
             location.Id = locationId;
 
@@ -67,7 +67,7 @@ namespace Docary.Services
 
         private Activity AddActivity(Activity activity)
         {
-            var activityId = _activityRepository.AddActivity(activity);
+            var activityId = _activityRepository.Add(activity);
 
             activity.Id = activityId;
 

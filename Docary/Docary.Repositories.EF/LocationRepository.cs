@@ -16,12 +16,12 @@ namespace Docary.Repositories.EF
             _context = context;
         }
 
-        public IQueryable<Location> GetLocations()
+        public IQueryable<Location> Get()
         {
             return _context.Locations;
         }
         
-        public int AddLocation(Location location)
+        public int Add(Location location)
         {
             var locationId = _context.Locations.Add(location).Id;
 

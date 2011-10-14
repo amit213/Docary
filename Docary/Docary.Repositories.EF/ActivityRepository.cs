@@ -16,12 +16,12 @@ namespace Docary.Repositories.EF
             _context = context;
         }
 
-        public IQueryable<Activity> GetActivities()
+        public IQueryable<Activity> Get()
         {
             return _context.Activities;
         }
         
-        public int AddActivity(Activity activity)
+        public int Add(Activity activity)
         {
             var activityId = _context.Activities.Add(activity).Id;
 

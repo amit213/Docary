@@ -7,9 +7,7 @@ using Docary.Models;
 
 namespace Docary.Repositories
 {
-    public interface IEntryRepository
-    {
-        IQueryable<Entry> GetEntries();
-        int AddEntry(Entry entry);
+    public interface IEntryRepository : IRepositoryBase<Entry>
+    {       
     }
 }

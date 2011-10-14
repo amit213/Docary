@@ -7,9 +7,7 @@ using Docary.Models;
 
 namespace Docary.Repositories
 {
-    public interface IActivityRepository
-    {
-        IQueryable<Activity> GetActivities();
-        int AddActivity(Activity activity);
+    public interface IActivityRepository : IRepositoryBase<Activity>
+    {    
     }
 }
