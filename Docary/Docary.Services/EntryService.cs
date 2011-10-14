@@ -11,16 +11,20 @@ namespace Docary.Services
 {
     public class EntryService : IEntryService
     {
-        private IEntryRepository _repository;
+        private IEntryRepository _entryRepository;
+        private ILocationRepository _locationRepository;
+        private IActivityRepository _activityRepository;
 
-        public EntryService(IEntryRepository repository)
+        public EntryService(IEntryRepository entryRepository, ILocationRepository locationRepository, IActivityRepository activityRepository)
         {
-            _repository = repository;
+            _entryRepository = entryRepository;
+            _locationRepository = locationRepository;
+            _activityRepository = activityRepository;
         }
 
         public IEnumerable<Entry> GetEntries()
         {
-            return _repository.GetEntries().ToList();
+            return _entryRepository.GetEntries().ToList();
         }
 
         public IEnumerable<Entry> GetEntries(string user)
@@ -31,9 +35,43 @@ namespace Docary.Services
         public void AddEntry(Entry entry)
         {
             if (entry == null)
-                throw new ArgumentNullException("Entry");            
+                throw new ArgumentNullException("Entry");
 
-            _repository.AddEntry(entry);
+            var location = TryToResolveLocation(entry.Location.Name);
+            var activity = TryToResolveActivity(entry.Activity.Name);
+
+            entry.LocationId = location == null ? AddLocation(entry.Location).Id : location.Id;
+            entry.ActivityId = activity == null ? AddActivity(entry.Activity).Id : activity.Id;
+
+            _entryRepository.AddEntry(entry);
+        }
+
+        private Location TryToResolveLocation(string name)
+        {
+            return _locationRepository.GetLocations().Where(l => l.Name == name).FirstOrDefault();
+        }
+
+        private Activity TryToResolveActivity(string name)
+        {
+            return _activityRepository.GetActivities().Where(a => a.Name == name).FirstOrDefault();
+        }
+
+        private Location AddLocation(Location location)
+        {
+            var locationId = _locationRepository.AddLocation(location);
+
+            location.Id = locationId;
+
+            return location;
+        }
+
+        private Activity AddActivity(Activity activity)
+        {
+            var activityId = _activityRepository.AddActivity(activity);
+
+            activity.Id = activityId;
+
+            return activity;
         }
     }
 }

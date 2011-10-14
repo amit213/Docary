@@ -40,10 +40,15 @@ namespace Docary.App_Start
 
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IEntryRepository>().To<EntryRepository>();
             kernel.Bind<IDocaryContext>().To<DocaryContext>();
-            kernel.Bind<IEntryService>().To<EntryService>();
+
+            kernel.Bind<IEntryService>().To<EntryService>();            
+
             kernel.Bind<IHomeAssembler>().To<HomeAssembler>();
+
+            kernel.Bind<IEntryRepository>().To<EntryRepository>();
+            kernel.Bind<ILocationRepository>().To<LocationRepository>();
+            kernel.Bind<IActivityRepository>().To<ActivityRepository>();            
         }
     }
 }

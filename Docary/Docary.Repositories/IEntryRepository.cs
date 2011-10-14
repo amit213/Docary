@@ -10,6 +10,6 @@ namespace Docary.Repositories
     public interface IEntryRepository
     {
         IQueryable<Entry> GetEntries();
-        void AddEntry(Entry entry);
+        int AddEntry(Entry entry);
     }
 }

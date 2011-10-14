@@ -13,7 +13,7 @@ namespace Docary.Services.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddEntry_Throws_ArgumentNullException_On_Null_Entry()
         {            
-            var target = new EntryService(null); 
+            var target = new EntryService(null, null, null); 
 
             target.AddEntry(null);           
         }
