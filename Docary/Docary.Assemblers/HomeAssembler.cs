@@ -17,7 +17,7 @@ namespace Docary.ViewModelAssemblers
             _entryService = entryService;
         }
 
-        public ViewModels.HomeIndexViewModel AssembleHomeIndexViewModel()
+        public HomeIndexViewModel AssembleHomeIndexViewModel()
         {
             var indexViewModel = new HomeIndexViewModel()
             {
