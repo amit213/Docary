@@ -2,4 +2,9 @@
     ViewBag.Title = "NewUser";
 }
 
-<h2>First time here?</h2>
+<div id="menucontainer">
+    <ul id="menu" data-role="listview" data-theme="g">        
+        <li>@Html.ActionLink("Logon", "LogOn", "Account")</li>                    
+        <li>@Html.ActionLink("Register", "Register", "Account")</li>   
+    </ul>
+</div>
