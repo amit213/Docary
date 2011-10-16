@@ -8,10 +8,10 @@
     <script type="text/javascript">
         $(function () {
             var deleteEntry = function () {
-                var that = $(this);
+                var that = $(this);                
 
-                var deleteUrl = '@Url.Action("Delete", "Entry")';
-
+                var deleteUrl = '@Url.Action("Delete", "Entry")';           
+                
                 var entryId = that.attr('data-entryId');
 
                 $.ajax(
@@ -19,9 +19,9 @@
                         type: 'POST',
                         url: deleteUrl,
                         data: { id: entryId },
-                        success: function (result) {
+                        success: function (result) {                          
                             if (result.success) {
-                                $('.entry[data-entryId=' + entryId + ']').slideUp("normal", function () { $(this).remove(); });
+                                $('.entry[data-entryId=' + entryId + ']').remove();
                             }
                         },
                         error: function (req, status, error) {
