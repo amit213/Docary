@@ -33,11 +33,11 @@ namespace Docary.Controllers
             }
             else
             {
-                return RedirectToAction("NewUser");
+                return RedirectToAction("Welcome");
             }
         }
 
-        public ActionResult NewUser()
+        public ActionResult Welcome()
         {
             return View();
         }

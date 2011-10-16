@@ -16,26 +16,20 @@
 
 @using (Html.BeginForm()) {
     <div>
-        <fieldset>
-            <legend>Account Information</legend>
-
-            <div class="editor-label">
-                @Html.LabelFor(m => m.UserName)
-            </div>
-            <div class="editor-field">
+        <fieldset>       
+            <div data-role="fieldcontain">
+                @Html.LabelFor(m => m.UserName)           
                 @Html.TextBoxFor(m => m.UserName)
                 @Html.ValidationMessageFor(m => m.UserName)
             </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(m => m.Password)
-            </div>
-            <div class="editor-field">
+             <div data-role="fieldcontain">
+                @Html.LabelFor(m => m.Password)            
                 @Html.PasswordFor(m => m.Password)
                 @Html.ValidationMessageFor(m => m.Password)
             </div>
 
-            <div class="editor-label">
+             <div data-role="fieldcontain">
                 @Html.CheckBoxFor(m => m.RememberMe)
                 @Html.LabelFor(m => m.RememberMe)
             </div>
