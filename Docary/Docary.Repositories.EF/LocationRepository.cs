@@ -21,13 +21,21 @@ namespace Docary.Repositories.EF
             return _context.Locations;
         }
         
-        public int Add(Location location)
+        public Location Add(Location location)
         {
-            var locationId = _context.Locations.Add(location).Id;
+            var addedLocation = _context.Locations.Add(location);
 
             _context.SaveChanges();
 
-            return locationId;
+            return addedLocation;
+        }
+
+        public void Delete(int id)
+        {
+            var locationToDelete = _context.Locations.Where(l => l.Id == id).First();
+
+            _context.Locations.Remove(locationToDelete);
+            _context.SaveChanges();
         }
     }
 }

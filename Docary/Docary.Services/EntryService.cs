@@ -46,6 +46,11 @@ namespace Docary.Services
             _entryRepository.Add(entry);
         }
 
+        public void DeleteEntry(int id)
+        {
+            _entryRepository.Delete(id);
+        }
+
         private Location TryToResolveLocation(string name)
         {
             return _locationRepository.Get().Where(l => l.Name == name).FirstOrDefault();
@@ -58,20 +63,12 @@ namespace Docary.Services
 
         private Location AddLocation(Location location)
         {
-            var locationId = _locationRepository.Add(location);
-
-            location.Id = locationId;
-
-            return location;
+            return _locationRepository.Add(location);
         }
 
         private Activity AddActivity(Activity activity)
         {
-            var activityId = _activityRepository.Add(activity);
-
-            activity.Id = activityId;
-
-            return activity;
+           return _activityRepository.Add(activity);
         }
     }
 }

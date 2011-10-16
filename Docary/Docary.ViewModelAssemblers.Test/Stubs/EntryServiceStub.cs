@@ -39,5 +39,10 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteEntry(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

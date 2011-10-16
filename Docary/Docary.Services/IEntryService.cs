@@ -12,5 +12,6 @@ namespace Docary.Services
         IEnumerable<Entry> GetEntries();
         IEnumerable<Entry> GetEntries(string user);
         void AddEntry(Entry entry);
+        void DeleteEntry(int id);
     }
 }

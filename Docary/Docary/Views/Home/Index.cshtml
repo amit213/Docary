@@ -4,16 +4,47 @@
 
 @model Docary.ViewModels.HomeIndexViewModel
 
+@section Head {
+    <script type="text/javascript">
+        $(function () {
+            var deleteEntry = function () {
+                var that = $(this);
+
+                var deleteUrl = '@Url.Action("Delete", "Entry")';
+
+                var entryId = that.attr('data-entryId');
+
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: deleteUrl,
+                        data: { id: entryId },
+                        success: function (result) {
+                            if (result.success) {
+                                $('.entry[data-entryId=' + entryId + ']').slideUp("normal", function () { $(this).remove(); });
+                            }
+                        },
+                        error: function (req, status, error) {
+                            //TODO: Do something here..
+                        }
+                    });
+            };
+
+            $('.deleteEntryButton').live('click', deleteEntry);
+        });
+    </script>
+}
+
 <h2>Docary</h2>
 <table>
     @foreach (var entry in Model.Entries)
     {
-        <tr>
+        <tr class="entry" data-entryId="@entry.Id">
             <td>@entry.CreatedOn</td>
             <td>@entry.Activity.Name</td>
             <td>@entry.Location.Name</td>
             <td>@entry.Meta</td>
-            <td>@Html.ActionLink("Delete", "Delete", "Entry", new { id = entry.Id }, null)</td>
+            <td><input type="button" value="Delete" class="deleteEntryButton" data-entryId="@entry.Id"/></td>
         </tr>       
     }        
 </table>

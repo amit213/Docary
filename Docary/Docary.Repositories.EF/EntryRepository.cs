@@ -21,16 +21,24 @@ namespace Docary.Repositories.EF
             return _context.Entries;
         }
         
-        public int Add(Entry entry)
+        public Entry Add(Entry entry)
         {
             //TODO: Can't EF do this for me?
             entry.CreatedOn = DateTime.Now;
 
-            var addedEntry =_context.Entries.Add(entry).Id;                      
+            var addedEntry = _context.Entries.Add(entry);                      
 
             _context.SaveChanges();
 
             return addedEntry;
+        }
+
+        public void Delete(int id)
+        {
+            var entryToDelete = _context.Entries.Where(e => e.Id == id).First();
+
+            _context.Entries.Remove(entryToDelete);
+            _context.SaveChanges();
         }
     }
 }

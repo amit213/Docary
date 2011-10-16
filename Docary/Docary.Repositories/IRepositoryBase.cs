@@ -8,6 +8,7 @@ namespace Docary.Repositories
     public interface IRepositoryBase<T>
     {
         IQueryable<T> Get();
-        int Add(T item);
+        T Add(T item);
+        void Delete(int id);
     }
 }

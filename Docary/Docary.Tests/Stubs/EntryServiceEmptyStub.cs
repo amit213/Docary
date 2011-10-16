@@ -21,5 +21,6 @@ namespace Docary.Tests.Stubs
         }
 
         public void AddEntry(Entry entry) { }
+        public void DeleteEntry(int id) { } 
     }
 }

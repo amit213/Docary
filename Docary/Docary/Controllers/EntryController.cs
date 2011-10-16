@@ -42,15 +42,12 @@ namespace Docary.Controllers
         }
 
         [Authorize]
-        public ActionResult Delete(int id)
+        public JsonResult Delete(int id)
         {
-            return View();
+            _entryService.DeleteEntry(id);
+
+            return Json(new { success = true });
         }
 
-        [Authorize]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            return View();
-        }
     }
 }
