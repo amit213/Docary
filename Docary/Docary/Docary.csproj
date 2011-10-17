@@ -190,6 +190,10 @@
       <Project>{AA2BF642-4B73-4118-9E2E-4C07A4A26F06}</Project>
       <Name>Docary.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Docary.ViewModelExtractors\Docary.ViewModelExtractors.csproj">
+      <Project>{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}</Project>
+      <Name>Docary.ViewModelExtractors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Docary.ViewModels\Docary.ViewModels.csproj">
       <Project>{2DFF28A4-78C7-4769-8B82-231A1B25AB60}</Project>
       <Name>Docary.ViewModels</Name>

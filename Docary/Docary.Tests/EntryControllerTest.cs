@@ -58,12 +58,7 @@ namespace Docary.Tests
 
         private static AddEntryViewModel GetEmptyAddEntryViewModel()
         {
-            var addEntryViewModel = new AddEntryViewModel()
-            {
-                Entry = new Entry()
-            };
-
-            return addEntryViewModel;
+            return new AddEntryViewModel();                        
         }
     }
 }

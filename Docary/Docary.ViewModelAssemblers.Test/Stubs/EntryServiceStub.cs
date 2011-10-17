@@ -25,7 +25,7 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
                         Name = "Brussel"
                     },
                     Meta = "Bla",
-                    UserId = 1
+                    UserId = "1"
                 },
             };
         }

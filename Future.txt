@@ -1,4 +1,13 @@
 Entry
 
-Add entry
+Userspecific
+Index:
+-Grouping
+
+Add entry:
+- From > To
 Delete entry
+
+Menu bottom
+
+Analytics?

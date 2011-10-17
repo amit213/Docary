@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Docary.Models;
 using Docary.ViewModels;
 using Docary.Services;
+using Docary.ViewModelExtractors;
 
 namespace Docary.Controllers
 {
@@ -20,24 +21,24 @@ namespace Docary.Controllers
         }
 
         [Authorize]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
         public ActionResult Add(AddEntryViewModel addEntryViewModel)
         {
-            if (addEntryViewModel.Entry == null)
+            if (ModelState.IsValid)
             {
-                return View(new AddEntryViewModel());
+                _entryService.AddEntry(addEntryViewModel.ExtractEntry());
+
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                if (ModelState.IsValid)
-                {
-                    _entryService.AddEntry(addEntryViewModel.Entry);
-
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    return View(addEntryViewModel);
-                }
+                return View(addEntryViewModel);
             }
         }
 

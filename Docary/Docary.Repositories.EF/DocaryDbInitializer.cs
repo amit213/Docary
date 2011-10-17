@@ -12,16 +12,17 @@ namespace Docary.Repositories.EF
     {
         protected override void Seed(DocaryContext context)
         {
-            var homeLocation = context.Locations.Add(new Location() { Name = "Home" });
-            var workActivitiy = context.Activities.Add(new Activity() { Name = "Work" });
+            var homeLocation = context.Locations.Add(new Location() { Name = "Home", UserId = "1" });
+            var workActivitiy = context.Activities.Add(new Activity() { Name = "Work", UserId = "1" });
 
             context.Entries.Add(new Entry()
             {
                 Activity = workActivitiy,
                 Location = homeLocation,
                 CreatedOn = DateTime.Now,
+                StoppedOn = DateTime.MaxValue,
                 Meta = "Blablabla",
-                UserId = 1
+                UserId = "1"
             });
 
             context.Entries.Add(new Entry()
@@ -29,8 +30,9 @@ namespace Docary.Repositories.EF
                 Activity = workActivitiy,
                 Location = homeLocation,
                 CreatedOn = DateTime.Now,
+                StoppedOn = DateTime.MaxValue,
                 Meta = "More blablablabla",
-                UserId = 1
+                UserId = "1"
             });
          
             base.Seed(context);

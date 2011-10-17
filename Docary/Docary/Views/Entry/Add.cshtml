@@ -6,24 +6,28 @@
 
 <h2>Add</h2>
 @using (Html.BeginForm("Add", "Entry"))
-{                       
+{                     
+    @Html.ValidationSummary(true, "Adding entry was unsuccessful. Please correct the errors and try again.")  
     <div class="editor-label">
         Activity 
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(m => m.Entry.Activity.Name)                            
+        @Html.TextBoxFor(m => m.ActivityName)   
+        @Html.ValidationMessageFor(m => m.ActivityName)                         
     </div>        
     <div class="editor-label">
         Location 
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(m => m.Entry.Location.Name)    
+        @Html.TextBoxFor(m => m.LocationName)    
+        @Html.ValidationMessageFor(m => m.LocationName)
     </div>        
     <div class="editor-label">
         Meta
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(m => m.Entry.Meta)    
+        @Html.TextBoxFor(m => m.Meta)    
+        @Html.ValidationMessageFor(m => m.Meta)
     </div>
     <p>
         <input type="submit" value="Add" />

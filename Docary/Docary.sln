@@ -30,6 +30,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Services.Tests", "Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.ViewModelAssemblers.Test", "Docary.ViewModelAssemblers.Test\Docary.ViewModelAssemblers.Test.csproj", "{ACAA433E-AB18-4B87-BCA1-29CE8DF139E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.ViewModelExtractors", "Docary.ViewModelExtractors\Docary.ViewModelExtractors.csproj", "{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.ViewModelExtractors.Tests", "Docary.ViewModelExtractors.Tests\Docary.ViewModelExtractors.Tests.csproj", "{5C9A8F90-51BF-4689-9089-7F918959E85B}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Docary.vsmdi
@@ -153,6 +157,26 @@ Global
 		{ACAA433E-AB18-4B87-BCA1-29CE8DF139E2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{ACAA433E-AB18-4B87-BCA1-29CE8DF139E2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{ACAA433E-AB18-4B87-BCA1-29CE8DF139E2}.Release|x86.ActiveCfg = Release|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2EB80EFD-E718-49F0-A8F7-3CEF2530AD5C}.Release|x86.ActiveCfg = Release|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5C9A8F90-51BF-4689-9089-7F918959E85B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
