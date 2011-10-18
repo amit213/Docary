@@ -19,10 +19,21 @@ namespace Docary.ViewModelAssemblers
 
         public HomeIndexViewModel AssembleHomeIndexViewModel()
         {
-            var indexViewModel = new HomeIndexViewModel()
+            var indexViewModel = new HomeIndexViewModel();
+
+            var entries = _entryService.GetEntries();
+            var groups = entries.GroupBy(e => e.CreatedOn.Date);
+
+            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();
+
+            foreach (var group in groups)
             {
-                Entries = _entryService.GetEntries()
-            };
+                var entryGroup = new HomeIndexViewModelEntryGroup();
+                entryGroup.Date = group.First().CreatedOn.Date;
+                entryGroup.Entries = group.ToList();
+
+                indexViewModel.EntryGroups.Add(entryGroup);
+            }           
 
             return indexViewModel;
         }

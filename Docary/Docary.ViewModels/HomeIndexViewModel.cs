@@ -9,6 +9,12 @@ namespace Docary.ViewModels
 {
     public class HomeIndexViewModel
     {
-        public IEnumerable<Entry> Entries { get; set; }
+        public List<HomeIndexViewModelEntryGroup> EntryGroups { get; set; }
+    }
+
+    public class HomeIndexViewModelEntryGroup
+    {
+        public DateTime Date { get; set; }
+        public List<Entry> Entries { get; set; }
     }
 }

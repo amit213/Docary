@@ -13,13 +13,27 @@ namespace Docary.ViewModelAssemblers.Test
     public class HomeAssemblerTest
     {
         [TestMethod()]
-        public void AssembleHomeIndexViewModelTest()
+        public void Test_AssembleHomeIndexViewModel_Initializes_EntryGroups()
+        {
+            var target = new HomeAssembler(GetEntryServiceStub());
+
+            var actual = target.AssembleHomeIndexViewModel();
+
+            Assert.IsNotNull(actual.EntryGroups);
+        }
+
+        [TestMethod()]
+        public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
         {            
             var target = new HomeAssembler(GetEntryServiceStub());       
             
             var actual = target.AssembleHomeIndexViewModel();
 
-            Assert.IsTrue(actual.Entries.Count() > 0);       
+            var firstEntryGroup = actual.EntryGroups.First();
+            var secondEntryGroup = actual.EntryGroups.ElementAt(1);
+
+            Assert.AreEqual(firstEntryGroup.Entries.Count(), 2);
+            Assert.AreEqual(secondEntryGroup.Entries.Count(), 1);
         }
 
         private EntryServiceStub GetEntryServiceStub()

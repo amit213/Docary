@@ -18,7 +18,7 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
                         Id = 1,
                         Name = "Work"
                     },
-                    CreatedOn = DateTime.Now,
+                    CreatedOn = DateTime.Now.Date,
                     Id = 1,
                     Location = new Location() {
                         Id = 1,
@@ -27,6 +27,34 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
                     Meta = "Bla",
                     UserId = "1"
                 },
+                new Entry() {
+                    Activity = new Activity() {
+                        Id = 1,
+                        Name = "Workout"
+                    },
+                    CreatedOn = DateTime.Now.Date.AddHours(15),
+                    Id = 2,
+                    Location = new Location() {
+                        Id = 2,
+                        Name = "At home"
+                    },
+                    Meta = "Bla",
+                    UserId = "1"
+                },
+                new Entry() {
+                    Activity = new Activity() {
+                        Id = 3,
+                        Name = "Blog"
+                    },
+                    CreatedOn = DateTime.Now.AddDays(1),
+                    Id = 1,
+                    Location = new Location() {
+                        Id = 2,
+                        Name = "At home"
+                    },
+                    Meta = "Bla",
+                    UserId = "1"
+                }
             };
         }
 

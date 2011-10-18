@@ -35,17 +35,22 @@
     </script>
 }
 
-<h2>Docary</h2>
 <table>
-    @foreach (var entry in Model.Entries)
+    @foreach (var entryGroup in Model.EntryGroups)
     {
-        <tr class="entry" data-entryId="@entry.Id">
-            <td>@entry.CreatedOn</td>
-            <td>@entry.Activity.Name</td>
-            <td>@entry.Location.Name</td>
-            <td>@entry.Meta</td>
-            <td><input type="button" value="Delete" class="deleteEntryButton" data-entryId="@entry.Id"/></td>
-        </tr>       
+        <tr>
+            <td colspan="5"><span class="entrygroupdate">@entryGroup.Date</span></td>
+        </tr>
+        foreach(var entry in entryGroup.Entries) 
+        {
+            <tr class="entry" data-entryId="@entry.Id">
+                <td>@entry.CreatedOn</td>
+                <td>@entry.Activity.Name</td>
+                <td>@entry.Location.Name</td>
+                <td>@entry.Meta</td>
+                <td><input type="button" value="Delete" class="deleteEntryButton" data-entryId="@entry.Id"/></td>
+            </tr>       
+        }
     }        
 </table>
 @Html.ActionLink("Add", "Add", "Entry")
