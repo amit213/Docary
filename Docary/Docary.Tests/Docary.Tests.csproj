@@ -88,6 +88,10 @@
       <Project>{DE1C8439-CE82-442B-9C6D-6282F553B95B}</Project>
       <Name>Docary.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Docary.MvcExtensions\Docary.MvcExtensions.csproj">
+      <Project>{7A820C62-07C3-427C-9C22-7BCBEB7402A7}</Project>
+      <Name>Docary.MvcExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Docary.Repositories.EF\Docary.Repositories.EF.csproj">
       <Project>{64686E31-D57E-4E3C-ABDB-02EE4CAA9285}</Project>
       <Name>Docary.Repositories.EF</Name>

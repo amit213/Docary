@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 using Docary.Models;
 using Docary.ViewModels;
 using Docary.Services;
 using Docary.ViewModelExtractors;
+using Docary.MvcExtensions;
 
 namespace Docary.Controllers
 {
-    public class EntryController : Controller
+    public class EntryController : DocaryController
     {
         private IEntryService _entryService;
 
@@ -32,7 +34,10 @@ namespace Docary.Controllers
         {
             if (ModelState.IsValid)
             {
-                _entryService.AddEntry(addEntryViewModel.ExtractEntry());
+                var entry = addEntryViewModel.ExtractEntry();
+                entry.UserId = UserId;
+
+                _entryService.AddEntry(entry);
 
                 return RedirectToAction("Index", "Home");
             }

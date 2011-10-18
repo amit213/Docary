@@ -37,11 +37,14 @@ namespace Docary.Services
             if (entry == null)
                 throw new ArgumentNullException("Entry");
 
-            var location = TryToResolveLocation(entry.Location.Name);
-            var activity = TryToResolveActivity(entry.Activity.Name);
+            entry.CreatedOn = DateTime.Now;
+            entry.StoppedOn = DateTime.MaxValue;
 
-            entry.LocationId = location == null ? AddLocation(entry.Location).Id : location.Id;
-            entry.ActivityId = activity == null ? AddActivity(entry.Activity).Id : activity.Id;
+            var location = ResolveLocation(entry.Location.Name);
+            var activity = ResolveActivity(entry.Activity.Name);
+
+            entry.Location = location == null ? AddLocationBasedOn(entry) : location;
+            entry.Activity = activity == null ? AddActivityBasedOn(entry) : activity;
 
             _entryRepository.Add(entry);
         }
@@ -51,24 +54,42 @@ namespace Docary.Services
             _entryRepository.Delete(id);
         }
 
-        private Location TryToResolveLocation(string name)
+        private Location ResolveLocation(string name)
         {
-            return _locationRepository.Get().Where(l => l.Name == name).FirstOrDefault();
+            return _locationRepository
+                        .Get()
+                        .Where(l => l.Name == name)
+                        .FirstOrDefault();
         }
 
-        private Activity TryToResolveActivity(string name)
+        private Activity ResolveActivity(string name)
         {
-            return _activityRepository.Get().Where(a => a.Name == name).FirstOrDefault();
+            return _activityRepository
+                        .Get()
+                        .Where(a => a.Name == name)
+                        .FirstOrDefault();
         }
 
-        private Location AddLocation(Location location)
+        private Location AddLocationBasedOn(Entry entry)
         {
+            var location = new Location()
+            {
+                Name = entry.Location.Name,
+                UserId = entry.UserId
+            };
+
             return _locationRepository.Add(location);
         }
 
-        private Activity AddActivity(Activity activity)
+        private Activity AddActivityBasedOn(Entry entry)
         {
-           return _activityRepository.Add(activity);
+            var activity = new Activity()
+            {
+                Name = entry.Activity.Name,
+                UserId = entry.UserId
+            };
+
+            return _activityRepository.Add(activity);
         }
     }
 }

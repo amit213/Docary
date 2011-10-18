@@ -28,7 +28,9 @@
             @RenderBody()
         </div>
         <div data-role="footer">
-            Log off
+             <ul id="menu" data-role="listview" data-theme="g">        
+                <li>@Html.ActionLink("Log off", "LogOff", "Account")</li>                                
+            </ul>
         </div>
     </div>
 </body>
