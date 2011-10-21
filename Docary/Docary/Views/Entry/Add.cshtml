@@ -7,7 +7,14 @@
 <h2>Add</h2>
 @using (Html.BeginForm("Add", "Entry"))
 {                     
-    @Html.ValidationSummary(true, "Adding entry was unsuccessful. Please correct the errors and try again.")  
+    @Html.ValidationSummary(true, "Adding entry was unsuccessful. Please correct the errors and try again.")     
+    <div class="editor-label">
+        Description
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Description)    
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
     <div class="editor-label">
         Tag 
     </div>
@@ -22,13 +29,6 @@
         @Html.TextBoxFor(m => m.LocationName)    
         @Html.ValidationMessageFor(m => m.LocationName)
     </div>        
-    <div class="editor-label">
-        Meta
-    </div>
-    <div class="editor-field">
-        @Html.TextBoxFor(m => m.Description)    
-        @Html.ValidationMessageFor(m => m.Description)
-    </div>
     <p>
         <input type="submit" value="Add" />
     </p>        
