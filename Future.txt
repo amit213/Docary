@@ -2,11 +2,13 @@ Entry
 
 Userspecific
 Index:
--Grouping
+- Make better looking
 
 Add entry:
 - From > To
 Delete entry
+
+Generic repository
 
 Menu bottom
 

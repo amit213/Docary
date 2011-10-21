@@ -9,11 +9,11 @@
 {                     
     @Html.ValidationSummary(true, "Adding entry was unsuccessful. Please correct the errors and try again.")  
     <div class="editor-label">
-        Activity 
+        Tag 
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(m => m.ActivityName)   
-        @Html.ValidationMessageFor(m => m.ActivityName)                         
+        @Html.TextBoxFor(m => m.TagName)   
+        @Html.ValidationMessageFor(m => m.TagName)                         
     </div>        
     <div class="editor-label">
         Location 
@@ -26,8 +26,8 @@
         Meta
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(m => m.Meta)    
-        @Html.ValidationMessageFor(m => m.Meta)
+        @Html.TextBoxFor(m => m.Description)    
+        @Html.ValidationMessageFor(m => m.Description)
     </div>
     <p>
         <input type="submit" value="Add" />

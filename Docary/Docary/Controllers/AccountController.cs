@@ -15,7 +15,7 @@ namespace Docary.Controllers
     {
         public ActionResult LogOn()
         {
-            return View();
+            return View();                
         }
 
         [HttpPost]

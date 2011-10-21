@@ -13,13 +13,13 @@ namespace Docary.Services
     {
         private IEntryRepository _entryRepository;
         private ILocationRepository _locationRepository;
-        private IActivityRepository _activityRepository;
+        private ITagRepository _tagRepository;
 
-        public EntryService(IEntryRepository entryRepository, ILocationRepository locationRepository, IActivityRepository activityRepository)
+        public EntryService(IEntryRepository entryRepository, ILocationRepository locationRepository, ITagRepository tagRepository)
         {
             _entryRepository = entryRepository;
             _locationRepository = locationRepository;
-            _activityRepository = activityRepository;
+            _tagRepository = tagRepository;
         }
 
         public IEnumerable<Entry> GetEntries()
@@ -41,10 +41,10 @@ namespace Docary.Services
             entry.StoppedOn = DateTime.MaxValue;
 
             var location = ResolveLocation(entry.Location.Name);
-            var activity = ResolveActivity(entry.Activity.Name);
+            var tag = ResolveTag(entry.Tag.Name);
 
             entry.Location = location == null ? AddLocationBasedOn(entry) : location;
-            entry.Activity = activity == null ? AddActivityBasedOn(entry) : activity;
+            entry.Tag = tag == null ? AddTagBasedOn(entry) : tag;
 
             _entryRepository.Add(entry);
         }
@@ -62,9 +62,9 @@ namespace Docary.Services
                         .FirstOrDefault();
         }
 
-        private Activity ResolveActivity(string name)
+        private EntryTag ResolveTag(string name)
         {
-            return _activityRepository
+            return _tagRepository
                         .Get()
                         .Where(a => a.Name == name)
                         .FirstOrDefault();
@@ -81,15 +81,15 @@ namespace Docary.Services
             return _locationRepository.Add(location);
         }
 
-        private Activity AddActivityBasedOn(Entry entry)
+        private EntryTag AddTagBasedOn(Entry entry)
         {
-            var activity = new Activity()
+            var tag = new EntryTag()
             {
-                Name = entry.Activity.Name,
+                Name = entry.Tag.Name,
                 UserId = entry.UserId
             };
 
-            return _activityRepository.Add(activity);
+            return _tagRepository.Add(tag);
         }
     }
 }

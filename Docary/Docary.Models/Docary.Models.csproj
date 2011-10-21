@@ -44,7 +44,7 @@
     <Compile Include="Account\ChangePasswordModel.cs" />
     <Compile Include="Account\LogOnModel.cs" />
     <Compile Include="Account\RegisterModel.cs" />
-    <Compile Include="Activity.cs" />
+    <Compile Include="EntryTag.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,7 +16,7 @@ namespace Docary.Repositories.EF.Tests
             Seed();
         }
 
-        public IDbSet<Activity> Activities { get; set; }
+        public IDbSet<EntryTag> Tags { get; set; }
         public IDbSet<Entry> Entries { get; set; }
         public IDbSet<Location> Locations { get; set; }
 

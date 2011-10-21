@@ -14,7 +14,7 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
             return new List<Entry>()
             {
                 new Entry() {
-                    Activity = new Activity() {
+                    Tag = new EntryTag() {
                         Id = 1,
                         Name = "Work"
                     },
@@ -24,11 +24,11 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
                         Id = 1,
                         Name = "Brussel"
                     },
-                    Meta = "Bla",
+                    Description = "Bla",
                     UserId = "1"
                 },
                 new Entry() {
-                    Activity = new Activity() {
+                    Tag = new EntryTag() {
                         Id = 1,
                         Name = "Workout"
                     },
@@ -38,11 +38,11 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
                         Id = 2,
                         Name = "At home"
                     },
-                    Meta = "Bla",
+                    Description = "Bla",
                     UserId = "1"
                 },
                 new Entry() {
-                    Activity = new Activity() {
+                    Tag = new EntryTag() {
                         Id = 3,
                         Name = "Blog"
                     },
@@ -52,7 +52,7 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
                         Id = 2,
                         Name = "At home"
                     },
-                    Meta = "Bla",
+                    Description = "Bla",
                     UserId = "1"
                 }
             };

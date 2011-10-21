@@ -18,11 +18,11 @@ namespace Docary.ViewModelExtractors.Tests
         }
 
         [TestMethod()]
-        public void Test_ExtractEntry_Extracts_Activity()
+        public void Test_ExtractEntry_Extracts_Tag()
         {
             var extractedEntry = GetAddEntryViewModel().ExtractEntry();
 
-            Assert.AreEqual("ActivityTest", extractedEntry.Activity.Name);
+            Assert.AreEqual("TagTest", extractedEntry.Tag.Name);
         }
 
         [TestMethod()]
@@ -30,16 +30,16 @@ namespace Docary.ViewModelExtractors.Tests
         {
             var extractedEntry = GetAddEntryViewModel().ExtractEntry();
 
-            Assert.AreEqual("MetaTest", extractedEntry.Meta);
+            Assert.AreEqual("MetaTest", extractedEntry.Description);
         }
 
         private AddEntryViewModel GetAddEntryViewModel()
         {
             return new AddEntryViewModel()
             {
-                ActivityName = "ActivityTest",
+                TagName = "TagTest",
                 LocationName = "LocationTest",
-                Meta = "MetaTest"
+                Description = "MetaTest"
             };
         }
     }

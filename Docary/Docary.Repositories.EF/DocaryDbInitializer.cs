@@ -13,25 +13,25 @@ namespace Docary.Repositories.EF
         protected override void Seed(DocaryContext context)
         {
             var homeLocation = context.Locations.Add(new Location() { Name = "Home", UserId = "1" });
-            var workActivitiy = context.Activities.Add(new Activity() { Name = "Work", UserId = "1" });
+            var workTag = context.Tags.Add(new EntryTag() { Name = "Work", UserId = "1" });
 
             context.Entries.Add(new Entry()
             {
-                Activity = workActivitiy,
+                Tag = workTag,
                 Location = homeLocation,
                 CreatedOn = DateTime.Now,
                 StoppedOn = DateTime.MaxValue,
-                Meta = "Blablabla",
+                Description = "Blablabla",
                 UserId = "1"
             });
 
             context.Entries.Add(new Entry()
             {
-                Activity = workActivitiy,
+                Tag = workTag,
                 Location = homeLocation,
                 CreatedOn = DateTime.Now,
                 StoppedOn = DateTime.MaxValue,
-                Meta = "More blablablabla",
+                Description = "More blablablabla",
                 UserId = "1"
             });
          

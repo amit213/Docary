@@ -11,9 +11,10 @@ namespace Docary.ViewModels
     public class AddEntryViewModel
     {
         [Required]
-        public string ActivityName { get; set; }
+        public string TagName { get; set; }
         [Required]
-        public string LocationName { get; set; }        
-        public string Meta { get; set; }       
+        public string LocationName { get; set; }  
+        [Required]
+        public string Description { get; set; }       
     }
 }

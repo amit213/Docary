@@ -35,19 +35,17 @@
     </script>
 }
 
-<table>
+<table width="100%">
     @foreach (var entryGroup in Model.EntryGroups)
     {
         <tr>
-            <td colspan="5"><span class="entrygroupdate">@entryGroup.Date</span></td>
+            <td colspan="5"><span class="entrygroupdate">@entryGroup.Date.ToString("dd/MM/yyyy")</span></td>
         </tr>
         foreach(var entry in entryGroup.Entries) 
         {
             <tr class="entry" data-entryId="@entry.Id">
-                <td>@entry.CreatedOn</td>
-                <td>@entry.Activity.Name</td>
-                <td>@entry.Location.Name</td>
-                <td>@entry.Meta</td>
+                <td>@entry.CreatedOn.ToString("HH:mm")</td>
+                <td>@entry.Description</td>
                 <td><input type="button" value="Delete" class="deleteEntryButton" data-entryId="@entry.Id"/></td>
             </tr>       
         }

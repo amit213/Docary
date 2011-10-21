@@ -37,5 +37,5 @@ namespace Docary.Repositories.EF
             _context.Entries.Remove(entryToDelete);
             _context.SaveChanges();
         }
-    }
+    }  
 }

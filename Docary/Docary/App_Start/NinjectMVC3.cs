@@ -48,7 +48,7 @@ namespace Docary.App_Start
 
             kernel.Bind<IEntryRepository>().To<EntryRepository>();
             kernel.Bind<ILocationRepository>().To<LocationRepository>();
-            kernel.Bind<IActivityRepository>().To<ActivityRepository>();            
+            kernel.Bind<ITagRepository>().To<TagRepository>();            
         }
     }
 }

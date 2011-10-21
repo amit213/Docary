@@ -10,14 +10,15 @@ namespace Docary.Models
     {
         public int Id { get; set; }
         [Required]
-        public virtual Activity Activity { get; set; }
+        public virtual EntryTag Tag { get; set; }
         [Required]
-        public int ActivityId { get; set; }
+        public int TagId { get; set; }
         [Required]
         public virtual Location Location { get; set; }
         [Required]
         public int LocationId { get; set; }
-        public string Meta { get; set; }
+        [Required]
+        public string Description { get; set; }
         [Required]
         public DateTime CreatedOn { get; set; }
         [Required]

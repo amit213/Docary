@@ -15,6 +15,6 @@ namespace Docary.ViewModels
     public class HomeIndexViewModelEntryGroup
     {
         public DateTime Date { get; set; }
-        public List<Entry> Entries { get; set; }
+        public List<Entry> Entries { get; set; }       
     }
 }

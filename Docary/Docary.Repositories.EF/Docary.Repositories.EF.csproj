@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityRepository.cs" />
+    <Compile Include="TagRepository.cs" />
     <Compile Include="DocaryContext.cs" />
     <Compile Include="DocaryDbInitializer.cs" />
     <Compile Include="EntryRepository.cs" />

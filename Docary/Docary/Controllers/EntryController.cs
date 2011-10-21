@@ -23,6 +23,7 @@ namespace Docary.Controllers
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult Add()
         {
             return View();

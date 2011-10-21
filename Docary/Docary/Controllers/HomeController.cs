@@ -17,7 +17,7 @@ namespace Docary.Controllers
         private IEntryService _entryService;
         private IHomeAssembler _homeAssembler;
 
-        public HomeController(IHomeAssembler homeAssembler, IEntryService entryService)
+        public HomeController(IHomeAssembler homeAssembler, IEntryService entryService) 
         {
             _entryService = entryService;
             _homeAssembler = homeAssembler;

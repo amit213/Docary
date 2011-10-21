@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IActivityRepository.cs" />
+    <Compile Include="ITagRepository.cs" />
     <Compile Include="IEntryRepository.cs" />
     <Compile Include="ILocationRepository.cs" />
     <Compile Include="IRepositoryBase.cs" />

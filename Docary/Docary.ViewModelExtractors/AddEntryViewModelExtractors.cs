@@ -14,11 +14,11 @@ namespace Docary.ViewModelExtractors
         {
             var entry = new Entry();
 
-            entry.Activity = new Activity();
-            entry.Activity.Name = addEntryViewModel.ActivityName;
+            entry.Tag = new EntryTag();
+            entry.Tag.Name = addEntryViewModel.TagName;
             entry.Location = new Location();
             entry.Location.Name = addEntryViewModel.LocationName;
-            entry.Meta = addEntryViewModel.Meta;
+            entry.Description = addEntryViewModel.Description;
 
             return entry;
         }
