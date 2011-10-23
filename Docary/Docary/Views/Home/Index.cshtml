@@ -4,6 +4,8 @@
 
 @model Docary.ViewModels.HomeIndexViewModel
 
+@Html.ActionLink("Add new entry", "Add", "Entry")
+
 @foreach (var entryGroup in Model.EntryGroups)
 {
     var firstEntryGroup = true;
@@ -24,5 +26,3 @@
     
     firstEntryGroup = false;    
 }     
-
-@Html.ActionLink("Add new entry", "Add", "Entry")
