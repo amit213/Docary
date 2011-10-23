@@ -24,7 +24,7 @@ namespace Docary.Services
 
         public IEnumerable<Entry> GetEntries()
         {
-            return _entryRepository.Get().ToList();
+            return _entryRepository.Get().OrderByDescending(e => e.CreatedOn).ToList();
         }
 
         public IEnumerable<Entry> GetEntries(string user)

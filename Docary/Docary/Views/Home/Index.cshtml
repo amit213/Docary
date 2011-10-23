@@ -4,51 +4,25 @@
 
 @model Docary.ViewModels.HomeIndexViewModel
 
-@section Head {
-    <script type="text/javascript">
-        $(function () {
-            var deleteEntry = function () {
-                var that = $(this);                
+@foreach (var entryGroup in Model.EntryGroups)
+{
+    var firstEntryGroup = true;
+    var dataCollapsed = (!firstEntryGroup).ToString().ToLower();
+    
+    <div data-role="collapsible" data-theme="c" data-content-theme="c" data-collapsed="@dataCollapsed">
+		<h3>@entryGroup.Date.ToString("dd/MM/yyyy")</h3>						
+      
+        <ul data-role="listview" data-inset="true" data-theme="d">        
+            @foreach (var entry in entryGroup.Entries)
+            {           
+                <li>
+                    @entry.CreatedOn.ToString("HH:mm") @entry.Description                     
+                </li>         
+            }
+        </ul>
+    </div>           
+    
+    firstEntryGroup = false;    
+}     
 
-                var deleteUrl = '@Url.Action("Delete", "Entry")';           
-                
-                var entryId = that.attr('data-entryId');
-
-                $.ajax(
-                    {
-                        type: 'POST',
-                        url: deleteUrl,
-                        data: { id: entryId },
-                        success: function (result) {                          
-                            if (result.success) {
-                                $('.entry[data-entryId=' + entryId + ']').remove();
-                            }
-                        },
-                        error: function (req, status, error) {
-                            //TODO: Do something here..
-                        }
-                    });
-            };
-
-            $('.deleteEntryButton').live('click', deleteEntry);
-        });
-    </script>
-}
-
-<table width="100%">
-    @foreach (var entryGroup in Model.EntryGroups)
-    {
-        <tr>
-            <td colspan="5"><span class="entrygroupdate">@entryGroup.Date.ToString("dd/MM/yyyy")</span></td>
-        </tr>
-        foreach(var entry in entryGroup.Entries) 
-        {
-            <tr class="entry" data-entryId="@entry.Id">
-                <td>@entry.CreatedOn.ToString("HH:mm")</td>
-                <td>@entry.Description</td>
-                <td><input type="button" value="Delete" class="deleteEntryButton" data-entryId="@entry.Id"/></td>
-            </tr>       
-        }
-    }        
-</table>
-@Html.ActionLink("Add", "Add", "Entry")
+@Html.ActionLink("Add new entry", "Add", "Entry")

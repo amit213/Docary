@@ -6,7 +6,6 @@ Index:
 
 Add entry:
 - From > To
-Delete entry
 
 Generic repository
 

@@ -1,33 +1,24 @@
 ﻿@{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Add entry";
 }
 
 @model Docary.ViewModels.AddEntryViewModel
 
-<h2>Add</h2>
+
 @using (Html.BeginForm("Add", "Entry"))
-{                     
-    @Html.ValidationSummary(true, "Adding entry was unsuccessful. Please correct the errors and try again.")     
-    <div class="editor-label">
-        Description
-    </div>
-    <div class="editor-field">
-        @Html.TextBoxFor(m => m.Description)    
-        @Html.ValidationMessageFor(m => m.Description)
-    </div>
-    <div class="editor-label">
-        Tag 
-    </div>
-    <div class="editor-field">
-        @Html.TextBoxFor(m => m.TagName)   
-        @Html.ValidationMessageFor(m => m.TagName)                         
+{                    
+    @Html.ValidationSummary(false, "Adding entry was unsuccessful. Please correct the errors and try again.")                
+    <div data-role="fieldcontain">
+        @Html.LabelFor(m => m.Description, "Description")
+        @Html.TextAreaFor(m => m.Description)
+    </div>   
+    <div data-role="fieldcontain">
+        @Html.LabelFor(m => m.TagName, "Tag")
+        @Html.TextBoxFor(m => m.TagName) 
     </div>        
-    <div class="editor-label">
-        Location 
-    </div>
-    <div class="editor-field">
-        @Html.TextBoxFor(m => m.LocationName)    
-        @Html.ValidationMessageFor(m => m.LocationName)
+    <div data-role="fieldcontain">
+        @Html.LabelFor(m => m.LocationName, "Location")
+        @Html.TextBoxFor(m => m.LocationName) 
     </div>        
     <p>
         <input type="submit" value="Add" />
