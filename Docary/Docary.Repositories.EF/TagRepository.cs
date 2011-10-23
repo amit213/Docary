@@ -9,9 +9,9 @@ namespace Docary.Repositories.EF
 {
     public class TagRepository : ITagRepository
     {
-        private IDocaryContext _context;
+        private DocaryContext _context;
 
-        public TagRepository(IDocaryContext context)
+        public TagRepository(DocaryContext context)
         {
             _context = context;
         }
@@ -28,14 +28,6 @@ namespace Docary.Repositories.EF
             _context.SaveChanges();
 
             return addedTag;
-        }
-
-        public void Delete(int id)
-        {
-            var tagToDelete = _context.Tags.Where(a => a.Id == id).First();
-
-            _context.Tags.Remove(tagToDelete);
-            _context.SaveChanges();
-        }
+        }      
     }
 }

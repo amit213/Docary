@@ -20,9 +20,8 @@ namespace Docary.Models
         [Required]
         public string Description { get; set; }
         [Required]
-        public DateTime CreatedOn { get; set; }
-        [Required]
-        public DateTime StoppedOn { get; set; }
+        public DateTime CreatedOn { get; set; }        
+        public DateTime? StoppedOn { get; set; }
         [Required]
         public string UserId { get; set; }
     }

@@ -7,7 +7,7 @@ using Docary.Models;
 
 namespace Docary.Repositories
 {
-    public interface ITagRepository : IRepositoryBase<EntryTag>
+    public interface ITagRepository : ICanAdd<EntryTag>, ICanGet<EntryTag>
     {    
     }
 }

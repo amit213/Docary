@@ -36,15 +36,26 @@ namespace Docary.Services
         {
             if (entry == null)
                 throw new ArgumentNullException("Entry");
+                        
+            var now = DateTime.Now;            
 
-            entry.CreatedOn = DateTime.Now;
-            entry.StoppedOn = DateTime.MaxValue;
+            var latestEntry = GetLatestEntry(entry.UserId);
+
+            if (latestEntry != null)
+            {
+                latestEntry.StoppedOn = now;
+
+                //Iew, make this updateable
+                _entryRepository.Delete(latestEntry.Id);
+                _entryRepository.Add(latestEntry);
+            }
 
             var location = ResolveLocation(entry.Location.Name);
             var tag = ResolveTag(entry.Tag.Name);
 
             entry.Location = location == null ? AddLocationBasedOn(entry) : location;
             entry.Tag = tag == null ? AddTagBasedOn(entry) : tag;
+            entry.CreatedOn = now;            
 
             _entryRepository.Add(entry);
         }
@@ -52,6 +63,11 @@ namespace Docary.Services
         public void DeleteEntry(int id)
         {
             _entryRepository.Delete(id);
+        }
+
+        private Entry GetLatestEntry(string userId)
+        {
+            return _entryRepository.Get().Where(e => e.StoppedOn == null && e.UserId == userId).FirstOrDefault();
         }
 
         private Location ResolveLocation(string name)

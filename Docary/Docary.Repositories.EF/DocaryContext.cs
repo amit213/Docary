@@ -8,7 +8,7 @@ using Docary.Models;
 
 namespace Docary.Repositories.EF
 {
-    public class DocaryContext : DbContext, IDocaryContext
+    public class DocaryContext : DbContext
     {
         public DocaryContext() : base("Docary") { }
 

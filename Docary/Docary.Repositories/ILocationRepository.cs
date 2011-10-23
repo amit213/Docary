@@ -6,7 +6,7 @@ using Docary.Models;
 
 namespace Docary.Repositories
 {
-    public interface ILocationRepository : IRepositoryBase<Location>
+    public interface ILocationRepository : ICanAdd<Location>, ICanGet<Location>
     {        
     }
 }

@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICanAdd.cs" />
+    <Compile Include="ICanDelete.cs" />
+    <Compile Include="ICanGet.cs" />
     <Compile Include="ITagRepository.cs" />
     <Compile Include="IEntryRepository.cs" />
     <Compile Include="ILocationRepository.cs" />
-    <Compile Include="IRepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

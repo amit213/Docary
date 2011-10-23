@@ -20,7 +20,7 @@ namespace Docary.Repositories.EF
                 Tag = workTag,
                 Location = homeLocation,
                 CreatedOn = DateTime.Now,
-                StoppedOn = DateTime.MaxValue,
+                StoppedOn = null,
                 Description = "Blablabla",
                 UserId = "1"
             });
@@ -30,7 +30,7 @@ namespace Docary.Repositories.EF
                 Tag = workTag,
                 Location = homeLocation,
                 CreatedOn = DateTime.Now,
-                StoppedOn = DateTime.MaxValue,
+                StoppedOn = null,
                 Description = "More blablablabla",
                 UserId = "1"
             });

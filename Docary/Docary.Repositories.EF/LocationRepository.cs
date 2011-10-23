@@ -9,9 +9,9 @@ namespace Docary.Repositories.EF
 {
     public class LocationRepository : ILocationRepository
     {
-        private IDocaryContext _context;
+        private DocaryContext _context;
 
-        public LocationRepository(IDocaryContext context)
+        public LocationRepository(DocaryContext context)
         {
             _context = context;
         }
@@ -28,14 +28,6 @@ namespace Docary.Repositories.EF
             _context.SaveChanges();
 
             return addedLocation;
-        }
-
-        public void Delete(int id)
-        {
-            var locationToDelete = _context.Locations.Where(l => l.Id == id).First();
-
-            _context.Locations.Remove(locationToDelete);
-            _context.SaveChanges();
-        }
+        }       
     }
 }
