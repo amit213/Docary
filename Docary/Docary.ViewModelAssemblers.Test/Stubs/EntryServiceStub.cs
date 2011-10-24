@@ -8,8 +8,8 @@ using Docary.Models;
 namespace Docary.ViewModelAssemblers.Test.Stubs
 {
     public class EntryServiceStub : IEntryService
-    {
-        public IEnumerable<Entry> GetEntries()
+    {       
+        public IEnumerable<Entry> GetEntries(string user)
         {
             return new List<Entry>()
             {
@@ -56,11 +56,6 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
                     UserId = "1"
                 }
             };
-        }
-
-        public IEnumerable<Entry> GetEntries(string user)
-        {
-            throw new NotImplementedException();
         }
 
         public void AddEntry(Entry entry)

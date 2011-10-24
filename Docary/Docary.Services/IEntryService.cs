@@ -8,9 +8,8 @@ using Docary.Models;
 namespace Docary.Services
 {
     public interface IEntryService
-    {
-        IEnumerable<Entry> GetEntries();
-        IEnumerable<Entry> GetEntries(string user);
+    {       
+        IEnumerable<Entry> GetEntries(string userId);
         void AddEntry(Entry entry);
         void DeleteEntry(int id);
     }

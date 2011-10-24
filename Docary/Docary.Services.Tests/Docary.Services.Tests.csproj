@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryServiceTest.cs" />
+    <Compile Include="Mocks\EntryRepositoryMock.cs" />
+    <Compile Include="Mocks\LocationRepositoryMock.cs" />
+    <Compile Include="Mocks\TagRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

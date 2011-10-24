@@ -9,6 +9,6 @@ namespace Docary.ViewModelAssemblers
 {
     public interface IHomeAssembler
     {
-        HomeIndexViewModel AssembleHomeIndexViewModel();
+        HomeIndexViewModel AssembleHomeIndexViewModel(string userId);
     }
 }

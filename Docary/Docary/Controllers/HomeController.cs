@@ -7,12 +7,13 @@ using System.Web.Mvc;
 using Docary.Services;
 using Docary.ViewModels;
 using Docary.ViewModelAssemblers;
+using Docary.MvcExtensions;
 
 using Ninject;
 
 namespace Docary.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : DocaryController
     {
         private IEntryService _entryService;
         private IHomeAssembler _homeAssembler;
@@ -27,7 +28,7 @@ namespace Docary.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {              
-                ViewData.Model = _homeAssembler.AssembleHomeIndexViewModel();
+                ViewData.Model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
 
                 return View();
             }
