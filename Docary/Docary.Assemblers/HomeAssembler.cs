@@ -10,7 +10,7 @@ namespace Docary.ViewModelAssemblers
 {
     public class HomeAssembler : IHomeAssembler
     {
-        public IEntryService _entryService;
+        private IEntryService _entryService;
 
         public HomeAssembler(IEntryService entryService)
         {
