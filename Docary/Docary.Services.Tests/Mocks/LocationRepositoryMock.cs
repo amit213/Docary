@@ -19,7 +19,7 @@ namespace Docary.Services.Tests.Mocks
             _items.Add(new Location() { Id = 1, Name = "TestLocation", UserId = "1" });
         }
 
-        public IList<Location> Locations
+        public IEnumerable<Location> Locations
         {
             get
             {

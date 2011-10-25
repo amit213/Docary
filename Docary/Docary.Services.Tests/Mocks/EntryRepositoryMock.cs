@@ -40,7 +40,7 @@ namespace Docary.Services.Tests.Mocks
             _entries.Add(entry);
         }
 
-        public IList<Entry> Entries
+        public IEnumerable<Entry> Entries
         {
             get
             {

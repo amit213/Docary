@@ -19,7 +19,7 @@ namespace Docary.Services.Tests.Mocks
             _items.Add(new EntryTag() { Id = 1, Name = "TestTag", UserId = "1" });
         }
 
-        public IList<EntryTag> Tags
+        public IEnumerable<EntryTag> Tags
         {
             get
             {

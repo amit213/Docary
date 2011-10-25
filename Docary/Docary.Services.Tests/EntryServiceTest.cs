@@ -1,6 +1,7 @@
 ﻿using Docary.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 using Docary.Repositories;
 using Docary.Models;
@@ -41,19 +42,106 @@ namespace Docary.Services.Tests
         }
        
         [TestMethod]
-        public void Test_AddEntry_Can_Resolve_Location_By_Name_And_UserId() 
+        public void Test_AddEntry_Adds_Unresolvable_Location() 
         {
             InitializeEntryService();
 
             var newEntry = new Entry() {
-                Location = new Location() { Name = "Test" }
+                Location = new Location() { Name = "Unresolvable_Location_Name" },
+                Tag = new EntryTag() { Name = "Test_Tag_Name" },
+                UserId = "1"
             };
 
-            Assert.Inconclusive("To implement.");
+            _entryServiceMock.AddEntry(newEntry);
 
+            var locationAdded = _locationRepoMock.Locations.Where(e => e.Name == "Unresolvable_Location_Name").FirstOrDefault();
 
-            //target.AddEntry(null);
+            Assert.IsNotNull(locationAdded);
         }
+
+        [TestMethod]
+        public void Test_AddEntry_Does_Not_Add_Existing_Location()
+        {
+            InitializeEntryService();
+
+            var originalLocationCount = _locationRepoMock.Locations.Count();
+
+            var newEntry = new Entry()
+            {
+                Location = new Location() { Name = "TestLocation" },
+                Tag = new EntryTag() { Name = "TestTag" },
+                UserId = "1"
+            };
+
+            _entryServiceMock.AddEntry(newEntry);
+
+            var locationCountAfterAdding = _locationRepoMock.Locations.Count();
+
+            Assert.AreEqual(locationCountAfterAdding, originalLocationCount);
+        }
+
+        [TestMethod]
+        public void Test_AddEntry_Does_Not_Add_Existing_Tag()
+        {
+            InitializeEntryService();
+
+            var originalTagCount = _tagRepoMock.Tags.Count();
+
+            var newEntry = new Entry()
+            {
+                Location = new Location() { Name = "TestLocation" },
+                Tag = new EntryTag() { Name = "TestTag" },
+                UserId = "1"
+            };
+
+            _entryServiceMock.AddEntry(newEntry);
+
+            var tagCountAfterAdding = _tagRepoMock.Tags.Count();
+
+            Assert.AreEqual(tagCountAfterAdding, originalTagCount);
+        }
+
+        [TestMethod]
+        public void Test_AddEntry_Adds_Unresolvable_EntryTag()
+        {
+            InitializeEntryService();
+
+            var newEntry = new Entry()
+            {
+                Location = new Location() { Name = "Test_Location_Name" },
+                Tag = new EntryTag() { Name = "Unresolvable_Tag_Name" },
+                UserId = "1"
+            };
+
+            _entryServiceMock.AddEntry(newEntry);
+
+            var tagAdded = _tagRepoMock.Tags.Where(t => t.Name == "Unresolvable_Tag_Name").FirstOrDefault();
+
+            Assert.IsNotNull(tagAdded);
+        }
+
+        [TestMethod]
+        public void Test_AddEntry_Adds_Entry()
+        {
+            InitializeEntryService();
+
+            var entryCountBeforeAdding = _entryRepoMock.Entries.Count();
+
+            var newEntry = new Entry()
+            {
+                Location = new Location() { Name = "Test_Location" },
+                Tag = new EntryTag() { Name = "Test_Tag" },
+                UserId = "1"
+            };
+                        
+            _entryServiceMock.AddEntry(newEntry);
+
+            var entryCountAfterAdding = _entryRepoMock.Entries.Count();
+
+            var entryCountDiff = entryCountAfterAdding - entryCountBeforeAdding;
+
+            Assert.AreEqual(1, entryCountDiff);
+        }       
 
         private void InitializeEntryService()
         {
