@@ -51,7 +51,7 @@ namespace Docary.Services
             }
 
             var location = ResolveLocation(entry.Location.Name, entry.UserId);
-            var tag = ResolveTag(entry.Tag.Name, entry.UserId);
+            var tag = ResolveTag(entry.Tag.Name, entry.UserId);          
 
             entry.Location = location == null ? AddLocationBasedOn(entry) : location;
             entry.Tag = tag == null ? AddTagBasedOn(entry) : tag;

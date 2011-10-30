@@ -45,9 +45,11 @@ namespace Docary.App_Start
 
             kernel.Bind<IHomeAssembler>().To<HomeAssembler>();
 
+            kernel.Bind<DocaryContext>().ToSelf().InRequestScope();
+
             kernel.Bind<IEntryRepository>().To<EntryRepository>();
             kernel.Bind<ILocationRepository>().To<LocationRepository>();
-            kernel.Bind<ITagRepository>().To<TagRepository>();            
+            kernel.Bind<ITagRepository>().To<TagRepository>();
         }
     }
 }
