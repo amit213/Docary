@@ -39,5 +39,19 @@ namespace Docary.Repositories.EF
             _context.Entries.Remove(entryToDelete);
             _context.SaveChanges();
         }
+
+        public void Update(Entry item)
+        {
+            var entryToUpdate = _context.Entries.Where(e => e.Id == item.Id).First();
+
+            entryToUpdate.CreatedOn = item.CreatedOn;
+            entryToUpdate.Description = item.Description;            
+            entryToUpdate.LocationId = item.LocationId;
+            entryToUpdate.StoppedOn = item.StoppedOn;
+            entryToUpdate.TagId = item.TagId;
+            entryToUpdate.UserId = item.UserId;
+                        
+            _context.SaveChanges();
+        }
     }
 }

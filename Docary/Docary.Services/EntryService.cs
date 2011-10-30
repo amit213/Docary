@@ -44,9 +44,7 @@ namespace Docary.Services
             {
                 latestEntry.StoppedOn = now;
 
-                //Iew, make this updateable
-                _entryRepository.Delete(latestEntry.Id);
-                _entryRepository.Add(latestEntry);
+                _entryRepository.Update(latestEntry);
             }
 
             var location = ResolveLocation(entry.Location.Name, entry.UserId);

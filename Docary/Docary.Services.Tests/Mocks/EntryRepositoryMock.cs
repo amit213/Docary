@@ -68,5 +68,13 @@ namespace Docary.Services.Tests.Mocks
         {
             return _entries.AsQueryable<Entry>();
         }
+
+        public void Update(Entry item)
+        {
+            var entryToUpdate = _entries.Where(e => e.Id == item.Id).First();
+
+            _entries.Remove(entryToUpdate);
+            _entries.Add(item);           
+        }
     }
 }

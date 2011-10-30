@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    var firstEntryGroup = true;
 }
 
 @model Docary.ViewModels.HomeIndexViewModel
@@ -8,7 +9,6 @@
 
 @foreach (var entryGroup in Model.EntryGroups)
 {
-    var firstEntryGroup = true;
     var dataCollapsed = (!firstEntryGroup).ToString().ToLower();
     
     <div data-role="collapsible" data-theme="c" data-content-theme="c" data-collapsed="@dataCollapsed">
