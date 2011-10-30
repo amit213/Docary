@@ -6,6 +6,7 @@ using System.Linq;
 using Docary.Repositories;
 using Docary.Models;
 using Docary.Services.Tests.Mocks;
+using Docary.Services.Tests.Stubs;
 
 namespace Docary.Services.Tests
 {  
@@ -16,6 +17,7 @@ namespace Docary.Services.Tests
         private LocationRepositoryMock _locationRepoMock;
         private TagRepositoryMock _tagRepoMock;
         private IEntryService _entryServiceMock;
+        private ITimeService _timeServiceStub;
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -141,15 +143,37 @@ namespace Docary.Services.Tests
             var entryCountDiff = entryCountAfterAdding - entryCountBeforeAdding;
 
             Assert.AreEqual(1, entryCountDiff);
+        }
+
+        [TestMethod]
+        public void Test_AddEntry_Updates_Previous_Entry_Stopped_On_Property_To_Now()
+        {
+            InitializeEntryService();
+
+            var lastEntryBeforeAdding = _entryRepoMock.Entries.Where(e => e.StoppedOn == null).First();
+
+            var newEntry = new Entry()
+            {
+                Location = new Location() { Name = "Test_Location" },
+                Tag = new EntryTag() { Name = "Test_Tag" },
+                UserId = "1"
+            };
+
+            _entryServiceMock.AddEntry(newEntry);
+
+            var lastEntryAfterAdding = _entryRepoMock.Entries.Where(e => e.Id == lastEntryBeforeAdding.Id).First();
+            
+            Assert.AreEqual(_timeServiceStub.GetNow(), lastEntryAfterAdding.StoppedOn);
         }       
 
         private void InitializeEntryService()
         {
             _entryRepoMock = new EntryRepositoryMock();
             _locationRepoMock = new LocationRepositoryMock();
-            _tagRepoMock = new TagRepositoryMock();      
+            _tagRepoMock = new TagRepositoryMock();
+            _timeServiceStub = new TimeServiceStub();
 
-            _entryServiceMock = new EntryService(_entryRepoMock, _locationRepoMock, _tagRepoMock);
+            _entryServiceMock = new EntryService(_entryRepoMock, _locationRepoMock, _tagRepoMock, _timeServiceStub);
         }
     }
 }

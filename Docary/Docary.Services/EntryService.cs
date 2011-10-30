@@ -14,12 +14,17 @@ namespace Docary.Services
         private IEntryRepository _entryRepository;
         private ILocationRepository _locationRepository;
         private ITagRepository _tagRepository;
+        private ITimeService _timeService;
 
-        public EntryService(IEntryRepository entryRepository, ILocationRepository locationRepository, ITagRepository tagRepository)
+        public EntryService(IEntryRepository entryRepository, 
+                            ILocationRepository locationRepository, 
+                            ITagRepository tagRepository,
+                            ITimeService timeService)
         {
             _entryRepository = entryRepository;
             _locationRepository = locationRepository;
             _tagRepository = tagRepository;
+            _timeService = timeService;
         }        
 
         public IEnumerable<Entry> GetEntries(string user)
@@ -34,15 +39,13 @@ namespace Docary.Services
             if (entry == null)
                 throw new ArgumentNullException("Entry");
             if (string.IsNullOrEmpty(entry.UserId))
-                throw new ArgumentNullException("UserId");            
-                        
-            var now = DateTime.Now;            
+                throw new ArgumentNullException("UserId");                                   
 
             var latestEntry = GetLatestEntry(entry.UserId);
 
             if (latestEntry != null)
             {
-                latestEntry.StoppedOn = now;
+                latestEntry.StoppedOn = _timeService.GetNow();
 
                 _entryRepository.Update(latestEntry);
             }
@@ -52,7 +55,7 @@ namespace Docary.Services
 
             entry.Location = location == null ? AddLocationBasedOn(entry) : location;
             entry.Tag = tag == null ? AddTagBasedOn(entry) : tag;
-            entry.CreatedOn = now;            
+            entry.CreatedOn = _timeService.GetNow();            
 
             _entryRepository.Add(entry);
         }

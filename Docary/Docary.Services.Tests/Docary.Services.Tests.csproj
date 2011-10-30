@@ -59,6 +59,7 @@
     <Compile Include="Mocks\LocationRepositoryMock.cs" />
     <Compile Include="Mocks\TagRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\TimeServiceStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Docary.Models\Docary.Models.csproj">

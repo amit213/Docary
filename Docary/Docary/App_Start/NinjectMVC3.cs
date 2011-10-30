@@ -40,7 +40,8 @@ namespace Docary.App_Start
 
         private static void RegisterServices(IKernel kernel)
         {           
-            kernel.Bind<IEntryService>().To<EntryService>();            
+            kernel.Bind<IEntryService>().To<EntryService>();
+            kernel.Bind<ITimeService>().To<TimeService>();
 
             kernel.Bind<IHomeAssembler>().To<HomeAssembler>();
 
