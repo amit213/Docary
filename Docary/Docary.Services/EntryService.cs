@@ -50,8 +50,8 @@ namespace Docary.Services
                 _entryRepository.Update(latestEntry);
             }
 
-            var location = ResolveLocation(entry.Location.Name, entry.UserId);
-            var tag = ResolveTag(entry.Tag.Name, entry.UserId);          
+            var location = GetLocation(entry.Location.Name, entry.UserId);
+            var tag = GetTag(entry.Tag.Name, entry.UserId);          
 
             entry.Location = location == null ? AddLocationBasedOn(entry) : location;
             entry.Tag = tag == null ? AddTagBasedOn(entry) : tag;
@@ -70,7 +70,7 @@ namespace Docary.Services
             return _entryRepository.Get().Where(e => e.StoppedOn == null && e.UserId == userId).FirstOrDefault();
         }
 
-        private Location ResolveLocation(string name, string userId)
+        private Location GetLocation(string name, string userId)
         {
             return _locationRepository
                         .Get()
@@ -78,7 +78,7 @@ namespace Docary.Services
                         .FirstOrDefault();
         }
 
-        private EntryTag ResolveTag(string name, string userId)
+        private EntryTag GetTag(string name, string userId)
         {
             return _tagRepository
                         .Get()
