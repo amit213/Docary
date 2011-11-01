@@ -9,7 +9,7 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
 {
     public class EntryServiceStub : IEntryService
     {       
-        public IEnumerable<Entry> GetEntries(string user)
+        public IEnumerable<Entry> GetEntries(DateTime from, DateTime to, string user)
         {
             return new List<Entry>()
             {

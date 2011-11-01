@@ -17,11 +17,11 @@ namespace Docary.ViewModelAssemblers
             _entryService = entryService;
         }
 
-        public HomeIndexViewModel AssembleHomeIndexViewModel(string userId)
+        public HomeIndexViewModel AssembleHomeIndexViewModel(DateTime from, DateTime to, string userId)
         {
             var indexViewModel = new HomeIndexViewModel();
 
-            var entries = _entryService.GetEntries(userId);
+            var entries = _entryService.GetEntries(from, to, userId);
             var groups = entries.GroupBy(e => e.CreatedOn.Date);
 
             indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();

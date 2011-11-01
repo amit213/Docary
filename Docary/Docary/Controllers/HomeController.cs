@@ -28,7 +28,7 @@ namespace Docary.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {              
-                ViewData.Model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
+                ViewData.Model = _homeAssembler.AssembleHomeIndexViewModel(DateTime.Now.AddDays(-7), DateTime.MaxValue, UserId);
 
                 return View();
             }
