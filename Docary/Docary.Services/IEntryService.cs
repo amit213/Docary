@@ -9,7 +9,7 @@ namespace Docary.Services
 {
     public interface IEntryService
     {       
-        IEnumerable<Entry> GetEntries(DateTime from, DateTime to, string userId);        
+        IEnumerable<Entry> GetEntries(string userId);
         void AddEntry(Entry entry);
         void DeleteEntry(int id);
     }

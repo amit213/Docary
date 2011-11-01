@@ -15,7 +15,7 @@ namespace Docary.Tests.Stubs
             return new List<Entry>();
         }
 
-        public IEnumerable<Entry> GetEntries(DateTime from, DateTime to, string user)
+        public IEnumerable<Entry> GetEntries(string user)
         {
             return new List<Entry>();
         }

@@ -17,7 +17,7 @@ namespace Docary.ViewModelAssemblers.Test
         {
             var target = new HomeAssembler(GetEntryServiceStub());
 
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
+            var actual = target.AssembleHomeIndexViewModel("1");
 
             Assert.IsNotNull(actual.EntryGroups);
         }
@@ -27,7 +27,7 @@ namespace Docary.ViewModelAssemblers.Test
         {            
             var target = new HomeAssembler(GetEntryServiceStub());       
             
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
+            var actual = target.AssembleHomeIndexViewModel("1");
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);

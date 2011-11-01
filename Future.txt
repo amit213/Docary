@@ -1,4 +1,3 @@
 Default color for tags
 Edit tag colors
 Analytics
-Paging
