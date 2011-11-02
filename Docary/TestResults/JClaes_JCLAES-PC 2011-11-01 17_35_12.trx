@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="02ea38a4-6e2b-4c6f-a9ad-83c996eae2af" name="JClaes@JCLAES-PC 2011-11-01 17:35:12" runUser="JClaes-PC\JClaes" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="ab47060e-8f44-4890-bca8-a8d97dbd8c88">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="JClaes_JCLAES-PC 2011-11-01 17_35_12">
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Assemblers\bin\Debug\Docary.ViewModelAssemblers.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Assemblers\Lib\AutoMapper.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Models\bin\Debug\Docary.Models.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Services\bin\Debug\Docary.Services.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-11-01T17:35:12.6586916+01:00" queuing="2011-11-01T17:35:13.1266924+01:00" start="2011-11-01T17:35:13.2046926+01:00" finish="2011-11-01T17:35:13.8286937+01:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Test_AssembleHomeIndexViewModel_Knows_When_The_User_Has_No_More_Entries" storage="c:\users\jclaes\docary\docary\docary.viewmodelassemblers.test\bin\debug\docary.viewmodelassemblers.test.dll" id="a82c94fd-db8d-86bf-80a3-425d17b242c4">
+      <Execution id="1c0d9b43-a3d3-4710-ba6f-38c5ddc30e07" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelAssemblers.Test/bin/Debug/Docary.ViewModelAssemblers.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelAssemblers.Test.HomeAssemblerTest, Docary.ViewModelAssemblers.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AssembleHomeIndexViewModel_Knows_When_The_User_Has_No_More_Entries" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="a82c94fd-db8d-86bf-80a3-425d17b242c4" executionId="1c0d9b43-a3d3-4710-ba6f-38c5ddc30e07" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="1c0d9b43-a3d3-4710-ba6f-38c5ddc30e07" testId="a82c94fd-db8d-86bf-80a3-425d17b242c4" testName="Test_AssembleHomeIndexViewModel_Knows_When_The_User_Has_No_More_Entries" computerName="JCLAES-PC" duration="00:00:00.0614651" startTime="2011-11-01T17:35:13.2202926+01:00" endTime="2011-11-01T17:35:13.7506935+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1c0d9b43-a3d3-4710-ba6f-38c5ddc30e07">
+    </UnitTestResult>
+  </Results>
+</TestRun>

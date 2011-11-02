@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Docary.Services;
 using Docary.Models;
+using Docary.Repositories;
 
 namespace Docary.ViewModelAssemblers.Test.Stubs
 {
-    public class EntryServiceStub : IEntryService
+    public class EntryRepositoryStub : IEntryRepository
     {
         private IEnumerable<Entry> _entries;
 
@@ -16,17 +16,22 @@ namespace Docary.ViewModelAssemblers.Test.Stubs
             _entries = entries;
         }
 
-        public IEnumerable<Entry> GetEntries(string user)
-        {
-            return _entries.Where(e => e.UserId == user);
-        }
-
-        public void AddEntry(Entry entry)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteEntry(int id)
+        public Entry Add(Entry item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Entry> Get()
+        {
+            return _entries.AsQueryable();
+        }
+
+        public void Update(Entry item)
         {
             throw new NotImplementedException();
         }

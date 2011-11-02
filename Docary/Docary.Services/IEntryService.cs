@@ -10,6 +10,7 @@ namespace Docary.Services
     public interface IEntryService
     {       
         IEnumerable<Entry> GetEntries(string userId);
+        IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId);
         void AddEntry(Entry entry);        
     }
 }

@@ -34,6 +34,13 @@ namespace Docary.Services
                                          .ToList();
         }
 
+        public IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId)
+        {
+            return _entryRepository.Get().OrderByDescending(e => e.CreatedOn)
+                                         .Where(e => e.UserId == userId && e.CreatedOn >= createdOnMin && e.CreatedOn <= createdOnMax)
+                                         .ToList();
+        }
+
         public void AddEntry(Entry entry)
         {
             if (entry == null)

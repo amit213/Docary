@@ -20,7 +20,12 @@ namespace Docary.Tests.Stubs
             return new List<Entry>();
         }
 
+        public IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId)
+        {
+            return new List<Entry>();
+        }
+
         public void AddEntry(Entry entry) { }
-        public void DeleteEntry(int id) { } 
+        public void DeleteEntry(int id) { }      
     }
 }

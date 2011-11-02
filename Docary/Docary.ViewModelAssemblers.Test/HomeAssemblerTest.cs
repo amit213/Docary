@@ -5,6 +5,7 @@ using System.Linq;
 using Docary.Models;
 using Docary.ViewModelAssemblers.Test.Stubs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Docary.Services;
 
 namespace Docary.ViewModelAssemblers.Test
 {
@@ -35,35 +36,34 @@ namespace Docary.ViewModelAssemblers.Test
             Assert.AreEqual(secondEntryGroup.Entries.Count(), 1);
         }
 
-        private EntryServiceStub GetEntryServiceStubForTestingEntryGroups()
+        private EntryService GetEntryServiceStubForTestingEntryGroups()
         {
-            var entryServiceStub = new EntryServiceStub();                       
-            
+            var entryRepositoryStub = new EntryRepositoryStub();            
+
+            var createdOnBase = new DateTime(2011, 10, 18, 1, 30, 30);
+
             var entries = new List<Entry>()
             {
                 new Entry() {                 
-                    CreatedOn = DateTime.Now.Date,
-                    Id = 1,                    
-                    Description = "Bla",
+                    CreatedOn = createdOnBase,
+                    Id = 1,                                       
                     UserId = "1"
                 },
                 new Entry() {                    
-                    CreatedOn = DateTime.Now.Date.AddHours(15),
-                    Id = 2,                    
-                    Description = "Bla",
+                    CreatedOn = createdOnBase.AddHours(24),
+                    Id = 2,                                        
                     UserId = "1"
                 },
                 new Entry() {                    
-                    CreatedOn = DateTime.Now.AddDays(1),
-                    Id = 1,                    
-                    Description = "Bla",
+                    CreatedOn = createdOnBase.AddHours(36),
+                    Id = 1,                                        
                     UserId = "1"
                 }
             };
 
-            entryServiceStub.Seed(entries);
+            entryRepositoryStub.Seed(entries);
 
-            return entryServiceStub;
+            return new EntryService(entryRepositoryStub, null, null, null);
         }       
     }
 }
