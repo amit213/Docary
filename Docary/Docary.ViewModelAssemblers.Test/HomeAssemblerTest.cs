@@ -17,7 +17,7 @@ namespace Docary.ViewModelAssemblers.Test
         {
             var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
 
-            var actual = target.AssembleHomeIndexViewModel("1");
+            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
 
             Assert.IsNotNull(actual.EntryGroups);
         }
@@ -25,9 +25,9 @@ namespace Docary.ViewModelAssemblers.Test
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
         {            
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());       
-            
-            var actual = target.AssembleHomeIndexViewModel("1");
+            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
+
+            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);

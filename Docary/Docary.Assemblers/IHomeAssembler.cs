@@ -9,6 +9,6 @@ namespace Docary.ViewModelAssemblers
 {
     public interface IHomeAssembler
     {
-        HomeIndexViewModel AssembleHomeIndexViewModel(string userId);
+        HomeIndexViewModel AssembleHomeIndexViewModel(DateTime createdOnMin, DateTime createdOnMax, string userId);
     }
 }

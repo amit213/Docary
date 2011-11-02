@@ -25,14 +25,7 @@ namespace Docary.Services
             _locationRepository = locationRepository;
             _tagRepository = tagRepository;
             _timeService = timeService;
-        }        
-
-        public IEnumerable<Entry> GetEntries(string userId)
-        {
-            return _entryRepository.Get().Where(e => e.UserId == userId)
-                                         .OrderByDescending(e => e.CreatedOn)
-                                         .ToList();
-        }
+        }               
 
         public IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId)
         {
