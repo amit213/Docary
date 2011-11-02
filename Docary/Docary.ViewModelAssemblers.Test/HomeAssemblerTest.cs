@@ -1,11 +1,10 @@
-﻿using Docary.ViewModelAssemblers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
-using Docary.Services;
-using Docary.ViewModels;
+using Docary.Models;
 using Docary.ViewModelAssemblers.Test.Stubs;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Docary.ViewModelAssemblers.Test
 {
@@ -38,7 +37,57 @@ namespace Docary.ViewModelAssemblers.Test
 
         private EntryServiceStub GetEntryServiceStub()
         {
-            return new EntryServiceStub();
+            var entryServiceStub = new EntryServiceStub();                       
+            
+            var entries = new List<Entry>()
+            {
+                new Entry() {
+                    Tag = new EntryTag() {
+                        Id = 1,
+                        Name = "Work"
+                    },
+                    CreatedOn = DateTime.Now.Date,
+                    Id = 1,
+                    Location = new Location() {
+                        Id = 1,
+                        Name = "Brussel"
+                    },
+                    Description = "Bla",
+                    UserId = "1"
+                },
+                new Entry() {
+                    Tag = new EntryTag() {
+                        Id = 1,
+                        Name = "Workout"
+                    },
+                    CreatedOn = DateTime.Now.Date.AddHours(15),
+                    Id = 2,
+                    Location = new Location() {
+                        Id = 2,
+                        Name = "At home"
+                    },
+                    Description = "Bla",
+                    UserId = "1"
+                },
+                new Entry() {
+                    Tag = new EntryTag() {
+                        Id = 3,
+                        Name = "Blog"
+                    },
+                    CreatedOn = DateTime.Now.AddDays(1),
+                    Id = 1,
+                    Location = new Location() {
+                        Id = 2,
+                        Name = "At home"
+                    },
+                    Description = "Bla",
+                    UserId = "1"
+                }
+            };
+
+            entryServiceStub.Seed(entries);
+
+            return entryServiceStub;
         }       
     }
 }

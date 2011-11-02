@@ -46,15 +46,6 @@ namespace Docary.Controllers
             {
                 return View(addEntryViewModel);
             }
-        }
-
-        [Authorize]
-        public JsonResult Delete(int id)
-        {
-            _entryService.DeleteEntry(id);
-
-            return Json(new { success = true });
-        }
-
+        }      
     }
 }

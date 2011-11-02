@@ -40,5 +40,10 @@ namespace Docary.Services.Tests.Mocks
         {
             return _items.AsQueryable<EntryTag>();
         }
+
+        public EntryTag Find(string name, string userId)
+        {
+            return _items.Where(i => i.Name == name && i.UserId == userId).FirstOrDefault();
+        }
     }
 }

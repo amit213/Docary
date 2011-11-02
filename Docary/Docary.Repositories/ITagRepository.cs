@@ -8,6 +8,7 @@ using Docary.Models;
 namespace Docary.Repositories
 {
     public interface ITagRepository : ICanAdd<EntryTag>, ICanGet<EntryTag>
-    {    
+    {
+        EntryTag Find(string name, string userId);
     }
 }

@@ -28,6 +28,11 @@ namespace Docary.Repositories.EF
             _context.SaveChanges();
 
             return addedTag;
-        }      
+        }
+
+        public EntryTag Find(string name, string userId)
+        {
+            return _context.Tags.Where(a => a.Name == name && a.UserId == userId).FirstOrDefault();
+        }
     }
 }

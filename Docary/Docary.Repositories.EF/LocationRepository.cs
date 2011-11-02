@@ -28,6 +28,11 @@ namespace Docary.Repositories.EF
             _context.SaveChanges();
 
             return addedLocation;
-        }       
+        }
+
+        public Location Find(string name, string userId)
+        {
+            return _context.Locations.Where(l => l.Name == name && l.UserId == userId).FirstOrDefault();
+        }
     }
 }

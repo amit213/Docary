@@ -27,9 +27,9 @@ namespace Docary.Services
             _timeService = timeService;
         }        
 
-        public IEnumerable<Entry> GetEntries(string user)
+        public IEnumerable<Entry> GetEntries(string userId)
         {
-            return _entryRepository.Get().Where(e => e.UserId == user)
+            return _entryRepository.Get().Where(e => e.UserId == userId)
                                          .OrderByDescending(e => e.CreatedOn)
                                          .ToList();
         }
@@ -50,41 +50,22 @@ namespace Docary.Services
                 _entryRepository.Update(latestEntry);
             }
 
-            var location = GetLocation(entry.Location.Name, entry.UserId);
-            var tag = GetTag(entry.Tag.Name, entry.UserId);          
+            var location = _locationRepository.Find(entry.Location.Name, entry.UserId);
+            var tag = _tagRepository.Find(entry.Tag.Name, entry.UserId);          
 
             entry.Location = location == null ? AddLocationBasedOn(entry) : location;
             entry.Tag = tag == null ? AddTagBasedOn(entry) : tag;
             entry.CreatedOn = _timeService.GetNow();            
 
             _entryRepository.Add(entry);
-        }
-
-        public void DeleteEntry(int id)
-        {
-            _entryRepository.Delete(id);
-        }
+        }        
 
         private Entry GetLatestEntry(string userId)
         {
-            return _entryRepository.Get().Where(e => e.StoppedOn == null && e.UserId == userId).FirstOrDefault();
-        }
-
-        private Location GetLocation(string name, string userId)
-        {
-            return _locationRepository
-                        .Get()
-                        .Where(l => l.Name == name && l.UserId == userId)
-                        .FirstOrDefault();
-        }
-
-        private EntryTag GetTag(string name, string userId)
-        {
-            return _tagRepository
-                        .Get()
-                        .Where(a => a.Name == name && a.UserId == userId)
-                        .FirstOrDefault();
-        }
+            return _entryRepository.Get()
+                                   .Where(e => e.StoppedOn == null && e.UserId == userId)
+                                   .FirstOrDefault();
+        }        
 
         private Location AddLocationBasedOn(Entry entry)
         {
