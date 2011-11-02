@@ -10,6 +10,14 @@ namespace Docary.ViewModels
     public class HomeIndexViewModel
     {
         public List<HomeIndexViewModelEntryGroup> EntryGroups { get; set; }
+
+        public bool HasEntries
+        {
+            get
+            {
+                return (EntryGroups == null && EntryGroups.Count > 0);
+            }
+        }
     }
 
     public class HomeIndexViewModelEntryGroup
