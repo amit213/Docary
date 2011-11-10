@@ -80,8 +80,10 @@
   <ItemGroup>
     <Compile Include="App_Start\DatabaseSetup.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EntryController.cs" />
+    <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Mobile\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\EntryController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -152,15 +154,14 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\LogOn.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Mobile\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Mobile\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Areas\Mobile\Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Areas\Mobile\Views\Account\LogOn.cshtml" />
+    <Content Include="Areas\Mobile\Views\Account\Register.cshtml" />
+    <Content Include="Areas\Mobile\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Mobile\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Mobile\Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -204,10 +205,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Welcome.cshtml" />
+    <Content Include="Areas\Mobile\Views\Home\Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Entry\Add.cshtml" />
+    <Content Include="Areas\Mobile\Views\Entry\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Mobile\Views\Home\_List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Mobile\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -226,7 +242,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1692</DevelopmentServerPort>
+          <DevelopmentServerPort>2020</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

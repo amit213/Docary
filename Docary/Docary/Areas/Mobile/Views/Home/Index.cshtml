@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Entries";    
+}
+
+@model Docary.ViewModels.HomeIndexViewModel
+
+<div id="entries">
+    @Html.ActionLink("Add new entry", "Add", "Entry")
+
+    @if (Model.HasEntries)
+    {   
+        Html.RenderPartial("_List");   
+    }
+    else
+    {
+        <p>No entries the last 7 days.</p>
+    }    
+</div> 

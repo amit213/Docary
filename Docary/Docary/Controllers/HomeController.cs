@@ -4,43 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using Docary.Services;
-using Docary.ViewModels;
-using Docary.ViewModelAssemblers;
-using Docary.MvcExtensions;
-
-using Ninject;
-
 namespace Docary.Controllers
 {
-    public class HomeController : DocaryController
+    public class HomeController : Controller
     {
-        private IEntryService _entryService;
-        private IHomeAssembler _homeAssembler;
-
-        public HomeController(IHomeAssembler homeAssembler, IEntryService entryService) 
-        {
-            _entryService = entryService;
-            _homeAssembler = homeAssembler;
-        }
+        //
+        // GET: /Home/
 
         public ActionResult Index()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                ViewData.Model = _homeAssembler.AssembleHomeIndexViewModel(DateTime.Now.AddDays(-7), DateTime.MaxValue, UserId);
-
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Welcome");
-            }
+            return RedirectToAction("Index", "Home", new { Area = "Mobile" });
         }
 
-        public ActionResult Welcome()
-        {
-            return View();
-        }
     }
 }

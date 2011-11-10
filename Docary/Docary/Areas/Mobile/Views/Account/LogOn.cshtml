@@ -1,0 +1,38 @@
+﻿@model Docary.Models.Account.LogOnModel
+
+@{
+    ViewBag.Title = "Log On";
+}
+
+<p>
+    Please enter your user name and password. @Html.ActionLink("Register", "Register") if you don't have an account.
+</p>
+
+@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+
+@using (Html.BeginForm()) {
+    <div>
+        <fieldset>       
+            <div data-role="fieldcontain">
+                @Html.LabelFor(m => m.UserName)           
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+
+             <div data-role="fieldcontain">
+                @Html.LabelFor(m => m.Password)            
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+
+             <div data-role="fieldcontain">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
+            </div>
+
+            <p>
+                <input type="submit" value="Log On" />
+            </p>
+        </fieldset>
+    </div>
+}

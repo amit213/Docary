@@ -15,7 +15,7 @@ namespace Docary.ViewModels
         {
             get
             {
-                return (EntryGroups == null && EntryGroups.Count > 0);
+                return (EntryGroups != null && EntryGroups.Count > 0);
             }
         }
     }

@@ -8,6 +8,7 @@ using Docary.Services;
 using Docary.ViewModels;
 using Docary.Tests.Stubs;
 using Docary.Models;
+using Docary.Areas.Mobile.Controllers;
 
 namespace Docary.Tests
 {    
