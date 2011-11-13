@@ -8,12 +8,11 @@ namespace Docary.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Home", new { Area = "Mobile" });
+            string area = Request.Browser.IsMobileDevice ? "Mobile" : "Desktop";
+                        
+            return RedirectToAction("Index", "Home", new { Area = area });            
         }
 
     }
