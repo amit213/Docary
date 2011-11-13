@@ -12,6 +12,7 @@ namespace Docary.App_Start
     using Docary.Repositories;
     using Docary.Repositories.EF;
     using Docary.ViewModelAssemblers;
+    using Docary.ViewModelAssemblers.Mobile;
 
     public static class NinjectMVC3
     {
@@ -43,7 +44,8 @@ namespace Docary.App_Start
             kernel.Bind<IEntryService>().To<EntryService>();
             kernel.Bind<ITimeService>().To<TimeService>();
 
-            kernel.Bind<IHomeAssembler>().To<HomeAssembler>();
+            kernel.Bind<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>().To<Docary.ViewModelAssemblers.Mobile.HomeAssembler>();
+            kernel.Bind<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>().To<Docary.ViewModelAssemblers.Desktop.HomeAssembler>();
 
             kernel.Bind<DocaryContext>().ToSelf().InRequestScope();
 

@@ -8,6 +8,7 @@ using Docary.Services;
 using Docary.ViewModels;
 using Docary.ViewModelAssemblers;
 using Docary.MvcExtensions;
+using Docary.ViewModelAssemblers.Mobile;
 
 using Ninject;
 

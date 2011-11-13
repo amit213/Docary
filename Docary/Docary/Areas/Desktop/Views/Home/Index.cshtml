@@ -2,4 +2,21 @@
     ViewBag.Title = "Index";
 }
 
+@model Docary.ViewModels.Desktop.HomeIndexViewModel
+
 <h2>Index desktop</h2>
+
+@foreach (var entryGroup in Model.EntryGroups)
+{
+    <h3>@entryGroup.Date</h3>
+    foreach (var entry in entryGroup.Entries)
+    {       
+        int divWidth = Convert.ToInt32(Math.Ceiling((double)entry.Percentage * 100));;                 
+
+        string divStyle = string.Format("float:left;width:{0}px;background-color:{1}", divWidth, );
+        
+        <div style="@divStyle">
+            
+        </div>
+    }
+}
