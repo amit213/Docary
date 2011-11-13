@@ -6,6 +6,7 @@ using Docary.Services;
 
 using Docary.ViewModelAssemblers.Desktop;
 using Docary.ViewModels.Desktop;
+using Docary.Models;
 
 namespace Docary.ViewModelAssemblers.Desktop
 {
@@ -18,37 +19,98 @@ namespace Docary.ViewModelAssemblers.Desktop
             _entryService = entryService;
         }
 
+        // TODO: Wow, clean this up
         public HomeIndexViewModel AssembleHomeIndexViewModel(DateTime createdOnMin, DateTime createdOnMax, string userId)
         {
             var indexViewModel = new HomeIndexViewModel();
 
-            var entries = _entryService.GetEntries(createdOnMin, createdOnMax, userId);
-            var groups = entries.GroupBy(e => e.CreatedOn.Date);
+            var sourceEntries = _entryService.GetEntries(createdOnMin, createdOnMax, userId);
 
-            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();
+            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();            
 
-            foreach (var group in groups)
+            var start = createdOnMin;
+            var stop = createdOnMax;
+
+            var entryToAdd = new HomeIndexViewModelEntry();
+
+            while (start < stop)
             {
-                var entryGroup = new HomeIndexViewModelEntryGroup();
-                entryGroup.Date = group.First().CreatedOn.Date;
-                entryGroup.Entries = new List<HomeIndexViewModelEntry>();
+                var startOfTheDay = start.Date;
+                var endOfTheDay = start.Date.AddDays(1);
 
-                foreach(var entry in group.ToList()) {
-                    var homeIndexViewModelEntry = new HomeIndexViewModelEntry();
+                foreach (var sourceEntry in sourceEntries)
+                {
+                    if (sourceEntry.StoppedOn < startOfTheDay)
+                        continue;
+                    if (sourceEntry.CreatedOn > endOfTheDay)
+                        continue;
 
-                    if (!entry.StoppedOn.HasValue)
-                        entry.StoppedOn = entry.CreatedOn.Date.AddDays(1);
+                    if (!sourceEntry.StoppedOn.HasValue)
+                        sourceEntry.StoppedOn = DateTime.MaxValue;
 
-                    var diff = entry.StoppedOn.Value.Subtract(entry.CreatedOn);
-                    var diffPercent = diff.TotalMinutes / (24 * 60);
+                    if (sourceEntry.CreatedOn <= startOfTheDay && sourceEntry.StoppedOn >= endOfTheDay)
+                    {
+                        entryToAdd.Color = sourceEntry.Tag == null ? "" : sourceEntry.Tag.Color;
+                        entryToAdd.Start = startOfTheDay;
+                        entryToAdd.End = endOfTheDay;
+                        entryToAdd.Percentage = 100;
+                    }
+                    else if (sourceEntry.CreatedOn <= startOfTheDay)
+                    {
+                        var diff = sourceEntry.StoppedOn.Value.Subtract(startOfTheDay);
+                        var diffPercent = diff.TotalMinutes / (24 * 60);
 
-                    homeIndexViewModelEntry.Percentage = Convert.ToInt32(diffPercent * 100);
-                    homeIndexViewModelEntry.Color = entry.Tag == null ? string.Empty : entry.Tag.Color;
+                        entryToAdd.Percentage = Convert.ToInt32(diffPercent * 100);
+                        entryToAdd.Start = startOfTheDay;
+                        entryToAdd.End = sourceEntry.StoppedOn.Value;
+                        entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
+                    }
+                    else if (sourceEntry.StoppedOn.Value >= endOfTheDay)
+                    {
+                        var diff = endOfTheDay.Subtract(sourceEntry.CreatedOn);
+                        var diffPercent = diff.TotalMinutes / (24 * 60);
 
-                    entryGroup.Entries.Add(homeIndexViewModelEntry);                  
-                }                
+                        entryToAdd.Percentage = Convert.ToInt32(diffPercent * 100);
+                        entryToAdd.Start = sourceEntry.CreatedOn;
+                        entryToAdd.End = endOfTheDay;
+                        entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
+                    }
+                    else
+                    {
+                        var diff = sourceEntry.StoppedOn.Value.Subtract(sourceEntry.CreatedOn);
+                        var diffPercent = diff.TotalMinutes / (24 * 60);
 
-                indexViewModel.EntryGroups.Add(entryGroup);
+                        entryToAdd.Percentage = Convert.ToInt32(diffPercent * 100);
+                        entryToAdd.Start = sourceEntry.CreatedOn;
+                        entryToAdd.End = sourceEntry.StoppedOn.Value;
+                        entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
+                    }
+
+                    if (indexViewModel.EntryGroups.Any(eg => eg.Date == startOfTheDay))
+                    {
+                        var oldEntryGroup = indexViewModel.EntryGroups.Where(eg => eg.Date == startOfTheDay).First();
+
+                        var newEntryGroup = new HomeIndexViewModelEntryGroup();
+                        newEntryGroup.Date = oldEntryGroup.Date;
+                        newEntryGroup.Entries = oldEntryGroup.Entries;
+                        newEntryGroup.Entries.Add(entryToAdd);
+
+                        indexViewModel.EntryGroups.Remove(oldEntryGroup);
+                        indexViewModel.EntryGroups.Add(newEntryGroup);
+                    }
+                    else
+                    {                  
+                        var entryGroup = new HomeIndexViewModelEntryGroup();
+                        entryGroup.Entries = new List<HomeIndexViewModelEntry>();
+                        entryGroup.Date = startOfTheDay;                        
+                        entryGroup.Entries.Add(entryToAdd);
+
+                        indexViewModel.EntryGroups.Add(entryGroup);
+                    }
+
+                }
+
+                start = start.AddDays(1);
             }
 
             return indexViewModel;

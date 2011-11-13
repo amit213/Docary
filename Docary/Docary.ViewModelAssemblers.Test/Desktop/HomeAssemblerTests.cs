@@ -32,10 +32,15 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         {
             var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
 
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
+            var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0);
+            var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0);
+
+            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, "1");
 
             var firstEntryGroup = actual.EntryGroups.First();
-            var secondEntryGroup = actual.EntryGroups.ElementAt(1);            
+            var secondEntryGroup = actual.EntryGroups.ElementAt(1);
+
+            Assert.Inconclusive("Still needs to be tested");
         }
 
         private IEntryService GetEntryServiceStubForTestingEntryGroups()
@@ -53,6 +58,8 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
             stub.Setup(e => e.GetEntries(DateTime.MinValue, DateTime.MaxValue, "1"))
                 .Returns(entries);
+            stub.Setup(e => e.GetEntries(new DateTime(2011, 10, 18, 0, 0, 0), new DateTime(2011, 10, 21, 0, 0, 0), "1"))
+                .Returns(entries);               
 
             return stub.Object;
         }       
