@@ -30,7 +30,7 @@ namespace Docary.Areas.Desktop.Controllers
             if (Request.IsAuthenticated)
             {
                 var model = _homeAssembler.AssembleHomeIndexViewModel(
-                   DateTime.Now.Date.AddDays(-DAYS_PER_LIST_PAGE), DateTime.MaxValue, UserId);
+                   DateTime.Now.Date.AddDays(-DAYS_PER_LIST_PAGE), DateTime.Now.Date.AddDays(1), UserId);
 
                 ViewData.Model = model;
                 ViewBag.EntryGroups = model.EntryGroups;

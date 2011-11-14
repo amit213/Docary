@@ -34,24 +34,37 @@ namespace Docary.App_Start
         {
             var kernel = new StandardKernel();
             
-            RegisterServices(kernel);
+            Register(kernel);
 
             return kernel;
         }
 
-        private static void RegisterServices(IKernel kernel)
-        {           
-            kernel.Bind<IEntryService>().To<EntryService>();
-            kernel.Bind<ITimeService>().To<TimeService>();
+        private static void Register(IKernel kernel)
+        {
+            RegisterServices(kernel);
+            RegisterAssemblers(kernel);
+            RegisterRepositories(kernel);            
+        }
 
+        private static void RegisterAssemblers(IKernel kernel)
+        {
             kernel.Bind<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>().To<Docary.ViewModelAssemblers.Mobile.HomeAssembler>();
             kernel.Bind<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>().To<Docary.ViewModelAssemblers.Desktop.HomeAssembler>();
+        }
 
-            kernel.Bind<DocaryContext>().ToSelf().InRequestScope();
+        private static void RegisterServices(IKernel kernel)
+        {
+            kernel.Bind<IEntryService>().To<EntryService>();
+            kernel.Bind<ITimeService>().To<TimeService>();
+        }
 
+        private static void RegisterRepositories(IKernel kernel) 
+        {
             kernel.Bind<IEntryRepository>().To<EntryRepository>();
             kernel.Bind<ILocationRepository>().To<LocationRepository>();
             kernel.Bind<ITagRepository>().To<TagRepository>();
+
+            kernel.Bind<DocaryContext>().ToSelf().InRequestScope();           
         }
     }
 }
