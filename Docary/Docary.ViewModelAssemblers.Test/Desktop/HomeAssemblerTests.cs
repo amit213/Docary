@@ -18,13 +18,18 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         {
             var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
 
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
+            var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0);
+            var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0);
+            
+            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, "1");
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
+            var thirdEntryGroup = actual.EntryGroups.ElementAt(2);
 
             Assert.AreEqual(1, firstEntryGroup.Entries.Count());
-            Assert.AreEqual(2, secondEntryGroup.Entries.Count());
+            Assert.AreEqual(3, secondEntryGroup.Entries.Count());
+            Assert.AreEqual(1, thirdEntryGroup.Entries.Count());
         }
 
         [TestMethod()]
@@ -39,8 +44,13 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
+            var thirdEntryGroup = actual.EntryGroups.ElementAt(2);
 
-            Assert.Inconclusive("Still needs to be tested");
+            Assert.AreEqual(94, firstEntryGroup.Entries.First().Percentage);
+            Assert.AreEqual(6, secondEntryGroup.Entries.First().Percentage);
+            Assert.AreEqual(50, secondEntryGroup.Entries.ElementAt(1).Percentage); 
+            Assert.AreEqual(44, secondEntryGroup.Entries.ElementAt(2).Percentage);
+            Assert.AreEqual(100, thirdEntryGroup.Entries.First().Percentage);
         }
 
         private IEntryService GetEntryServiceStubForTestingEntryGroups()

@@ -19,7 +19,7 @@ namespace Docary.ViewModelAssemblers.Desktop
             _entryService = entryService;
         }
 
-        // TODO: Wow, clean this up
+        // TODO: Wow, this got ugly fast. Can this be simplified?
         public HomeIndexViewModel AssembleHomeIndexViewModel(DateTime createdOnMin, DateTime createdOnMax, string userId)
         {
             var indexViewModel = new HomeIndexViewModel();
@@ -30,16 +30,16 @@ namespace Docary.ViewModelAssemblers.Desktop
 
             var start = createdOnMin;
             var stop = createdOnMax;
-
-            var entryToAdd = new HomeIndexViewModelEntry();
-
+            
             while (start < stop)
             {
                 var startOfTheDay = start.Date;
                 var endOfTheDay = start.Date.AddDays(1);
-
+                
                 foreach (var sourceEntry in sourceEntries)
                 {
+                    HomeIndexViewModelEntry entryToAdd = new HomeIndexViewModelEntry();
+
                     if (sourceEntry.StoppedOn < startOfTheDay)
                         continue;
                     if (sourceEntry.CreatedOn > endOfTheDay)
@@ -49,7 +49,7 @@ namespace Docary.ViewModelAssemblers.Desktop
                         sourceEntry.StoppedOn = DateTime.MaxValue;
 
                     if (sourceEntry.CreatedOn <= startOfTheDay && sourceEntry.StoppedOn >= endOfTheDay)
-                    {
+                    {                        
                         entryToAdd.Color = sourceEntry.Tag == null ? "" : sourceEntry.Tag.Color;
                         entryToAdd.Start = startOfTheDay;
                         entryToAdd.End = endOfTheDay;
@@ -93,9 +93,10 @@ namespace Docary.ViewModelAssemblers.Desktop
                         var newEntryGroup = new HomeIndexViewModelEntryGroup();
                         newEntryGroup.Date = oldEntryGroup.Date;
                         newEntryGroup.Entries = oldEntryGroup.Entries;
+
                         newEntryGroup.Entries.Add(entryToAdd);
 
-                        indexViewModel.EntryGroups.Remove(oldEntryGroup);
+                        indexViewModel.EntryGroups.RemoveAll(eg => eg.Date == startOfTheDay);
                         indexViewModel.EntryGroups.Add(newEntryGroup);
                     }
                     else
