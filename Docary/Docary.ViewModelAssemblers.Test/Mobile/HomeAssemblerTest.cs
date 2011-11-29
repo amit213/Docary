@@ -18,7 +18,7 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
         {
             var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
 
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
+            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, string.Empty);
 
             Assert.IsNotNull(actual.EntryGroups);
         }
@@ -28,7 +28,7 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
         {            
             var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
 
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, "1");
+            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, string.Empty);
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
@@ -50,7 +50,7 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
 
             var stub = new Mock<IEntryService>();
 
-            stub.Setup(e => e.GetEntries(DateTime.MinValue, DateTime.MaxValue, "1"))
+            stub.Setup(e => e.GetEntries(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>()))
                 .Returns(entries);
 
             return stub.Object;                                  
