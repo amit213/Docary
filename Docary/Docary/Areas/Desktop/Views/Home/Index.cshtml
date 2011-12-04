@@ -8,14 +8,14 @@
 
 @foreach (var entryGroup in Model.EntryGroups)
 {    
-    <div style="width:1100px">
-    <div style="display:inline">@entryGroup.Date</div>
+    <div class="timeline">
+    <div class="timelineblock">@entryGroup.Date</div>
     @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
     {
         int width = Convert.ToInt32(Math.Ceiling((double)entry.Percentage * 10));
-        string divstyle = string.Format("width:{0}px;background-color:{1};float:left", width, entry.Color);
+        string divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);
             
-        <div style="@divstyle"></div>
+        <div style="@divstyle" class="timelineblock"></div>
     }
     </div>
     <br />
