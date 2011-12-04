@@ -17,10 +17,7 @@
 			<h1>Docary</h1>
 		</div>
         <div class="menu">
-            <ul>        
-                <li>@Html.ActionLink("Logon", "LogOn", "Account")</li>                    
-                <li>@Html.ActionLink("Register", "Register", "Account")</li>   
-            </ul>
+            @RenderSection("Menu", true)            
         </div>        
         <div class="content">
 		    @RenderBody()            

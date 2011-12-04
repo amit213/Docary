@@ -2,6 +2,13 @@
     ViewBag.Title = "Welcome";
 }
 
+@section Menu {
+    <ul>        
+        <li>@Html.ActionLink("Logon", "LogOn", "Account")</li>                    
+        <li>@Html.ActionLink("Register", "Register", "Account")</li>                
+    </ul>
+}
+
 <h2>What is a Docary?</h2>
 <p>A Docary is something between a diary and documentation of your life. </p>    
 <h2>What are some of the features?</h2>

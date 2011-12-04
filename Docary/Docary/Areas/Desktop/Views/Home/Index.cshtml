@@ -4,6 +4,10 @@
 
 @model Docary.ViewModels.Desktop.HomeIndexViewModel
 
+@section Menu {
+    @{ Html.RenderPartial("_MenuLoggedOn"); }
+}
+
 <h2>Index desktop</h2>
 
 @foreach (var entryGroup in Model.EntryGroups)
