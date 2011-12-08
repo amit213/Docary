@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Add entry";
+}
+
+@model Docary.ViewModels.AddEntryViewModel
+
+@section Menu {
+    @{ Html.RenderPartial("_MenuLoggedOn"); }
+}
+
+<h2>Add entry</h2>
+
+@using (Html.BeginForm("Add", "Entry"))
+{                                 
+     <div class="form-container">                        
+        <div class="form-label">
+            @Html.LabelFor(m => m.Description, "Description")   
+        </div>
+        <div class="form-input">
+            @Html.TextAreaFor(m => m.Description)
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+    
+        <div class="form-label">
+            @Html.LabelFor(m => m.TagName, "Tag")
+        </div>
+        <div class="form-input">
+            @Html.TextBoxFor(m => m.TagName) 
+            @Html.ValidationMessageFor(m => m.TagName)
+        </div>  
+              
+        <div class="form-label">
+            @Html.LabelFor(m => m.LocationName, "Location")
+        </div>
+        <div class="form-input">
+            @Html.TextBoxFor(m => m.LocationName) 
+            @Html.ValidationMessageFor(m => m.LocationName)
+        </div>        
+    
+        <div class="form-actions">
+            <input type="submit" value="Add" />    
+        </div>
+    </div>       
+}

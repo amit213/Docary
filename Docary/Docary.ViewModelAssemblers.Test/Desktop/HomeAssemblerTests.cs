@@ -31,7 +31,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             Assert.AreEqual(3, secondEntryGroup.Entries.Count());
             Assert.AreEqual(1, thirdEntryGroup.Entries.Count());
         }
-
+      
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Calculates_EntryPercentages_Correctly()
         {
@@ -46,11 +46,25 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
             var thirdEntryGroup = actual.EntryGroups.ElementAt(2);
 
-            Assert.AreEqual(94, firstEntryGroup.Entries.First().Percentage);
-            Assert.AreEqual(6, secondEntryGroup.Entries.First().Percentage);
-            Assert.AreEqual(50, secondEntryGroup.Entries.ElementAt(1).Percentage); 
-            Assert.AreEqual(44, secondEntryGroup.Entries.ElementAt(2).Percentage);
-            Assert.AreEqual(100, thirdEntryGroup.Entries.First().Percentage);
+            Assert.AreEqual(94, Convert.ToInt32(firstEntryGroup.Entries.First().Percentage));
+            Assert.AreEqual(6, Convert.ToInt32(secondEntryGroup.Entries.First().Percentage));
+            Assert.AreEqual(50, Convert.ToInt32(secondEntryGroup.Entries.ElementAt(1).Percentage)); 
+            Assert.AreEqual(44, Convert.ToInt32(secondEntryGroup.Entries.ElementAt(2).Percentage));
+            Assert.AreEqual(100, Convert.ToInt32(thirdEntryGroup.Entries.First().Percentage));
+        }
+
+        [TestMethod()]
+        public void Test_AssembleHomeIndexViewModel_Populates_The_Tag_Property()
+        {
+            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());            
+
+            var actual = target.AssembleHomeIndexViewModel(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>());
+
+            foreach (var entryGroup in actual.EntryGroups)
+            {
+                foreach (var entry in entryGroup.Entries)               
+                    Assert.IsFalse(string.IsNullOrEmpty(entry.Tag));                                    
+            }
         }
 
         private IEntryService GetEntryServiceStubForTestingEntryGroups()
@@ -59,18 +73,16 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
             var entries = new List<Entry>()
             {
-                new Entry() { CreatedOn = createdOnBase, StoppedOn = createdOnBase.AddHours(24), Id = 1, UserId = "1" },
-                new Entry() { CreatedOn = createdOnBase.AddHours(24), StoppedOn = createdOnBase.AddHours(36), Id = 2, UserId = "1" },
-                new Entry() { CreatedOn = createdOnBase.AddHours(36), Id = 1, UserId = "1" }
+                new Entry() { CreatedOn = createdOnBase, StoppedOn = createdOnBase.AddHours(24), Id = 1, UserId = "1", Tag = new EntryTag() { Name = "Test1" } },
+                new Entry() { CreatedOn = createdOnBase.AddHours(24), StoppedOn = createdOnBase.AddHours(36), Id = 2, UserId = "1", Tag = new EntryTag() { Name = "Test2" } },
+                new Entry() { CreatedOn = createdOnBase.AddHours(36), Id = 1, UserId = "1", Tag = new EntryTag() { Name = "Test3" } }
             };
 
             var stub = new Mock<IEntryService>();
 
-            stub.Setup(e => e.GetEntries(DateTime.MinValue, DateTime.MaxValue, "1"))
+            stub.Setup(e => e.GetEntries(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>()))
                 .Returns(entries);
-            stub.Setup(e => e.GetEntries(new DateTime(2011, 10, 18, 0, 0, 0), new DateTime(2011, 10, 21, 0, 0, 0), "1"))
-                .Returns(entries);               
-
+            
             return stub.Object;
         }       
     }

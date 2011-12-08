@@ -4,8 +4,8 @@
 
 html, body {
 	height: 100%;
-	background-color: #F5F5DC;
-    font-family: arial, sans-serif;
+	background-color: #F5F5DC;    
+    font-family: Calibri, arial, sans-serif;  
 }
 
 .wrapper 
@@ -16,17 +16,18 @@ html, body {
 	margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
 	position: relative;
 	width: 80%;
-	font-size: 0.9em;
-	margin: 0 auto -142px;
+	font-size: 0.9em;	
 	text-align: left;	
 	background-color: #FFFFFF;
 }
 
 .content 
 {
-    padding-top: 10px;
+    padding-top: 30px;
     padding-left: 10px;  
-    color: #666;   
+    padding-bottom: 30px;
+    padding-right: 10px;
+    color: #000;   
 }
 
 .footer, .push {
@@ -48,6 +49,7 @@ html, body {
 .menu 
 {
     background-color: #F5F5DC;  
+    font-weight:  bold;
 }
 
 .menu ul 
@@ -131,15 +133,79 @@ strong {
 	text-align: center;	
 }
 
-.timeline  
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
 {
-   width: 1200px;
+    color: #ff0000;
 }
 
-.timelineblock 
-{   
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;    
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Timeline
+-----------------------------------------------------------*/
+
+.timeline {
+   width: 1200px;     
+}
+
+.timeline-header {
+    background-color: #333333;
+    color: #FFF;    
+    text-align: right;
+    float:left;
+    width: 80px;
+    display:inline;  
+    padding-right: 7px;
+    margin-right: 2px;  
+}
+
+.timelineblock {   
     float:left;
     display:inline;
-    height: 15px;
+    height: 15px;    
+}
+
+.form-container {
+    padding: 10px;
+    background-color: #333333;
+    color: #FFF;
+}
+
+.form-actions {
+    padding-top: 10px;
+}
+
+.form-container input[type="text"] {
+    width: 200px;
+}
+
+.form-container input[type="password"] {
+    width: 200px;
+}
+
+.form-container textarea {
+    width: 500px;
+}
+
+.form-input {
+    padding-bottom: 3px;
 }
 

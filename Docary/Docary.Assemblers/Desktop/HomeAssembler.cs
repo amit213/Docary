@@ -38,7 +38,9 @@ namespace Docary.ViewModelAssemblers.Desktop
                 
                 foreach (var sourceEntry in sourceEntries)
                 {
-                    HomeIndexViewModelEntry entryToAdd = new HomeIndexViewModelEntry();
+                    var entryToAdd = new HomeIndexViewModelEntry();
+
+                    entryToAdd.Tag = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Name;
 
                     if (sourceEntry.StoppedOn < startOfTheDay)
                         continue;
@@ -58,9 +60,9 @@ namespace Docary.ViewModelAssemblers.Desktop
                     else if (sourceEntry.CreatedOn <= startOfTheDay)
                     {
                         var diff = sourceEntry.StoppedOn.Value.Subtract(startOfTheDay);
-                        var diffPercent = diff.TotalMinutes / (24 * 60);
+                        var diffPercent = diff.TotalSeconds / (24 * 3600);
 
-                        entryToAdd.Percentage = Convert.ToInt32(diffPercent * 100);
+                        entryToAdd.Percentage = diffPercent * 100;
                         entryToAdd.Start = startOfTheDay;
                         entryToAdd.End = sourceEntry.StoppedOn.Value;
                         entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
@@ -68,9 +70,9 @@ namespace Docary.ViewModelAssemblers.Desktop
                     else if (sourceEntry.StoppedOn.Value >= endOfTheDay)
                     {
                         var diff = endOfTheDay.Subtract(sourceEntry.CreatedOn);
-                        var diffPercent = diff.TotalMinutes / (24 * 60);
+                        var diffPercent = diff.TotalSeconds / (24 * 3600);
 
-                        entryToAdd.Percentage = Convert.ToInt32(diffPercent * 100);
+                        entryToAdd.Percentage = diffPercent * 100;
                         entryToAdd.Start = sourceEntry.CreatedOn;
                         entryToAdd.End = endOfTheDay;
                         entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
@@ -78,13 +80,16 @@ namespace Docary.ViewModelAssemblers.Desktop
                     else
                     {
                         var diff = sourceEntry.StoppedOn.Value.Subtract(sourceEntry.CreatedOn);
-                        var diffPercent = diff.TotalMinutes / (24 * 60);
+                        var diffPercent = diff.TotalSeconds / (24 * 3600);
 
-                        entryToAdd.Percentage = Convert.ToInt32(diffPercent * 100);
+                        entryToAdd.Percentage = diffPercent * 100;
                         entryToAdd.Start = sourceEntry.CreatedOn;
                         entryToAdd.End = sourceEntry.StoppedOn.Value;
                         entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
                     }
+
+                    entryToAdd.Title = string.Format("{0} ({1}-{2})", 
+                        new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString() });
 
                     if (indexViewModel.EntryGroups.Any(eg => eg.Date == startOfTheDay))
                     {

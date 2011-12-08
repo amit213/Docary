@@ -8,18 +8,16 @@
     @{ Html.RenderPartial("_MenuLoggedOn"); }
 }
 
-<h2>Index desktop</h2>
-
 @foreach (var entryGroup in Model.EntryGroups)
 {    
-    <div class="timeline">
-    <div class="timelineblock">@entryGroup.Date</div>
+    <div>
+    <div class="timeline-header">@entryGroup.Date.ToShortDateString()</div>
     @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
     {
-        int width = Convert.ToInt32(Math.Ceiling((double)entry.Percentage * 10));
-        string divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);
+        int width = Convert.ToInt32(entry.Percentage * 10);
+        string divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);        
             
-        <div style="@divstyle" class="timelineblock"></div>
+        <div style="@divstyle" class="timelineblock" title="@entry.Title"></div>
     }
     </div>
     <br />

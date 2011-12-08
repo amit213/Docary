@@ -1,7 +1,7 @@
 ﻿<ul>        
-    <li><a href="#">Timeline</a></li>  
+    <li>@Html.ActionLink("Timeline", "Index", "Home")</li>  
     <li><a href="#">Statistics</a></li>  
-    <li><a href="#">Add entry</a></li>  
-    <li><a href="#">Change password</a></li>  
-    <li><a href="#">Log off</a></li>  
+    <li>@Html.ActionLink("Add entry", "Add", "Entry")</li>  
+    <li>@Html.ActionLink("Change password", "ChangePassword", "Account")</li>  
+    <li>@Html.ActionLink("Log off", "LogOff", "Account")</li>  
 </ul>

@@ -11,35 +11,37 @@
     </ul>
 }
 
+<h2>Logon</h2>
+
 <p>
     Please enter your user name and password. @Html.ActionLink("Register", "Register") if you don't have an account.
 </p>
 
-@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+@using (Html.BeginForm()) {   
+    <div class="form-container">            
+        <div class="form-label">
+            @Html.LabelFor(m => m.UserName)  
+        </div>
+        <div class="form-input">
+            @Html.TextBoxFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
 
-@using (Html.BeginForm()) {
-    <div>
-        <fieldset>       
-            <div>
-                @Html.LabelFor(m => m.UserName)           
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-            </div>
+        <div class="form-label">
+            @Html.LabelFor(m => m.Password)            
+        </div>
+        <div class="form-input">
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
 
-             <div>
-                @Html.LabelFor(m => m.Password)            
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </div>
+         <div>
+            @Html.CheckBoxFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe)
+        </div>
 
-             <div>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe)
-            </div>
-
-            <p>
-                <input type="submit" value="Log On" />
-            </p>
-        </fieldset>
+        <div class="form-actions">
+            <input type="submit" value="Logon" />
+        </div>        
     </div>
 }

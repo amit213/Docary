@@ -3,7 +3,7 @@
 }
 
 @model Docary.ViewModels.AddEntryViewModel
-
+        
 @using (Html.BeginForm("Add", "Entry"))
 {                    
     @Html.ValidationSummary(false, "Adding entry was unsuccessful. Please correct the errors and try again.")                
