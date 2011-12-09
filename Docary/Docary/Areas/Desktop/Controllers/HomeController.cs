@@ -25,6 +25,7 @@ namespace Docary.Areas.Desktop.Controllers
             _entryService = entryService;
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             if (Request.IsAuthenticated)
@@ -41,6 +42,13 @@ namespace Docary.Areas.Desktop.Controllers
             {
                 return RedirectToAction("Welcome");
             }
+        }
+
+        [Authorize]
+        public ActionResult Statistics()
+        {
+
+            return View();
         }
 
         public ActionResult Welcome()

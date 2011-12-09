@@ -113,7 +113,6 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                         indexViewModel.EntryGroups.Add(entryGroup);
                     }
-
                 }
 
                 start = start.AddDays(1);

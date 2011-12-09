@@ -119,6 +119,7 @@ namespace Docary.Areas.Shared.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult ChangePasswordSuccess()
         {
             return View();
