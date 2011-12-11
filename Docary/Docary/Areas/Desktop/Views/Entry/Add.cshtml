@@ -11,7 +11,9 @@
 <h2>Add entry</h2>
 
 @using (Html.BeginForm("Add", "Entry"))
-{                                 
+{                         
+     @Html.ValidationSummary(false, "Adding entry was unsuccessful. Please correct the errors and try again.")
+            
      <div class="form-container">                        
         <div class="form-label">
             @Html.LabelFor(m => m.Description, "Description")   

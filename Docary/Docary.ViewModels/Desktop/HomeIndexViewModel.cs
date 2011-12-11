@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Docary.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Docary.ViewModels.Desktop
 {
     public class HomeIndexViewModel
     {
+        public HomeIndexViewModel() { }
+
+        public HomeIndexViewModel(DateTime? from, DateTime? to)
+        {
+            From = from;
+            To = to;
+        }
+
         public List<HomeIndexViewModelEntryGroup> EntryGroups { get; set; }
 
         public bool HasEntries
@@ -17,6 +26,12 @@ namespace Docary.ViewModels.Desktop
                 return (EntryGroups != null && EntryGroups.Count > 0);
             }
         }
+
+        [Required]        
+        public DateTime? From { get; set; }
+
+        [Required]       
+        public DateTime? To { get; set; }
     }
 
     public class HomeIndexViewModelEntryGroup

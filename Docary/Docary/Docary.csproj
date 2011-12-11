@@ -99,6 +99,20 @@
   <ItemGroup>
     <Content Include="Content\jquery.mobile-1.0rc1.min.css" />
     <Content Include="Content\screen.desktop.css" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-bg_flat_0_000000_40x100.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-bg_flat_0_595747_40x100.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-bg_flat_0_ffffff_40x100.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-bg_flat_55_ffffff_40x100.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-bg_flat_65_ffffff_40x100.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-icons_000000_256x240.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-icons_eee9e9_256x240.png" />
+    <Content Include="Content\themes-jquery-ui\custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes-jquery-ui\custom\jquery-ui-1.8.16.custom.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -135,8 +149,7 @@
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Scripts\jquery.mobile-1.0rc1.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />

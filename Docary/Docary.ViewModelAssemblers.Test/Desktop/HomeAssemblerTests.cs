@@ -7,21 +7,31 @@ using Docary.ViewModelAssemblers.Desktop;
 using Docary.Services;
 using Docary.Models;
 using Moq;
+using Docary.ViewModels.Desktop;
 
 namespace Docary.ViewModelAssemblers.Test.Desktop
 {
     [TestClass]
     public class HomeAssemblerTests
-    {        
+    {       
+        [TestMethod()]
+        public void Test_AssembleHomeIndexViewModel_Defaults_Dates()
+        {        
+            var actual =  GetHomeAssembler().AssembleHomeIndexViewModel("1");
+
+            Assert.IsNotNull(actual.To);
+            Assert.IsNotNull(actual.From);
+        }
+   
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
-        {
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
-
+        {           
             var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0);
             var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0);
-            
-            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, "1");
+
+            var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
+
+            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, "1");
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
@@ -34,13 +44,13 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
       
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Calculates_EntryPercentages_Correctly()
-        {
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
-
+        {         
             var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0);
             var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0);
 
-            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, "1");
+            var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
+
+            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, "1");
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
@@ -56,15 +66,30 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Populates_The_Tag_Property()
         {
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());            
+            var homeIndexViewModel = new HomeIndexViewModel(DateTime.Now.AddDays(-7), DateTime.Now);
 
-            var actual = target.AssembleHomeIndexViewModel(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>());
+            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, It.IsAny<string>());
 
             foreach (var entryGroup in actual.EntryGroups)
             {
                 foreach (var entry in entryGroup.Entries)               
                     Assert.IsFalse(string.IsNullOrEmpty(entry.Tag));                                    
             }
+        }
+
+        private HomeAssembler GetHomeAssembler()
+        {
+            return new HomeAssembler(GetEntryServiceStubForTestingEntryGroups(), GetTimeServiceStub());
+        }
+
+        private ITimeService GetTimeServiceStub()
+        {
+            var timeServiceStub = new Mock<ITimeService>();
+
+            timeServiceStub.Setup(s => s.GetNow())
+                           .Returns(new DateTime(2011, 10, 18, 12, 30 , 00));
+
+            return timeServiceStub.Object;
         }
 
         private IEntryService GetEntryServiceStubForTestingEntryGroups()

@@ -4,8 +4,8 @@
 
 html, body {
 	height: 100%;
-	background-color: #F5F5DC;    
-    font-family: Calibri, arial, sans-serif;  
+	background-color: #EDE6AD;    
+    font-family: "lucida grande", arial, sans-serif;  
 }
 
 .wrapper 
@@ -13,12 +13,12 @@ html, body {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
 	position: relative;
 	width: 80%;
 	font-size: 0.9em;	
 	text-align: left;	
-	background-color: #FFFFFF;
+	background-color: #FCFCED;
 }
 
 .content 
@@ -31,24 +31,24 @@ html, body {
 }
 
 .footer, .push {
-	height: 142px; /* .push must be the same height as .footer */	
+	height: 60px; /* .push must be the same height as .footer */	
 }
 
 .push 
 {
-    background-color: #FFFFFF;
+    background-color: #FCFCED;
 }
 
 .header {
 	height: 50px;	
-	padding-top: 30px;
-	padding-bottom: 35px;	
-	background-color: #F5F5DC;
+	padding-top: 15px;
+	padding-bottom: 40px;	
+	background-color: #EDE6AD;
 }
 
 .menu 
 {
-    background-color: #F5F5DC;  
+    background-color: #EDE6AD;  
     font-weight:  bold;
 }
 
@@ -88,17 +88,17 @@ h1
 {    
     font-size: 65px;	
     font-weight: bold;
-    letter-spacing: 2px;
 }
 
 h2 {
 	padding: 0 0 0.6em;
-	color: #d00;		
+	color: #000;
 }
 
 p {
 	padding: 0 0 1em;	
 	font: 1em/1.4em arial,sans-serif;
+	
 }
 
 ul 
@@ -111,11 +111,11 @@ strong {
 	font-weight: normal;
 }
 
-.footer {
+.footer {   
 	position: relative;	
 	margin: 0 auto;	
-	background-color: #575757;
-	width: 80%;
+	background-color: #000;
+	width: 100%;
 }
 
 .footer a {
@@ -153,6 +153,7 @@ strong {
 .validation-summary-errors {
     font-weight: bold;
     color: #ff0000;    
+    padding-bottom: 10px;
 }
 
 .validation-summary-valid {
@@ -164,10 +165,11 @@ strong {
 
 .timeline {
    width: 1200px;     
+   
 }
 
 .timeline-header {
-    background-color: #333333;
+    background-color: #595747;
     color: #FFF;    
     text-align: right;
     float:left;
@@ -184,8 +186,8 @@ strong {
 }
 
 .form-container {
-    padding: 10px;
-    background-color: #333333;
+    padding: 10px; 
+    background-color: #595747;
     color: #FFF;
 }
 

@@ -13,24 +13,34 @@ namespace Docary.ViewModelAssemblers.Desktop
     public class HomeAssembler : IHomeAssembler
     {
         private IEntryService _entryService;
+        private ITimeService _timeService;
 
-        public HomeAssembler(IEntryService entryService)
+        public HomeAssembler(IEntryService entryService, ITimeService timeService)
         {
             _entryService = entryService;
+            _timeService = timeService;
         }
 
-        // TODO: Wow, this got ugly fast. Can this be simplified?
-        public HomeIndexViewModel AssembleHomeIndexViewModel(DateTime createdOnMin, DateTime createdOnMax, string userId)
+        public HomeIndexViewModel AssembleHomeIndexViewModel(string userId)
         {
-            var indexViewModel = new HomeIndexViewModel();
+            var input = new HomeIndexViewModel(GetDefaultFromDate(), GetDefaultToDate());
 
-            var sourceEntries = _entryService.GetEntries(createdOnMin, createdOnMax, userId);
+            return AssembleHomeIndexViewModel(input, userId);
+        }      
 
-            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();            
-
-            var start = createdOnMin;
-            var stop = createdOnMax;
+        // TODO: Wow, this got ugly fast. Can this be simplified?
+        public HomeIndexViewModel AssembleHomeIndexViewModel(HomeIndexViewModel homeIndexViewModelIn, string userId)
+        {
+            var indexViewModel = new HomeIndexViewModel(homeIndexViewModelIn.From, homeIndexViewModelIn.To);
             
+            EnsureDatesAreNotNull(indexViewModel);
+
+            var start = indexViewModel.From.Value;
+            var stop = indexViewModel.To.Value;           
+            var sourceEntries = _entryService.GetEntries(indexViewModel.From.Value, indexViewModel.To.Value, userId);
+
+            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();
+       
             while (start < stop)
             {
                 var startOfTheDay = start.Date;
@@ -119,6 +129,24 @@ namespace Docary.ViewModelAssemblers.Desktop
             }
 
             return indexViewModel;
+        }
+
+        private void EnsureDatesAreNotNull(HomeIndexViewModel indexViewModel)
+        {
+            if (!indexViewModel.From.HasValue)
+                indexViewModel.From = GetDefaultFromDate();
+            if (!indexViewModel.To.HasValue)
+                indexViewModel.To = GetDefaultToDate();
+        }
+
+        private DateTime GetDefaultFromDate()
+        {
+            return _timeService.GetNow().Date.AddDays(-14);
+        }
+
+        private DateTime GetDefaultToDate()
+        {
+            return _timeService.GetNow().Date.AddDays(1);
         }
     }
 }

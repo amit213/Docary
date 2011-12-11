@@ -18,6 +18,8 @@
 </p>
 
 @using (Html.BeginForm()) {   
+    @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+    
     <div class="form-container">            
         <div class="form-label">
             @Html.LabelFor(m => m.UserName)  

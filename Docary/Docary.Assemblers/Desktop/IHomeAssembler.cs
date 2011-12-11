@@ -8,6 +8,8 @@ namespace Docary.ViewModelAssemblers.Desktop
 {
     public interface IHomeAssembler
     {
-        HomeIndexViewModel AssembleHomeIndexViewModel(DateTime createdOnMin, DateTime createdOnMax, string userId);
+        HomeIndexViewModel AssembleHomeIndexViewModel(string userId);
+
+        HomeIndexViewModel AssembleHomeIndexViewModel(HomeIndexViewModel homeIndexViewModel, string userId);
     }
 }

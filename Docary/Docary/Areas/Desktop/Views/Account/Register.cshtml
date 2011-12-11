@@ -17,6 +17,8 @@
 </p>
 
 @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    
     <div class="form-container">                        
         <div class="form-label">
             @Html.LabelFor(m => m.UserName)            
