@@ -18,6 +18,7 @@ namespace Docary.Services.Tests
         private TagRepositoryMock _tagRepoMock;
         private IEntryService _entryServiceMock;
         private ITimeService _timeServiceStub;
+        private ITimelineColorService _timeColorServiceStub;
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -120,6 +121,26 @@ namespace Docary.Services.Tests
             var tagAdded = _tagRepoMock.Tags.Where(t => t.Name == "Unresolvable_Tag_Name").FirstOrDefault();
 
             Assert.IsNotNull(tagAdded);
+        }      
+
+        [TestMethod]
+        public void Test_AddEntry_Adds_Random_Color_To_Unresolvable_EntryTag()
+        {
+            InitializeEntryService();
+
+            var newEntry = new Entry()
+            {
+                Location = new Location() { Name = "Test_Location_Name" },
+                Tag = new EntryTag() { Name = "Unresolvable_Tag_Name" },
+                UserId = "1"
+            };
+
+            _entryServiceMock.AddEntry(newEntry);
+
+            var tagAdded = _tagRepoMock.Tags.Where(t => t.Name == "Unresolvable_Tag_Name").FirstOrDefault();
+                        
+            Assert.IsNotNull(tagAdded);
+            Assert.AreEqual(_timeColorServiceStub.GetRandom().Value, tagAdded.Color);
         }
 
         [TestMethod]
@@ -172,8 +193,25 @@ namespace Docary.Services.Tests
             _locationRepoMock = new LocationRepositoryMock();
             _tagRepoMock = new TagRepositoryMock();
             _timeServiceStub = SetUpTimeServiceStub().Object;
+            _timeColorServiceStub = SetupTimelineColorServiceStub().Object;
 
-            _entryServiceMock = new EntryService(_entryRepoMock, _locationRepoMock, _tagRepoMock, _timeServiceStub);
+            _entryServiceMock = new EntryService(
+                _entryRepoMock, 
+                _locationRepoMock, 
+                _tagRepoMock, 
+                _timeColorServiceStub, 
+                _timeServiceStub);
+        }
+
+        private Mock<ITimelineColorService> SetupTimelineColorServiceStub()
+        {
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+
+            timeLineServiceStub
+                .Setup(s => s.GetRandom())
+                .Returns(new TimelineColor("Color") { Id = 1 });
+
+            return timeLineServiceStub;
         }
 
         private Mock<ITimeService> SetUpTimeServiceStub()

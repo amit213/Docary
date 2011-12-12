@@ -14,17 +14,20 @@ namespace Docary.Services
         private IEntryRepository _entryRepository;
         private ILocationRepository _locationRepository;
         private ITagRepository _tagRepository;
+        private ITimelineColorService _timelineColorService;
         private ITimeService _timeService;
 
         public EntryService(IEntryRepository entryRepository, 
                             ILocationRepository locationRepository, 
                             ITagRepository tagRepository,
+                            ITimelineColorService timelineColorService,
                             ITimeService timeService)
         {
             _entryRepository = entryRepository;
             _locationRepository = locationRepository;
             _tagRepository = tagRepository;
-            _timeService = timeService;
+            _timelineColorService = timelineColorService;
+            _timeService = timeService;            
         }               
 
         public IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId)
@@ -85,7 +88,8 @@ namespace Docary.Services
             var tag = new EntryTag()
             {
                 Name = entry.Tag.Name,
-                UserId = entry.UserId
+                UserId = entry.UserId,
+                Color = _timelineColorService.GetRandom().Value
             };
 
             return _tagRepository.Add(tag);

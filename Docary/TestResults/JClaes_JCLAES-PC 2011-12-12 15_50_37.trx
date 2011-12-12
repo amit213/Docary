@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="52bee06f-8d06-40a9-b736-b5375265a628" name="JClaes@JCLAES-PC 2011-12-12 15:50:37" runUser="JClaes-PC\JClaes" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="ab47060e-8f44-4890-bca8-a8d97dbd8c88">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="JClaes_JCLAES-PC 2011-12-12 15_50_37">
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Repositories.EF\bin\Debug\Docary.Repositories.EF.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Assemblers\Lib\AutoMapper.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Assemblers\bin\Debug\Docary.ViewModelAssemblers.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Models\bin\Debug\Docary.Models.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.ViewModels\bin\Debug\Docary.ViewModels.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Services\Lib\EntityFramework.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Repositories\bin\Debug\Docary.Repositories.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.Services\bin\Debug\Docary.Services.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\packages\Moq.4.0.10827\lib\NET40\Moq.dll" />
+      <DeploymentItem filename="C:\Users\JClaes\Docary\Docary\Docary.ViewModelExtractors\bin\Debug\Docary.ViewModelExtractors.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-12-12T15:50:37.0958154+01:00" queuing="2011-12-12T15:50:37.5794163+01:00" start="2011-12-12T15:50:37.6574164+01:00" finish="2011-12-12T15:50:43.9442274+01:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="19" executed="19" passed="19" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Test_AddEntry_Throws_ArgumentNullException_On_Null_EmptyUserId" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="3b4c1e1a-1a68-d2e2-805b-95eac4c6403f">
+      <Execution id="52c8c8a6-573a-4b84-9362-cb9a1ad0b082" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Throws_ArgumentNullException_On_Null_EmptyUserId" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Updates_Previous_Entry_Stopped_On_Property_To_Now" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="1fdf0826-5b2d-6979-88de-1c6187a40be0">
+      <Execution id="07c45e57-9460-4ca7-8313-a47dfdc5f23f" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Updates_Previous_Entry_Stopped_On_Property_To_Now" />
+    </UnitTest>
+    <UnitTest name="Test_AssembleHomeIndexViewModel_Populates_The_Tag_Property" storage="c:\users\jclaes\docary\docary\docary.viewmodelassemblers.test\bin\debug\docary.viewmodelassemblers.test.dll" id="3659f2c5-14ac-e382-664d-a6a09cc8e7ec">
+      <Execution id="f3fd7d1d-1b46-4aa0-98e1-d36a8dce0b93" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelAssemblers.Test/bin/Debug/Docary.ViewModelAssemblers.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelAssemblers.Test.Desktop.HomeAssemblerTests, Docary.ViewModelAssemblers.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AssembleHomeIndexViewModel_Populates_The_Tag_Property" />
+    </UnitTest>
+    <UnitTest name="GetRandom_Returns_Random_Colors" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="f21f9b47-13d8-ccc7-fcba-91ed432bc0ad">
+      <Execution id="b5b597bc-1c40-4ef7-808a-8b9920e58e30" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.TimelineColorServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetRandom_Returns_Random_Colors" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Adds_Random_Color_To_Unresolvable_EntryTag" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="c43bf297-8726-5ada-d88f-e68af50ce651">
+      <Execution id="d288fa79-d35e-49d5-8569-b09c6a26c020" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Adds_Random_Color_To_Unresolvable_EntryTag" />
+    </UnitTest>
+    <UnitTest name="Test_AssembleHomeIndexViewModel_Defaults_Dates" storage="c:\users\jclaes\docary\docary\docary.viewmodelassemblers.test\bin\debug\docary.viewmodelassemblers.test.dll" id="06d83fc6-900c-c719-3c9d-dc2c692a6fd1">
+      <Execution id="b49d94ea-ee5a-4438-ae68-61f39f558810" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelAssemblers.Test/bin/Debug/Docary.ViewModelAssemblers.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelAssemblers.Test.Desktop.HomeAssemblerTests, Docary.ViewModelAssemblers.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AssembleHomeIndexViewModel_Defaults_Dates" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Adds_Entry" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="773cd6e9-1ab5-b84a-f48b-c322dcf90002">
+      <Execution id="fc168f92-b12e-4e0b-a7a4-8a7613028c69" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Adds_Entry" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Adds_Unresolvable_Location" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="161f4b91-fe45-47ff-abcf-55ba35a04867">
+      <Execution id="bd23de4a-440e-4c18-9d89-e0e697abbc66" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Adds_Unresolvable_Location" />
+    </UnitTest>
+    <UnitTest name="Test_ExtractEntry_Extracts_Location" storage="c:\users\jclaes\docary\docary\docary.viewmodelextractors.tests\bin\debug\docary.viewmodelextractors.tests.dll" id="299c8b34-16fd-2ab6-8232-65326c4dddc3">
+      <Execution id="3122b97d-4701-4cb8-acc0-73d12b353f5a" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelExtractors.Tests/bin/Debug/Docary.ViewModelExtractors.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelExtractors.Tests.AddEntryViewModelExtractorsTest, Docary.ViewModelExtractors.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_ExtractEntry_Extracts_Location" />
+    </UnitTest>
+    <UnitTest name="Test_ExtractEntry_Extracts_Tag" storage="c:\users\jclaes\docary\docary\docary.viewmodelextractors.tests\bin\debug\docary.viewmodelextractors.tests.dll" id="3dbddf46-2b59-4a21-40ca-947f358b6c90">
+      <Execution id="a6b9fdcb-8569-4908-95e4-4c6d602cf6fb" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelExtractors.Tests/bin/Debug/Docary.ViewModelExtractors.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelExtractors.Tests.AddEntryViewModelExtractorsTest, Docary.ViewModelExtractors.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_ExtractEntry_Extracts_Tag" />
+    </UnitTest>
+    <UnitTest name="Test_ExtractEntry_Extracts_Meta" storage="c:\users\jclaes\docary\docary\docary.viewmodelextractors.tests\bin\debug\docary.viewmodelextractors.tests.dll" id="ef9f3eeb-9539-8b11-4361-9b2d1646ca12">
+      <Execution id="310420cb-4815-4470-8b9c-ba84e2ab23c2" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelExtractors.Tests/bin/Debug/Docary.ViewModelExtractors.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelExtractors.Tests.AddEntryViewModelExtractorsTest, Docary.ViewModelExtractors.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_ExtractEntry_Extracts_Meta" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Throws_ArgumentNullException_On_Null_Entry" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="af0d5136-9541-2efb-9ac2-5bd70ce52a5a">
+      <Execution id="0472309e-c708-4e61-b7e1-e1f98c22047c" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Throws_ArgumentNullException_On_Null_Entry" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Adds_Unresolvable_EntryTag" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="eaef3a85-26fa-4f22-a071-c94e9181466c">
+      <Execution id="182871d6-e58d-483b-adbd-22b3f46b91ea" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Adds_Unresolvable_EntryTag" />
+    </UnitTest>
+    <UnitTest name="Test_AssembleHomeIndexViewModel_Initializes_EntryGroups" storage="c:\users\jclaes\docary\docary\docary.viewmodelassemblers.test\bin\debug\docary.viewmodelassemblers.test.dll" id="4f459dc5-dc2d-adf5-9e88-d379aa608955">
+      <Execution id="04112eda-e294-4d9e-892f-ca12037ebb09" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelAssemblers.Test/bin/Debug/Docary.ViewModelAssemblers.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelAssemblers.Test.Mobile.HomeAssemblerTest, Docary.ViewModelAssemblers.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AssembleHomeIndexViewModel_Initializes_EntryGroups" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Does_Not_Add_Existing_Tag" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="ba5630ea-9a35-7dab-e12d-63ab2321ee3f">
+      <Execution id="37f067d2-dafe-4720-aabe-4943209ffa62" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Does_Not_Add_Existing_Tag" />
+    </UnitTest>
+    <UnitTest name="Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly" storage="c:\users\jclaes\docary\docary\docary.viewmodelassemblers.test\bin\debug\docary.viewmodelassemblers.test.dll" id="306aed28-4e38-1a76-0e0a-1acc97c1d39b">
+      <Execution id="6c981e53-3d66-4938-b7a9-af5babce40d5" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelAssemblers.Test/bin/Debug/Docary.ViewModelAssemblers.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelAssemblers.Test.Mobile.HomeAssemblerTest, Docary.ViewModelAssemblers.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly" />
+    </UnitTest>
+    <UnitTest name="Test_AssembleHomeIndexViewModel_Calculates_EntryPercentages_Correctly" storage="c:\users\jclaes\docary\docary\docary.viewmodelassemblers.test\bin\debug\docary.viewmodelassemblers.test.dll" id="abcf5d5d-8404-5642-cf7e-9de58e6a1ade">
+      <Execution id="a0c62c69-3a5d-446a-8d6b-7857c5ae8a16" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelAssemblers.Test/bin/Debug/Docary.ViewModelAssemblers.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelAssemblers.Test.Desktop.HomeAssemblerTests, Docary.ViewModelAssemblers.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AssembleHomeIndexViewModel_Calculates_EntryPercentages_Correctly" />
+    </UnitTest>
+    <UnitTest name="Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly" storage="c:\users\jclaes\docary\docary\docary.viewmodelassemblers.test\bin\debug\docary.viewmodelassemblers.test.dll" id="7387cbec-a8bc-acd9-73f3-936c635cd6d9">
+      <Execution id="8f578879-a105-49ed-9732-840a9100cf28" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.ViewModelAssemblers.Test/bin/Debug/Docary.ViewModelAssemblers.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.ViewModelAssemblers.Test.Desktop.HomeAssemblerTests, Docary.ViewModelAssemblers.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly" />
+    </UnitTest>
+    <UnitTest name="Test_AddEntry_Does_Not_Add_Existing_Location" storage="c:\users\jclaes\docary\docary\docary.services.tests\bin\debug\docary.services.tests.dll" id="4f86ace9-41ca-9ca2-027b-120fede948da">
+      <Execution id="81223634-3085-4998-84ca-48ebff81dfb1" />
+      <TestMethod codeBase="C:/Users/JClaes/Docary/Docary/Docary.Services.Tests/bin/Debug/Docary.Services.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Docary.Services.Tests.EntryServiceTest, Docary.Services.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_AddEntry_Does_Not_Add_Existing_Location" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="06d83fc6-900c-c719-3c9d-dc2c692a6fd1" executionId="b49d94ea-ee5a-4438-ae68-61f39f558810" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="161f4b91-fe45-47ff-abcf-55ba35a04867" executionId="bd23de4a-440e-4c18-9d89-e0e697abbc66" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1fdf0826-5b2d-6979-88de-1c6187a40be0" executionId="07c45e57-9460-4ca7-8313-a47dfdc5f23f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="299c8b34-16fd-2ab6-8232-65326c4dddc3" executionId="3122b97d-4701-4cb8-acc0-73d12b353f5a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="306aed28-4e38-1a76-0e0a-1acc97c1d39b" executionId="6c981e53-3d66-4938-b7a9-af5babce40d5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3659f2c5-14ac-e382-664d-a6a09cc8e7ec" executionId="f3fd7d1d-1b46-4aa0-98e1-d36a8dce0b93" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3b4c1e1a-1a68-d2e2-805b-95eac4c6403f" executionId="52c8c8a6-573a-4b84-9362-cb9a1ad0b082" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3dbddf46-2b59-4a21-40ca-947f358b6c90" executionId="a6b9fdcb-8569-4908-95e4-4c6d602cf6fb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f459dc5-dc2d-adf5-9e88-d379aa608955" executionId="04112eda-e294-4d9e-892f-ca12037ebb09" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f86ace9-41ca-9ca2-027b-120fede948da" executionId="81223634-3085-4998-84ca-48ebff81dfb1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7387cbec-a8bc-acd9-73f3-936c635cd6d9" executionId="8f578879-a105-49ed-9732-840a9100cf28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="773cd6e9-1ab5-b84a-f48b-c322dcf90002" executionId="fc168f92-b12e-4e0b-a7a4-8a7613028c69" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="abcf5d5d-8404-5642-cf7e-9de58e6a1ade" executionId="a0c62c69-3a5d-446a-8d6b-7857c5ae8a16" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="af0d5136-9541-2efb-9ac2-5bd70ce52a5a" executionId="0472309e-c708-4e61-b7e1-e1f98c22047c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ba5630ea-9a35-7dab-e12d-63ab2321ee3f" executionId="37f067d2-dafe-4720-aabe-4943209ffa62" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c43bf297-8726-5ada-d88f-e68af50ce651" executionId="d288fa79-d35e-49d5-8569-b09c6a26c020" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eaef3a85-26fa-4f22-a071-c94e9181466c" executionId="182871d6-e58d-483b-adbd-22b3f46b91ea" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ef9f3eeb-9539-8b11-4361-9b2d1646ca12" executionId="310420cb-4815-4470-8b9c-ba84e2ab23c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f21f9b47-13d8-ccc7-fcba-91ed432bc0ad" executionId="b5b597bc-1c40-4ef7-808a-8b9920e58e30" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="b49d94ea-ee5a-4438-ae68-61f39f558810" testId="06d83fc6-900c-c719-3c9d-dc2c692a6fd1" testName="Test_AssembleHomeIndexViewModel_Defaults_Dates" computerName="JCLAES-PC" duration="00:00:00.5071524" startTime="2011-12-12T15:50:37.6730164+01:00" endTime="2011-12-12T15:50:38.6714182+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b49d94ea-ee5a-4438-ae68-61f39f558810">
+    </UnitTestResult>
+    <UnitTestResult executionId="bd23de4a-440e-4c18-9d89-e0e697abbc66" testId="161f4b91-fe45-47ff-abcf-55ba35a04867" testName="Test_AddEntry_Adds_Unresolvable_Location" computerName="JCLAES-PC" duration="00:00:00.3913637" startTime="2011-12-12T15:50:38.6870182+01:00" endTime="2011-12-12T15:50:39.5138197+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bd23de4a-440e-4c18-9d89-e0e697abbc66">
+    </UnitTestResult>
+    <UnitTestResult executionId="07c45e57-9460-4ca7-8313-a47dfdc5f23f" testId="1fdf0826-5b2d-6979-88de-1c6187a40be0" testName="Test_AddEntry_Updates_Previous_Entry_Stopped_On_Property_To_Now" computerName="JCLAES-PC" duration="00:00:00.0094880" startTime="2011-12-12T15:50:39.5138197+01:00" endTime="2011-12-12T15:50:39.5294197+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="07c45e57-9460-4ca7-8313-a47dfdc5f23f">
+    </UnitTestResult>
+    <UnitTestResult executionId="3122b97d-4701-4cb8-acc0-73d12b353f5a" testId="299c8b34-16fd-2ab6-8232-65326c4dddc3" testName="Test_ExtractEntry_Extracts_Location" computerName="JCLAES-PC" duration="00:00:00.0417552" startTime="2011-12-12T15:50:39.5294197+01:00" endTime="2011-12-12T15:50:39.9506204+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3122b97d-4701-4cb8-acc0-73d12b353f5a">
+    </UnitTestResult>
+    <UnitTestResult executionId="6c981e53-3d66-4938-b7a9-af5babce40d5" testId="306aed28-4e38-1a76-0e0a-1acc97c1d39b" testName="Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly" computerName="JCLAES-PC" duration="00:00:00.0243786" startTime="2011-12-12T15:50:39.9506204+01:00" endTime="2011-12-12T15:50:39.9818205+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6c981e53-3d66-4938-b7a9-af5babce40d5">
+    </UnitTestResult>
+    <UnitTestResult executionId="f3fd7d1d-1b46-4aa0-98e1-d36a8dce0b93" testId="3659f2c5-14ac-e382-664d-a6a09cc8e7ec" testName="Test_AssembleHomeIndexViewModel_Populates_The_Tag_Property" computerName="JCLAES-PC" duration="00:00:00.0043067" startTime="2011-12-12T15:50:39.9818205+01:00" endTime="2011-12-12T15:50:39.9974205+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f3fd7d1d-1b46-4aa0-98e1-d36a8dce0b93">
+    </UnitTestResult>
+    <UnitTestResult executionId="52c8c8a6-573a-4b84-9362-cb9a1ad0b082" testId="3b4c1e1a-1a68-d2e2-805b-95eac4c6403f" testName="Test_AddEntry_Throws_ArgumentNullException_On_Null_EmptyUserId" computerName="JCLAES-PC" duration="00:00:00.0106646" startTime="2011-12-12T15:50:39.9974205+01:00" endTime="2011-12-12T15:50:40.0130205+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="52c8c8a6-573a-4b84-9362-cb9a1ad0b082">
+    </UnitTestResult>
+    <UnitTestResult executionId="a6b9fdcb-8569-4908-95e4-4c6d602cf6fb" testId="3dbddf46-2b59-4a21-40ca-947f358b6c90" testName="Test_ExtractEntry_Extracts_Tag" computerName="JCLAES-PC" duration="00:00:00.0004843" startTime="2011-12-12T15:50:40.0130205+01:00" endTime="2011-12-12T15:50:40.0130205+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a6b9fdcb-8569-4908-95e4-4c6d602cf6fb">
+    </UnitTestResult>
+    <UnitTestResult executionId="04112eda-e294-4d9e-892f-ca12037ebb09" testId="4f459dc5-dc2d-adf5-9e88-d379aa608955" testName="Test_AssembleHomeIndexViewModel_Initializes_EntryGroups" computerName="JCLAES-PC" duration="00:00:00.0026220" startTime="2011-12-12T15:50:40.0130205+01:00" endTime="2011-12-12T15:50:40.0286206+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="04112eda-e294-4d9e-892f-ca12037ebb09">
+    </UnitTestResult>
+    <UnitTestResult executionId="81223634-3085-4998-84ca-48ebff81dfb1" testId="4f86ace9-41ca-9ca2-027b-120fede948da" testName="Test_AddEntry_Does_Not_Add_Existing_Location" computerName="JCLAES-PC" duration="00:00:00.0066850" startTime="2011-12-12T15:50:40.0286206+01:00" endTime="2011-12-12T15:50:40.0442206+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="81223634-3085-4998-84ca-48ebff81dfb1">
+    </UnitTestResult>
+    <UnitTestResult executionId="8f578879-a105-49ed-9732-840a9100cf28" testId="7387cbec-a8bc-acd9-73f3-936c635cd6d9" testName="Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly" computerName="JCLAES-PC" duration="00:00:00.0047982" startTime="2011-12-12T15:50:40.0442206+01:00" endTime="2011-12-12T15:50:40.0442206+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8f578879-a105-49ed-9732-840a9100cf28">
+    </UnitTestResult>
+    <UnitTestResult executionId="fc168f92-b12e-4e0b-a7a4-8a7613028c69" testId="773cd6e9-1ab5-b84a-f48b-c322dcf90002" testName="Test_AddEntry_Adds_Entry" computerName="JCLAES-PC" duration="00:00:00.0060691" startTime="2011-12-12T15:50:40.0442206+01:00" endTime="2011-12-12T15:50:40.0598206+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fc168f92-b12e-4e0b-a7a4-8a7613028c69">
+    </UnitTestResult>
+    <UnitTestResult executionId="a0c62c69-3a5d-446a-8d6b-7857c5ae8a16" testId="abcf5d5d-8404-5642-cf7e-9de58e6a1ade" testName="Test_AssembleHomeIndexViewModel_Calculates_EntryPercentages_Correctly" computerName="JCLAES-PC" duration="00:00:00.0044896" startTime="2011-12-12T15:50:40.0598206+01:00" endTime="2011-12-12T15:50:40.0754206+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a0c62c69-3a5d-446a-8d6b-7857c5ae8a16">
+    </UnitTestResult>
+    <UnitTestResult executionId="0472309e-c708-4e61-b7e1-e1f98c22047c" testId="af0d5136-9541-2efb-9ac2-5bd70ce52a5a" testName="Test_AddEntry_Throws_ArgumentNullException_On_Null_Entry" computerName="JCLAES-PC" duration="00:00:00.0038923" startTime="2011-12-12T15:50:40.0754206+01:00" endTime="2011-12-12T15:50:40.0754206+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0472309e-c708-4e61-b7e1-e1f98c22047c">
+    </UnitTestResult>
+    <UnitTestResult executionId="37f067d2-dafe-4720-aabe-4943209ffa62" testId="ba5630ea-9a35-7dab-e12d-63ab2321ee3f" testName="Test_AddEntry_Does_Not_Add_Existing_Tag" computerName="JCLAES-PC" duration="00:00:00.0061827" startTime="2011-12-12T15:50:40.0754206+01:00" endTime="2011-12-12T15:50:40.0910207+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="37f067d2-dafe-4720-aabe-4943209ffa62">
+    </UnitTestResult>
+    <UnitTestResult executionId="d288fa79-d35e-49d5-8569-b09c6a26c020" testId="c43bf297-8726-5ada-d88f-e68af50ce651" testName="Test_AddEntry_Adds_Random_Color_To_Unresolvable_EntryTag" computerName="JCLAES-PC" duration="00:00:00.0065830" startTime="2011-12-12T15:50:40.0910207+01:00" endTime="2011-12-12T15:50:40.1066207+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d288fa79-d35e-49d5-8569-b09c6a26c020">
+    </UnitTestResult>
+    <UnitTestResult executionId="182871d6-e58d-483b-adbd-22b3f46b91ea" testId="eaef3a85-26fa-4f22-a071-c94e9181466c" testName="Test_AddEntry_Adds_Unresolvable_EntryTag" computerName="JCLAES-PC" duration="00:00:00.0063020" startTime="2011-12-12T15:50:40.1066207+01:00" endTime="2011-12-12T15:50:40.1222207+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="182871d6-e58d-483b-adbd-22b3f46b91ea">
+    </UnitTestResult>
+    <UnitTestResult executionId="310420cb-4815-4470-8b9c-ba84e2ab23c2" testId="ef9f3eeb-9539-8b11-4361-9b2d1646ca12" testName="Test_ExtractEntry_Extracts_Meta" computerName="JCLAES-PC" duration="00:00:00.0004144" startTime="2011-12-12T15:50:40.1222207+01:00" endTime="2011-12-12T15:50:40.1222207+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="310420cb-4815-4470-8b9c-ba84e2ab23c2">
+    </UnitTestResult>
+    <UnitTestResult executionId="b5b597bc-1c40-4ef7-808a-8b9920e58e30" testId="f21f9b47-13d8-ccc7-fcba-91ed432bc0ad" testName="GetRandom_Returns_Random_Colors" computerName="JCLAES-PC" duration="00:00:03.7742158" startTime="2011-12-12T15:50:40.1222207+01:00" endTime="2011-12-12T15:50:43.8974273+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b5b597bc-1c40-4ef7-808a-8b9920e58e30">
+    </UnitTestResult>
+  </Results>
+</TestRun>

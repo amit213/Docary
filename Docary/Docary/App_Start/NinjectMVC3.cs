@@ -56,6 +56,7 @@ namespace Docary.App_Start
         {
             kernel.Bind<IEntryService>().To<EntryService>();
             kernel.Bind<ITimeService>().To<TimeService>();
+            kernel.Bind<ITimelineColorService>().To<TimelineColorService>();
         }
 
         private static void RegisterRepositories(IKernel kernel) 
@@ -63,6 +64,7 @@ namespace Docary.App_Start
             kernel.Bind<IEntryRepository>().To<EntryRepository>();
             kernel.Bind<ILocationRepository>().To<LocationRepository>();
             kernel.Bind<ITagRepository>().To<TagRepository>();
+            kernel.Bind<ITimelineColorRepository>().To<TimelineColorRepository>();
 
             kernel.Bind<DocaryContext>().ToSelf().InRequestScope();           
         }

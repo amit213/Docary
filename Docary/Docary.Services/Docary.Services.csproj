@@ -49,8 +49,10 @@
     <Compile Include="EntryService.cs" />
     <Compile Include="IDocarySetup.cs" />
     <Compile Include="IEntryService.cs" />
+    <Compile Include="ITimelineColorService.cs" />
     <Compile Include="ITimeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimelineColorService.cs" />
     <Compile Include="TimeService.cs" />
   </ItemGroup>
   <ItemGroup>
