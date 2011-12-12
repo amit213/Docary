@@ -38,6 +38,9 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -59,7 +62,6 @@
     <Compile Include="Mocks\LocationRepositoryMock.cs" />
     <Compile Include="Mocks\TagRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stubs\TimeServiceStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Docary.Models\Docary.Models.csproj">
@@ -82,6 +84,9 @@
       <Project>{2DFF28A4-78C7-4769-8B82-231A1B25AB60}</Project>
       <Name>Docary.ViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -31,7 +31,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
             var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
 
-            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, "1");
+            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, It.IsAny<string>());
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
@@ -50,7 +50,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
             var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
 
-            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, "1");
+            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, It.IsAny<string>());
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);

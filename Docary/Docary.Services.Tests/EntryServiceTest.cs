@@ -6,7 +6,7 @@ using System.Linq;
 using Docary.Repositories;
 using Docary.Models;
 using Docary.Services.Tests.Mocks;
-using Docary.Services.Tests.Stubs;
+using Moq;
 
 namespace Docary.Services.Tests
 {  
@@ -171,9 +171,18 @@ namespace Docary.Services.Tests
             _entryRepoMock = new EntryRepositoryMock();
             _locationRepoMock = new LocationRepositoryMock();
             _tagRepoMock = new TagRepositoryMock();
-            _timeServiceStub = new TimeServiceStub();
+            _timeServiceStub = SetUpTimeServiceStub().Object;
 
             _entryServiceMock = new EntryService(_entryRepoMock, _locationRepoMock, _tagRepoMock, _timeServiceStub);
+        }
+
+        private Mock<ITimeService> SetUpTimeServiceStub()
+        {
+            var timeServiceStub =  new Mock<ITimeService>();
+
+            timeServiceStub.Setup(ts => ts.GetNow()).Returns(new DateTime(2011, 10, 18, 15, 30, 4));
+
+            return timeServiceStub;
         }
     }
 }
