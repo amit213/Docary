@@ -4,7 +4,7 @@
 
 html, body {
 	height: 100%;
-	background-color: #EDE6AD;    
+	background-color: #EEEEEC;    
     font-family: "lucida grande", arial, sans-serif;  
 }
 
@@ -18,7 +18,7 @@ html, body {
 	width: 1240px;
 	font-size: 0.9em;	
 	text-align: left;	
-	background-color: #FCFCED;	
+	background-color: #EEEEEC;	
 }
 
 .content 
@@ -36,20 +36,21 @@ html, body {
 
 .push 
 {
-    background-color: #FCFCED;
+    background-color: #EEEEEC;
 }
 
 .header {
 	height: 50px;	
 	padding-top: 15px;
 	padding-bottom: 40px;	
-	background-color: #EDE6AD;
+	background-color: #EEEEEC;	
 }
 
 .menu 
 {
-    background-color: #EDE6AD;  
+    background-color: #EEEEEC;  
     font-weight:  bold;
+    border-bottom: 1px solid;    
 }
 
 .menu ul 
@@ -169,8 +170,8 @@ strong {
 }
 
 .timeline-header {
-    background-color: #595747;
-    color: #FFF;    
+    font-weight: bold;
+    color: #000;    
     text-align: right;
     float:left;
     width: 80px;
@@ -187,7 +188,7 @@ strong {
 
 .form-container {
     padding: 10px; 
-    background-color: #595747;
+    background-color: #1F1F1F;
     color: #FFF;
 }
 
