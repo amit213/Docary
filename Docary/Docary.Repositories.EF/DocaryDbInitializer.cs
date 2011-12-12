@@ -12,30 +12,18 @@ namespace Docary.Repositories.EF
     {
         protected override void Seed(DocaryContext context)
         {
-            var homeLocation = context.Locations.Add(new Location() { Name = "Home", UserId = "1" });
-            var workTag = context.Tags.Add(new EntryTag() { Name = "Work", UserId = "1" });
-
-            context.Entries.Add(new Entry()
-            {
-                Tag = workTag,
-                Location = homeLocation,
-                CreatedOn = DateTime.Now,
-                StoppedOn = null,
-                Description = "Blablabla",
-                UserId = "1"
-            });
-
-            context.Entries.Add(new Entry()
-            {
-                Tag = workTag,
-                Location = homeLocation,
-                CreatedOn = DateTime.Now,
-                StoppedOn = null,
-                Description = "More blablablabla",
-                UserId = "1"
-            });
+            SeedTimelineColors(context);
          
             base.Seed(context);
-        }    
+        }
+
+        private void SeedTimelineColors(DocaryContext context)
+        {
+            context.TimelineColors.Add(new TimelineColor("#C1DE33"));
+            context.TimelineColors.Add(new TimelineColor("#4E5E24"));
+            context.TimelineColors.Add(new TimelineColor("#68A0B0"));
+            context.TimelineColors.Add(new TimelineColor("#FF0000"));
+            context.TimelineColors.Add(new TimelineColor("#68A0B0"));            
+        }
     }
 }

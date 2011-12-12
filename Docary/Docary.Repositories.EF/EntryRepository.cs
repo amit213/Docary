@@ -9,40 +9,35 @@ using System.Data.Entity.Validation;
 
 namespace Docary.Repositories.EF
 {
-    public class EntryRepository : IEntryRepository
+    public class EntryRepository : RepositoryBase, IEntryRepository
     {
-        private DocaryContext _context;
-
-        public EntryRepository(DocaryContext context)
-        {
-            _context = context;
-        }
+        public EntryRepository(DocaryContext context) : base(context) { }   
 
         public IQueryable<Entry> Get()
         {
-            return _context.Entries.Include(e => e.Tag).Include(e => e.Location); ;
+            return Context.Entries.Include(e => e.Tag).Include(e => e.Location); ;
         }
 
         public Entry Add(Entry entry)
         {
-            var addedEntry = _context.Entries.Add(entry);
+            var addedEntry = Context.Entries.Add(entry);
 
-            _context.SaveChanges();
+            Context.SaveChanges();
 
             return addedEntry;
         }
 
         public void Delete(int id)
         {
-            var entryToDelete = _context.Entries.Where(e => e.Id == id).First();
+            var entryToDelete = Context.Entries.Where(e => e.Id == id).First();          
 
-            _context.Entries.Remove(entryToDelete);
-            _context.SaveChanges();
+            Context.Entries.Remove(entryToDelete);
+            Context.SaveChanges();
         }
 
         public void Update(Entry item)
         {
-            var entryToUpdate = _context.Entries.Where(e => e.Id == item.Id).First();
+            var entryToUpdate = Context.Entries.Where(e => e.Id == item.Id).First();
 
             entryToUpdate.CreatedOn = item.CreatedOn;
             entryToUpdate.Description = item.Description;            
@@ -51,7 +46,7 @@ namespace Docary.Repositories.EF
             entryToUpdate.TagId = item.TagId;
             entryToUpdate.UserId = item.UserId;
                         
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
     }
 }

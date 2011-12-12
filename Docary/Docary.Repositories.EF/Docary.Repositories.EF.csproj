@@ -44,12 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RepositoryBase.cs" />
     <Compile Include="TagRepository.cs" />
     <Compile Include="DocaryContext.cs" />
     <Compile Include="DocaryDbInitializer.cs" />
     <Compile Include="EntryRepository.cs" />
     <Compile Include="LocationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimelineColorRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\EntityFramework.dll" />

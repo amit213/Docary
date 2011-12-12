@@ -7,32 +7,27 @@ using Docary.Models;
 
 namespace Docary.Repositories.EF
 {
-    public class TagRepository : ITagRepository
-    {
-        private DocaryContext _context;
-
-        public TagRepository(DocaryContext context)
-        {
-            _context = context;
-        }
+    public class TagRepository : RepositoryBase, ITagRepository
+    {  
+        public TagRepository(DocaryContext context) : base(context){ }
 
         public IQueryable<EntryTag> Get()
         {
-            return _context.Tags;
+            return Context.Tags;
         }
         
         public EntryTag Add(EntryTag tag)
         {
-            var addedTag = _context.Tags.Add(tag);
+            var addedTag = Context.Tags.Add(tag);
 
-            _context.SaveChanges();
+            Context.SaveChanges();
 
             return addedTag;
         }
 
         public EntryTag Find(string name, string userId)
         {
-            return _context.Tags.Where(a => a.Name == name && a.UserId == userId).FirstOrDefault();
+            return Context.Tags.Where(a => a.Name == name && a.UserId == userId).FirstOrDefault();
         }
     }
 }

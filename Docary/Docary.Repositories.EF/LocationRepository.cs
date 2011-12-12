@@ -7,32 +7,27 @@ using Docary.Models;
 
 namespace Docary.Repositories.EF
 {
-    public class LocationRepository : ILocationRepository
-    {
-        private DocaryContext _context;
-
-        public LocationRepository(DocaryContext context)
-        {
-            _context = context;
-        }
+    public class LocationRepository : RepositoryBase, ILocationRepository
+    {       
+        public LocationRepository(DocaryContext context) : base(context) { }
 
         public IQueryable<Location> Get()
         {
-            return _context.Locations;
+            return Context.Locations;
         }
         
         public Location Add(Location location)
         {
-            var addedLocation = _context.Locations.Add(location);
+            var addedLocation = Context.Locations.Add(location);
 
-            _context.SaveChanges();
+            Context.SaveChanges();
 
             return addedLocation;
         }
 
         public Location Find(string name, string userId)
         {
-            return _context.Locations.Where(l => l.Name == name && l.UserId == userId).FirstOrDefault();
+            return Context.Locations.Where(l => l.Name == name && l.UserId == userId).FirstOrDefault();
         }
     }
 }
