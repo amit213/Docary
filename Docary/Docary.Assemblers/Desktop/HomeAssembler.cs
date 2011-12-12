@@ -31,15 +31,18 @@ namespace Docary.ViewModelAssemblers.Desktop
         // TODO: Wow, this got ugly fast. Can this be simplified?
         public HomeIndexViewModel AssembleHomeIndexViewModel(HomeIndexViewModel homeIndexViewModelIn, string userId)
         {
-            var indexViewModel = new HomeIndexViewModel(homeIndexViewModelIn.From, homeIndexViewModelIn.To);
-            
-            EnsureDatesAreNotNull(indexViewModel);
+            var indexViewModelResult = new HomeIndexViewModel(homeIndexViewModelIn.From, homeIndexViewModelIn.To);
 
-            var start = indexViewModel.From.Value;
-            var stop = indexViewModel.To.Value;           
-            var sourceEntries = _entryService.GetEntries(indexViewModel.From.Value, indexViewModel.To.Value, userId);
+            if (!indexViewModelResult.From.HasValue)
+                indexViewModelResult.From = GetDefaultFromDate();
+            if (!indexViewModelResult.To.HasValue)
+                indexViewModelResult.To = GetDefaultToDate();
 
-            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();
+            var start = indexViewModelResult.From.Value;
+            var stop = indexViewModelResult.To.Value;           
+            var sourceEntries = _entryService.GetEntries(indexViewModelResult.From.Value, indexViewModelResult.To.Value, userId);
+
+            indexViewModelResult.EntryGroups = new List<HomeIndexViewModelEntryGroup>();
        
             while (start < stop)
             {
@@ -52,17 +55,14 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                     entryToAdd.Tag = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Name;
 
-                    if (sourceEntry.StoppedOn < startOfTheDay)
-                        continue;
-                    if (sourceEntry.CreatedOn > endOfTheDay)
+                    if (sourceEntry.StoppedOn < startOfTheDay || sourceEntry.CreatedOn > endOfTheDay)
                         continue;
 
                     if (!sourceEntry.StoppedOn.HasValue)
                         sourceEntry.StoppedOn = DateTime.MaxValue;
-
+                    
                     if (sourceEntry.CreatedOn <= startOfTheDay && sourceEntry.StoppedOn >= endOfTheDay)
-                    {                        
-                        entryToAdd.Color = sourceEntry.Tag == null ? "" : sourceEntry.Tag.Color;
+                    {                       
                         entryToAdd.Start = startOfTheDay;
                         entryToAdd.End = endOfTheDay;
                         entryToAdd.Percentage = 100;
@@ -74,8 +74,7 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                         entryToAdd.Percentage = diffPercent * 100;
                         entryToAdd.Start = startOfTheDay;
-                        entryToAdd.End = sourceEntry.StoppedOn.Value;
-                        entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
+                        entryToAdd.End = sourceEntry.StoppedOn.Value;                        
                     }
                     else if (sourceEntry.StoppedOn.Value >= endOfTheDay)
                     {
@@ -84,8 +83,7 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                         entryToAdd.Percentage = diffPercent * 100;
                         entryToAdd.Start = sourceEntry.CreatedOn;
-                        entryToAdd.End = endOfTheDay;
-                        entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
+                        entryToAdd.End = endOfTheDay;                        
                     }
                     else
                     {
@@ -94,16 +92,16 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                         entryToAdd.Percentage = diffPercent * 100;
                         entryToAdd.Start = sourceEntry.CreatedOn;
-                        entryToAdd.End = sourceEntry.StoppedOn.Value;
-                        entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
+                        entryToAdd.End = sourceEntry.StoppedOn.Value;                        
                     }
 
+                    entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
                     entryToAdd.Title = string.Format("{0} ({1}-{2})", 
                         new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString() });
 
-                    if (indexViewModel.EntryGroups.Any(eg => eg.Date == startOfTheDay))
+                    if (indexViewModelResult.EntryGroups.Any(eg => eg.Date == startOfTheDay))
                     {
-                        var oldEntryGroup = indexViewModel.EntryGroups.Where(eg => eg.Date == startOfTheDay).First();
+                        var oldEntryGroup = indexViewModelResult.EntryGroups.Where(eg => eg.Date == startOfTheDay).First();
 
                         var newEntryGroup = new HomeIndexViewModelEntryGroup();
                         newEntryGroup.Date = oldEntryGroup.Date;
@@ -111,8 +109,8 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                         newEntryGroup.Entries.Add(entryToAdd);
 
-                        indexViewModel.EntryGroups.RemoveAll(eg => eg.Date == startOfTheDay);
-                        indexViewModel.EntryGroups.Add(newEntryGroup);
+                        indexViewModelResult.EntryGroups.RemoveAll(eg => eg.Date == startOfTheDay);
+                        indexViewModelResult.EntryGroups.Add(newEntryGroup);
                     }
                     else
                     {                  
@@ -121,23 +119,15 @@ namespace Docary.ViewModelAssemblers.Desktop
                         entryGroup.Date = startOfTheDay;                        
                         entryGroup.Entries.Add(entryToAdd);
 
-                        indexViewModel.EntryGroups.Add(entryGroup);
+                        indexViewModelResult.EntryGroups.Add(entryGroup);
                     }
                 }
 
                 start = start.AddDays(1);
             }
 
-            return indexViewModel;
-        }
-
-        private void EnsureDatesAreNotNull(HomeIndexViewModel indexViewModel)
-        {
-            if (!indexViewModel.From.HasValue)
-                indexViewModel.From = GetDefaultFromDate();
-            if (!indexViewModel.To.HasValue)
-                indexViewModel.To = GetDefaultToDate();
-        }
+            return indexViewModelResult;
+        }       
 
         private DateTime GetDefaultFromDate()
         {

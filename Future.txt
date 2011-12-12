@@ -1,4 +1,3 @@
 Default color for tags
 Analytics
-Slicing of the activities for search
 Refactoring of the desktop home assembler
