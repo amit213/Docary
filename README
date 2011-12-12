@@ -4,6 +4,8 @@ This project is a hobby project, with no intentions to go commercial.
 
 Technology stack 
 - ASP.NET MVC3
-- Entity Framework Code First
+- Entity Framework
 - Ninject
+- Moq
 - jQuery mobile
+- jQuery UI
