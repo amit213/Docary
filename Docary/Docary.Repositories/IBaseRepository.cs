@@ -5,8 +5,12 @@ using System.Text;
 
 namespace Docary.Repositories
 {
-    public interface ICanDelete<T>
+    public interface IBaseRepository<TEntity>
     {
+        IQueryable<TEntity> Get();
+
+        TEntity Add(TEntity entity);
+
         void Delete(int id);
     }
 }

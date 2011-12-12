@@ -6,7 +6,7 @@ using Docary.Models;
 
 namespace Docary.Repositories
 {
-    public interface ITimelineColorRepository : ICanGet<TimelineColor>
+    public interface ITimelineColorRepository : IBaseRepository<TimelineColor>
     {
     }
 }

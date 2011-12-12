@@ -67,7 +67,7 @@ namespace Docary.Services.Tests.Mocks
         public IQueryable<Entry> Get()
         {
             return _entries.AsQueryable<Entry>();
-        }
+        }     
 
         public void Update(Entry item)
         {
@@ -75,6 +75,6 @@ namespace Docary.Services.Tests.Mocks
 
             _entries.Remove(entryToUpdate);
             _entries.Add(item);           
-        }
+        }       
     }
 }

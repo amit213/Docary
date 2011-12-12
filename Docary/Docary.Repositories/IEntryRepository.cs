@@ -8,8 +8,8 @@ using Docary.Models;
 namespace Docary.Repositories
 {
     public interface IEntryRepository : 
-        ICanDelete<Entry>, ICanAdd<Entry>, ICanGet<Entry>, ICanUpdate<Entry>
+        IBaseRepository<Entry>, ICanUpdate<Entry>
     {
-        
+    
     }
 }

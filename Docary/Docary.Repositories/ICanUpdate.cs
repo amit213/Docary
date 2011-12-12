@@ -7,6 +7,6 @@ namespace Docary.Repositories
 {
     public interface ICanUpdate<T>
     {
-        void Update(T item);
+        void Update(T entity);
     }
 }

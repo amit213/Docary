@@ -7,23 +7,9 @@ using Docary.Models;
 
 namespace Docary.Repositories.EF
 {
-    public class TagRepository : RepositoryBase, ITagRepository
+    public class TagRepository : RepositoryBase<EntryTag>, ITagRepository
     {  
-        public TagRepository(DocaryContext context) : base(context){ }
-
-        public IQueryable<EntryTag> Get()
-        {
-            return Context.Tags;
-        }
-        
-        public EntryTag Add(EntryTag tag)
-        {
-            var addedTag = Context.Tags.Add(tag);
-
-            Context.SaveChanges();
-
-            return addedTag;
-        }
+        public TagRepository(DocaryContext context) : base(context){ }       
 
         public EntryTag Find(string name, string userId)
         {

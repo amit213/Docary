@@ -6,13 +6,8 @@ using Docary.Models;
 
 namespace Docary.Repositories.EF
 {
-    public class TimelineColorRepository : RepositoryBase, ITimelineColorRepository
+    public class TimelineColorRepository : RepositoryBase<TimelineColor>, ITimelineColorRepository
     {
-        public TimelineColorRepository(DocaryContext context) : base(context) { }
-   
-        public IQueryable<TimelineColor> Get()
-        {
-            return Context.TimelineColors;
-        }
+        public TimelineColorRepository(DocaryContext context) : base(context) { } 
     }
 }

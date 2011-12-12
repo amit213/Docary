@@ -7,23 +7,9 @@ using Docary.Models;
 
 namespace Docary.Repositories.EF
 {
-    public class LocationRepository : RepositoryBase, ILocationRepository
+    public class LocationRepository : RepositoryBase<Location>, ILocationRepository
     {       
-        public LocationRepository(DocaryContext context) : base(context) { }
-
-        public IQueryable<Location> Get()
-        {
-            return Context.Locations;
-        }
-        
-        public Location Add(Location location)
-        {
-            var addedLocation = Context.Locations.Add(location);
-
-            Context.SaveChanges();
-
-            return addedLocation;
-        }
+        public LocationRepository(DocaryContext context) : base(context) { }       
 
         public Location Find(string name, string userId)
         {

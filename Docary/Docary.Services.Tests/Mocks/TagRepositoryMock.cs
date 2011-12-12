@@ -45,5 +45,11 @@ namespace Docary.Services.Tests.Mocks
         {
             return _items.Where(i => i.Name == name && i.UserId == userId).FirstOrDefault();
         }
+
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
