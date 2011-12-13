@@ -96,8 +96,8 @@ namespace Docary.ViewModelAssemblers.Desktop
                     }
 
                     entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
-                    entryToAdd.Title = string.Format("{0} ({1}-{2})", 
-                        new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString() });
+                    entryToAdd.Title = string.Format("{0} ({1}-{2}): {3}", 
+                        new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString(), sourceEntry.Description });
 
                     if (indexViewModelResult.EntryGroups.Any(eg => eg.Date == startOfTheDay))
                     {

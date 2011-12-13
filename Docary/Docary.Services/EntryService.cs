@@ -58,8 +58,8 @@ namespace Docary.Services
             var location = _locationRepository.Find(entry.Location.Name, entry.UserId);
             var tag = _tagRepository.Find(entry.Tag.Name, entry.UserId);          
 
-            entry.Location = location == null ? AddLocationBasedOn(entry) : location;
-            entry.Tag = tag == null ? AddTagBasedOn(entry) : tag;
+            entry.Location = location == null ? AddLocationBasedOnEntry(entry) : location;
+            entry.Tag = tag == null ? AddTagBasedOnEntry(entry) : tag;
             entry.CreatedOn = _timeService.GetNow();            
 
             _entryRepository.Add(entry);
@@ -72,25 +72,18 @@ namespace Docary.Services
                                    .FirstOrDefault();
         }        
 
-        private Location AddLocationBasedOn(Entry entry)
+        private Location AddLocationBasedOnEntry(Entry entry)
         {
-            var location = new Location()
-            {
-                Name = entry.Location.Name,
-                UserId = entry.UserId
-            };
+            var location = new Location(entry.Location.Name, entry.UserId);
 
             return _locationRepository.Add(location);
         }
 
-        private EntryTag AddTagBasedOn(Entry entry)
+        private EntryTag AddTagBasedOnEntry(Entry entry)
         {
-            var tag = new EntryTag()
-            {
-                Name = entry.Tag.Name,
-                UserId = entry.UserId,
-                Color = _timelineColorService.GetRandom().Value
-            };
+            var randomColor = _timelineColorService.GetRandom().Value;
+
+            var tag = new EntryTag(entry.Tag.Name, randomColor, entry.UserId);
 
             return _tagRepository.Add(tag);
         }
