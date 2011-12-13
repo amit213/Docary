@@ -18,6 +18,35 @@ namespace Docary.Repositories.EF
             return Context.Entries.Include(e => e.Tag).Include(e => e.Location);         
         }
 
+        public IEnumerable<Entry> Get(DateTime createdOnMin, DateTime createdOnMax, string userId)
+        {
+            var results =
+                Get().OrderByDescending(e => e.CreatedOn)
+                     .Where(e => e.UserId == userId &&
+                          ((e.CreatedOn >= createdOnMin && e.CreatedOn <= createdOnMax) ||
+                           (e.CreatedOn <= createdOnMin && e.StoppedOn >= createdOnMin && e.CreatedOn <= createdOnMax)))
+                     .OrderBy(e => e.CreatedOn)
+                     .ToList();
+
+            var firstResult = results.FirstOrDefault();
+
+            if (firstResult != null)
+            {
+                firstResult.CreatedOn = createdOnMin;
+
+                results.RemoveAt(0);
+                results.Add(firstResult);
+                results = results.OrderBy(e => e.CreatedOn).ToList();
+            }
+
+            return results;
+        }
+
+        public Entry GetLatestEntry(string userId)
+        {
+            return Get().Where(e => e.StoppedOn == null && e.UserId == userId).FirstOrDefault();
+        }       
+
         public void Update(Entry item)
         {
             var entryToUpdate = Context.Entries.Where(e => e.Id == item.Id).First();

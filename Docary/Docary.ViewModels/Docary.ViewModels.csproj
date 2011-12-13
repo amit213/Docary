@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AddEntryViewModel.cs" />
     <Compile Include="Desktop\HomeIndexViewModel.cs" />
+    <Compile Include="Desktop\HomeStatisticsViewModel.cs" />
     <Compile Include="Mobile\HomeIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

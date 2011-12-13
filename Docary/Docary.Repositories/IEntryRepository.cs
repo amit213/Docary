@@ -10,6 +10,7 @@ namespace Docary.Repositories
     public interface IEntryRepository : 
         IBaseRepository<Entry>, ICanUpdate<Entry>
     {
-    
+        IEnumerable<Entry> Get(DateTime createdOnMin, DateTime createdOnMax, string userId);
+        Entry GetLatestEntry(string userId);
     }
 }

@@ -28,15 +28,11 @@ namespace Docary.Services
             _tagRepository = tagRepository;
             _timelineColorService = timelineColorService;
             _timeService = timeService;            
-        }               
+        }
 
         public IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId)
         {
-            return _entryRepository.Get().OrderByDescending(e => e.CreatedOn)
-                                         .Where(e => e.UserId == userId && 
-                                             ((e.CreatedOn >= createdOnMin && e.CreatedOn <= createdOnMax) ||
-                                              (e.CreatedOn <= createdOnMin && e.StoppedOn >= createdOnMin && e.CreatedOn <= createdOnMax))) 
-                                         .ToList();
+            return _entryRepository.Get(createdOnMin, createdOnMax, userId);
         }
 
         public void AddEntry(Entry entry)
@@ -44,16 +40,15 @@ namespace Docary.Services
             if (entry == null)
                 throw new ArgumentNullException("Entry");
             if (string.IsNullOrEmpty(entry.UserId))
-                throw new ArgumentNullException("UserId");                                   
+                throw new ArgumentNullException("UserId");           
 
-            var latestEntry = GetLatestEntry(entry.UserId);
+            var latestEntry = _entryRepository.GetLatestEntry(entry.UserId);
 
-            if (latestEntry != null)
+            if (latestEntry != null) 
             {
                 latestEntry.StoppedOn = _timeService.GetNow();
-
                 _entryRepository.Update(latestEntry);
-            }
+            }           
 
             var location = _locationRepository.Find(entry.Location.Name, entry.UserId);
             var tag = _tagRepository.Find(entry.Tag.Name, entry.UserId);          
@@ -63,14 +58,7 @@ namespace Docary.Services
             entry.CreatedOn = _timeService.GetNow();            
 
             _entryRepository.Add(entry);
-        }        
-
-        private Entry GetLatestEntry(string userId)
-        {
-            return _entryRepository.Get()
-                                   .Where(e => e.StoppedOn == null && e.UserId == userId)
-                                   .FirstOrDefault();
-        }        
+        }                
 
         private Location AddLocationBasedOnEntry(Entry entry)
         {
@@ -86,6 +74,6 @@ namespace Docary.Services
             var tag = new EntryTag(entry.Tag.Name, randomColor, entry.UserId);
 
             return _tagRepository.Add(tag);
-        }
+        }       
     }
 }
