@@ -8,7 +8,7 @@ using Docary.Models;
 
 namespace Docary.Repositories.EF
 {
-    public class DocaryDbInitializer : DropCreateDatabaseIfModelChanges<DocaryContext> 
+    public class DocaryDbInitializer : CreateDatabaseIfNotExists<DocaryContext> 
     {
         protected override void Seed(DocaryContext context)
         {
