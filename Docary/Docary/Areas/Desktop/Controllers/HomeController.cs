@@ -15,11 +15,16 @@ namespace Docary.Areas.Desktop.Controllers
     public class HomeController : DocaryController
     {
         private IHomeAssembler _homeAssembler;
+        private IStatisticsAssembler _statisticsAssembler;
         private IEntryService _entryService;
      
-        public HomeController(IHomeAssembler homeAssembler, IEntryService entryService)
+        public HomeController(
+            IHomeAssembler homeAssembler, 
+            IStatisticsAssembler statisticsAssembler,
+            IEntryService entryService)
         {
             _homeAssembler = homeAssembler;
+            _statisticsAssembler = statisticsAssembler;
             _entryService = entryService;
         }
        
@@ -52,6 +57,10 @@ namespace Docary.Areas.Desktop.Controllers
         [Authorize]
         public ActionResult Statistics()
         {
+            var model = _statisticsAssembler.AssembleHomeStatisticsViewModel(UserId);
+
+            ViewData.Model = model;
+
             return View();
         }
 
