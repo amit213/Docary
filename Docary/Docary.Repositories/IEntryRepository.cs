@@ -14,6 +14,8 @@ namespace Docary.Repositories
 
         Entry GetLatestEntry(string userId);
 
+        Entry GetFirstRealEntry(string userId);        
+
         bool IsEmpty(string userId);
     }
 }

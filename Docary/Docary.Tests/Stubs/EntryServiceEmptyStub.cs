@@ -26,6 +26,16 @@ namespace Docary.Tests.Stubs
         }
 
         public void AddEntry(Entry entry) { }
-        public void DeleteEntry(int id) { }      
+        public void DeleteEntry(int id) { }
+        
+        public Entry GetLatestEntry(string userId)
+        {
+            return new Entry();
+        }
+
+        public Entry GetFirstRealEntry(string userId)
+        {
+            return new Entry();
+        }
     }
 }

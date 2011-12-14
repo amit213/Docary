@@ -50,6 +50,7 @@ namespace Docary.App_Start
         {
             kernel.Bind<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>().To<Docary.ViewModelAssemblers.Mobile.HomeAssembler>();
             kernel.Bind<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>().To<Docary.ViewModelAssemblers.Desktop.HomeAssembler>();
+            kernel.Bind<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>().To<Docary.ViewModelAssemblers.Desktop.StatisticsAssembler>();
         }
 
         private static void RegisterServices(IKernel kernel)

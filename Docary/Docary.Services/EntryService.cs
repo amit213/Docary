@@ -35,6 +35,22 @@ namespace Docary.Services
             return _entryRepository.Get(createdOnMin, createdOnMax, userId);
         }
 
+        public Entry GetLatestEntry(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                throw new ArgumentNullException("userId");
+
+            return _entryRepository.GetLatestEntry(userId);
+        }
+
+        public Entry GetFirstRealEntry(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                throw new ArgumentNullException("userId");
+
+            return _entryRepository.GetFirstRealEntry(userId);
+        }
+
         public void AddEntry(Entry entry)
         {
             if (entry == null)
@@ -44,10 +60,8 @@ namespace Docary.Services
 
             var now = _timeService.GetNow();
 
-            if (_entryRepository.IsEmpty(entry.UserId))
-            {
-                AddFirstOffTheGridEntry(entry.UserId, now);
-            }
+            if (_entryRepository.IsEmpty(entry.UserId))            
+                AddFirstOffTheGridEntry(entry.UserId, now);            
 
             var location = _locationRepository.Find(entry.Location.Name, entry.UserId);
             var tag = _tagRepository.Find(entry.Tag.Name, entry.UserId);           

@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Desktop\HomeAssembler.cs" />
     <Compile Include="Desktop\IHomeAssembler.cs" />
+    <Compile Include="Desktop\IStatisticsAssembler.cs" />
+    <Compile Include="Desktop\StatisticsAssembler.cs" />
     <Compile Include="Mobile\HomeAssembler.cs" />
     <Compile Include="Mobile\IHomeAssembler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
