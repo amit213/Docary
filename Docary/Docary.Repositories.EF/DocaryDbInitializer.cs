@@ -15,7 +15,7 @@ namespace Docary.Repositories.EF
             SeedTimelineColors(context);
          
             base.Seed(context);
-        }
+        }     
 
         private void SeedTimelineColors(DocaryContext context)
         {

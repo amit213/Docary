@@ -11,6 +11,9 @@ namespace Docary.Repositories
         IBaseRepository<Entry>, ICanUpdate<Entry>
     {
         IEnumerable<Entry> Get(DateTime createdOnMin, DateTime createdOnMax, string userId);
+
         Entry GetLatestEntry(string userId);
+
+        bool IsEmpty(string userId);
     }
 }

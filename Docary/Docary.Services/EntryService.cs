@@ -40,31 +40,65 @@ namespace Docary.Services
             if (entry == null)
                 throw new ArgumentNullException("Entry");
             if (string.IsNullOrEmpty(entry.UserId))
-                throw new ArgumentNullException("UserId");           
+                throw new ArgumentNullException("UserId");
 
+            var now = _timeService.GetNow();
+
+            if (_entryRepository.IsEmpty(entry.UserId))
+            {
+                AddFirstOffTheGridEntry(entry.UserId, now);
+            }
+
+            var location = _locationRepository.Find(entry.Location.Name, entry.UserId);
+            var tag = _tagRepository.Find(entry.Tag.Name, entry.UserId);           
             var latestEntry = _entryRepository.GetLatestEntry(entry.UserId);
 
             if (latestEntry != null) 
             {
-                latestEntry.StoppedOn = _timeService.GetNow();
+                latestEntry.StoppedOn = now;
                 _entryRepository.Update(latestEntry);
-            }           
-
-            var location = _locationRepository.Find(entry.Location.Name, entry.UserId);
-            var tag = _tagRepository.Find(entry.Tag.Name, entry.UserId);          
+            }                                  
 
             entry.Location = location == null ? AddLocationBasedOnEntry(entry) : location;
             entry.Tag = tag == null ? AddTagBasedOnEntry(entry) : tag;
             entry.CreatedOn = _timeService.GetNow();            
 
             _entryRepository.Add(entry);
-        }                
+        }       
 
         private Location AddLocationBasedOnEntry(Entry entry)
         {
             var location = new Location(entry.Location.Name, entry.UserId);
 
             return _locationRepository.Add(location);
+        }
+
+        private void AddFirstOffTheGridEntry(string userId, DateTime stoppedOn)
+        {
+            var offTheGridTag = AddOffTheGridTag(userId);
+            var offTheGridLocation = AddOffTheGridLocation(userId);
+
+            var offTheGridEntry = new Entry()
+            {
+                CreatedOn = new DateTime(2010, 1, 1),
+                Description = "Off the grid",
+                Location = offTheGridLocation,
+                StoppedOn = stoppedOn,
+                Tag = offTheGridTag,
+                UserId = userId
+            };
+
+            _entryRepository.Add(offTheGridEntry);
+        }
+
+        private Location AddOffTheGridLocation(string userId)
+        {
+            return _locationRepository.Add(new Location("Off the grid", userId));
+        }
+
+        private EntryTag AddOffTheGridTag(string userId)
+        {
+            return _tagRepository.Add(new EntryTag("Off the grid", "#FFF", userId));
         }
 
         private EntryTag AddTagBasedOnEntry(Entry entry)

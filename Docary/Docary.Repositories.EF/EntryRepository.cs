@@ -60,5 +60,10 @@ namespace Docary.Repositories.EF
 
             Context.SaveChanges();
         }
+
+        public bool IsEmpty(string userId)
+        {
+            return !Context.Entries.Any(e => e.UserId == userId);
+        }
     }
 }

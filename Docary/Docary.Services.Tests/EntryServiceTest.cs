@@ -5,49 +5,56 @@ using System.Linq;
 
 using Docary.Repositories;
 using Docary.Models;
-using Docary.Services.Tests.Mocks;
+
 using Moq;
 
 namespace Docary.Services.Tests
 {  
     [TestClass()]
     public class EntryServiceTest
-    {
-        private EntryRepositoryMock _entryRepoMock;
-        private LocationRepositoryMock _locationRepoMock;
-        private TagRepositoryMock _tagRepoMock;
-        private IEntryService _entryServiceMock;
-        private ITimeService _timeServiceStub;
-        private ITimelineColorService _timeColorServiceStub;
-
+    {   
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddEntry_Throws_ArgumentNullException_On_Null_Entry()
         {
-            InitializeEntryService();
-
-            _entryServiceMock.AddEntry(null);            
+            SetupReallyBasicEntryService().AddEntry(null);            
         }
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddEntry_Throws_ArgumentNullException_On_Null_EmptyUserId()
-        {
-            InitializeEntryService();
-
+        {          
             var newEntryWithoutUserId = new Entry() {                
                 Description = "Test",
                 Location = new Location() { Name = "Test" },
                 Tag = new EntryTag() { Name = "Test" }
             };
 
-            _entryServiceMock.AddEntry(newEntryWithoutUserId);
+            SetupReallyBasicEntryService().AddEntry(newEntryWithoutUserId);
         }
        
         [TestMethod]
         public void Test_AddEntry_Adds_Unresolvable_Location() 
         {
-            InitializeEntryService();
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
+
+            timeLineServiceStub.Setup(t => t.GetRandom())
+                                .Returns(new TimelineColor("#FFF"));
+            entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
+                            .Returns(false);
+            locationRepository.Setup(l => l.Find(It.IsAny<string>(), It.IsAny<string>()))
+                                .Returns((Location)null);
+                                
+            var entryService = new Mock<EntryService>(
+                entryRepository.Object,
+                locationRepository.Object,
+                tagRepository.Object,
+                timeLineServiceStub.Object,
+                timeServiceStub.Object);        
 
             var newEntry = new Entry() {
                 Location = new Location() { Name = "Unresolvable_Location_Name" },
@@ -55,19 +62,33 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            _entryServiceMock.AddEntry(newEntry);
+            entryService.Object.AddEntry(newEntry);
 
-            var locationAdded = _locationRepoMock.Locations.Where(e => e.Name == "Unresolvable_Location_Name").FirstOrDefault();
-
-            Assert.IsNotNull(locationAdded);
+            locationRepository.Verify(r => r.Add(It.IsAny<Location>()), Times.Once());           
         }
 
         [TestMethod]
         public void Test_AddEntry_Does_Not_Add_Existing_Location()
         {
-            InitializeEntryService();
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
 
-            var originalLocationCount = _locationRepoMock.Locations.Count();
+            timeLineServiceStub.Setup(t => t.GetRandom())
+                                .Returns(new TimelineColor("#FFF"));
+            entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
+                            .Returns(false);
+            locationRepository.Setup(l => l.Find(It.IsAny<string>(), It.IsAny<string>()))
+                                .Returns(new Location());
+
+            var entryService = new Mock<EntryService>(
+                entryRepository.Object,
+                locationRepository.Object,
+                tagRepository.Object,
+                timeLineServiceStub.Object,
+                timeServiceStub.Object);                 
 
             var newEntry = new Entry()
             {
@@ -76,19 +97,31 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            _entryServiceMock.AddEntry(newEntry);
+            entryService.Object.AddEntry(newEntry);
 
-            var locationCountAfterAdding = _locationRepoMock.Locations.Count();
-
-            Assert.AreEqual(locationCountAfterAdding, originalLocationCount);
+            locationRepository.Verify(l => l.Add(It.IsAny<Location>()), Times.Never());
         }
 
         [TestMethod]
         public void Test_AddEntry_Does_Not_Add_Existing_Tag()
         {
-            InitializeEntryService();
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
+          
+            entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
+                            .Returns(false);
+            tagRepository.Setup(l => l.Find(It.IsAny<string>(), It.IsAny<string>()))
+                                .Returns(new EntryTag());
 
-            var originalTagCount = _tagRepoMock.Tags.Count();
+            var entryService = new Mock<EntryService>(
+               entryRepository.Object,
+               locationRepository.Object,
+               tagRepository.Object,
+               timeLineServiceStub.Object,
+               timeServiceStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -97,17 +130,33 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            _entryServiceMock.AddEntry(newEntry);
+            entryService.Object.AddEntry(newEntry);
 
-            var tagCountAfterAdding = _tagRepoMock.Tags.Count();
-
-            Assert.AreEqual(tagCountAfterAdding, originalTagCount);
+            tagRepository.Verify(e => e.Add(It.IsAny<EntryTag>()), Times.Never());
         }
 
         [TestMethod]
         public void Test_AddEntry_Adds_Unresolvable_EntryTag()
         {
-            InitializeEntryService();
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
+
+            entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
+                            .Returns(false);
+            tagRepository.Setup(l => l.Find(It.IsAny<string>(), It.IsAny<string>()))
+                                .Returns((EntryTag)null);
+            timeLineServiceStub.Setup(t => t.GetRandom())
+                            .Returns(new TimelineColor("#FFF"));
+
+            var entryService = new Mock<EntryService>(
+               entryRepository.Object,
+               locationRepository.Object,
+               tagRepository.Object,
+               timeLineServiceStub.Object,
+               timeServiceStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -116,39 +165,31 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            _entryServiceMock.AddEntry(newEntry);
+            entryService.Object.AddEntry(newEntry);
 
-            var tagAdded = _tagRepoMock.Tags.Where(t => t.Name == "Unresolvable_Tag_Name").FirstOrDefault();
-
-            Assert.IsNotNull(tagAdded);
-        }      
-
-        [TestMethod]
-        public void Test_AddEntry_Adds_Random_Color_To_Unresolvable_EntryTag()
-        {
-            InitializeEntryService();
-
-            var newEntry = new Entry()
-            {
-                Location = new Location() { Name = "Test_Location_Name" },
-                Tag = new EntryTag() { Name = "Unresolvable_Tag_Name" },
-                UserId = "1"
-            };
-
-            _entryServiceMock.AddEntry(newEntry);
-
-            var tagAdded = _tagRepoMock.Tags.Where(t => t.Name == "Unresolvable_Tag_Name").FirstOrDefault();
-                        
-            Assert.IsNotNull(tagAdded);
-            Assert.AreEqual(_timeColorServiceStub.GetRandom().Value, tagAdded.Color);
-        }
+            tagRepository.Verify(e => e.Add(It.IsAny<EntryTag>()), Times.Once());
+        }            
 
         [TestMethod]
         public void Test_AddEntry_Adds_Entry()
         {
-            InitializeEntryService();
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
 
-            var entryCountBeforeAdding = _entryRepoMock.Entries.Count();
+            timeLineServiceStub.Setup(t => t.GetRandom())
+                            .Returns(new TimelineColor("#FFF"));
+            entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
+                            .Returns(false);
+
+            var entryService = new Mock<EntryService>(
+               entryRepository.Object,
+               locationRepository.Object,
+               tagRepository.Object,
+               timeLineServiceStub.Object,
+               timeServiceStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -156,22 +197,32 @@ namespace Docary.Services.Tests
                 Tag = new EntryTag() { Name = "Test_Tag" },
                 UserId = "1"
             };
-                        
-            _entryServiceMock.AddEntry(newEntry);
 
-            var entryCountAfterAdding = _entryRepoMock.Entries.Count();
+            entryService.Object.AddEntry(newEntry);
 
-            var entryCountDiff = entryCountAfterAdding - entryCountBeforeAdding;
-
-            Assert.AreEqual(1, entryCountDiff);
+            entryRepository.Verify(e => e.Add(It.IsAny<Entry>()), Times.Once());
         }
 
         [TestMethod]
-        public void Test_AddEntry_Updates_Previous_Entry_Stopped_On_Property_To_Now()
+        public void Test_Add_Adds_Also_Adds_OffTheGridEntry_When_Empty_EntryRepository()
         {
-            InitializeEntryService();
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
 
-            var lastEntryBeforeAdding = _entryRepoMock.Entries.Where(e => e.StoppedOn == null).First();
+            timeLineServiceStub.Setup(t => t.GetRandom())
+                            .Returns(new TimelineColor("#FFF"));
+            entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
+                            .Returns(true);
+
+            var entryService = new Mock<EntryService>(
+               entryRepository.Object,
+               locationRepository.Object,
+               tagRepository.Object,
+               timeLineServiceStub.Object,
+               timeServiceStub.Object);
 
             var newEntry = new Entry()
             {
@@ -180,27 +231,27 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            _entryServiceMock.AddEntry(newEntry);
+            entryService.Object.AddEntry(newEntry);
 
-            var lastEntryAfterAdding = _entryRepoMock.Entries.Where(e => e.Id == lastEntryBeforeAdding.Id).First();
-            
-            Assert.AreEqual(_timeServiceStub.GetNow(), lastEntryAfterAdding.StoppedOn);
-        }       
-
-        private void InitializeEntryService()
+            entryRepository.Verify(e => e.Add(It.IsAny<Entry>()), Times.Exactly(2));
+        }         
+       
+        private IEntryService SetupReallyBasicEntryService()
         {
-            _entryRepoMock = new EntryRepositoryMock();
-            _locationRepoMock = new LocationRepositoryMock();
-            _tagRepoMock = new TagRepositoryMock();
-            _timeServiceStub = SetUpTimeServiceStub().Object;
-            _timeColorServiceStub = SetupTimelineColorServiceStub().Object;
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
 
-            _entryServiceMock = new EntryService(
-                _entryRepoMock, 
-                _locationRepoMock, 
-                _tagRepoMock, 
-                _timeColorServiceStub, 
-                _timeServiceStub);
+            var entryService = new EntryService(
+                entryRepository.Object,
+                locationRepository.Object,
+                tagRepository.Object,
+                timeLineServiceStub.Object,
+                timeServiceStub.Object);
+
+            return entryService;
         }
 
         private Mock<ITimelineColorService> SetupTimelineColorServiceStub()
