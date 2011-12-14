@@ -14,8 +14,8 @@
 # Include dlls if they're in the CommonReferences directory
 !*CommonReferences/*.dll
 # Include dlls in lib
-!*lib/*.dll
-!*Lib/*.dll
+!lib/*.dll
+!Lib/*.dll
 ####################
 # VS Upgrade stuff #
 ####################
