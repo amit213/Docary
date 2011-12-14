@@ -15,6 +15,7 @@
 !*CommonReferences/*.dll
 # Include dlls in lib
 !*lib/*.dll
+!*Lib/*.dll
 ####################
 # VS Upgrade stuff #
 ####################
