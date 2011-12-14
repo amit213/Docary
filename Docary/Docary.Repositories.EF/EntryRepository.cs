@@ -68,7 +68,12 @@ namespace Docary.Repositories.EF
 
         public Entry GetFirstRealEntry(string userId)
         {
-            return Context.Entries.OrderBy(e => e.CreatedOn).Skip(1).Take(1).FirstOrDefault();
+            return Context.Entries
+                    .Where(e => e.UserId == userId)
+                    .OrderBy(e => e.CreatedOn)
+                    .Skip(1)
+                    .Take(1)
+                    .FirstOrDefault();
         }
     }
 }

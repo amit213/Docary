@@ -20,8 +20,11 @@ namespace Docary.ViewModelAssemblers.Desktop
         {
             var homeStatisticsViewModel = new HomeStatisticsViewModel();
 
-            homeStatisticsViewModel.LatestEntry = _entryService.GetLatestEntry(userId).CreatedOn;
-            homeStatisticsViewModel.FirstEntry = _entryService.GetFirstRealEntry(userId).CreatedOn;
+            var latestEntry = _entryService.GetLatestEntry(userId);
+            var firstEntry = _entryService.GetFirstRealEntry(userId);
+
+            homeStatisticsViewModel.LatestEntry = latestEntry == null ? (DateTime?)null : latestEntry.CreatedOn;
+            homeStatisticsViewModel.FirstEntry = firstEntry == null ? (DateTime?)null : firstEntry.CreatedOn;
 
             return homeStatisticsViewModel;
         }
