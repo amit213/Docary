@@ -14,6 +14,8 @@ namespace Docary.ViewModels.Desktop
 
         public DateTime? LatestEntry { get; set; }
 
+        public int NumberOfEntries { get; set; }
+
         public bool HasFirstEntry
         {
             get

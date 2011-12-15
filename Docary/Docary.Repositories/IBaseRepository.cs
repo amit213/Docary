@@ -12,5 +12,7 @@ namespace Docary.Repositories
         TEntity Add(TEntity entity);
 
         void Delete(int id);
+
+        int Count();
     }
 }

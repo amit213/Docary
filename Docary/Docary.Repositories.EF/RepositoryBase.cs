@@ -40,5 +40,10 @@ namespace Docary.Repositories.EF
 
             Context.Set<TEntity>().Remove(entryToDelete);            
         }
+
+        public int Count()
+        { 
+            return Context.Set<TEntity>().Count();
+        }
     }
 }
