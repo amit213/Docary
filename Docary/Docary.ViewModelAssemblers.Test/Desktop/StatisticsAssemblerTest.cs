@@ -33,6 +33,23 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
+        public void Test_AssembleHomeStatisticsViewModel_Fills_In_Null_When_LatestEntry_Is_Null()
+        {
+            var entryService = new Mock<IEntryService>();            
+
+            entryService
+                .Setup(e => e.GetLatestEntry(It.IsAny<string>()))
+                .Returns((Entry)null);
+
+            var statisticsAssembler = new StatisticsAssembler(entryService.Object);
+
+            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+
+            Assert.IsFalse(statisticsViewModel.HasLatestEntry);
+            Assert.IsNull(statisticsViewModel.LatestEntry);
+        }
+
+        [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_Fills_In_FirstEntry()
         {
             var entryService = new Mock<IEntryService>();
@@ -49,6 +66,23 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
             Assert.IsTrue(statisticsViewModel.HasFirstEntry);
             Assert.IsNotNull(statisticsViewModel.FirstEntry);
+        }
+
+        [TestMethod]
+        public void Test_AssembleHomeStatisticsViewModel_Fills_In_Null_When_FirstEntry_Is_Null()
+        {
+            var entryService = new Mock<IEntryService>();            
+
+            entryService
+                .Setup(e => e.GetFirstRealEntry(It.IsAny<string>()))
+                .Returns((Entry)null);
+
+            var statisticsAssembler = new StatisticsAssembler(entryService.Object);
+
+            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+
+            Assert.IsFalse(statisticsViewModel.HasFirstEntry);
+            Assert.IsNull(statisticsViewModel.FirstEntry);
         }
     }
 }
