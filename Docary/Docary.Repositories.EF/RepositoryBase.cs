@@ -29,8 +29,7 @@ namespace Docary.Repositories.EF
 
         public TEntity Add(TEntity entity)
         {
-            entity = Context.Set<TEntity>().Add(entity);
-            Context.SaveChanges();
+            entity = Context.Set<TEntity>().Add(entity);            
 
             return entity;
         }
@@ -39,8 +38,7 @@ namespace Docary.Repositories.EF
         {
             var entryToDelete = (TEntity)Context.Set<TEntity>().Find(id);         
 
-            Context.Set<TEntity>().Remove(entryToDelete);
-            Context.SaveChanges();
+            Context.Set<TEntity>().Remove(entryToDelete);            
         }
     }
 }

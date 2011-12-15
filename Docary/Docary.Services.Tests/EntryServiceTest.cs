@@ -7,6 +7,7 @@ using Docary.Repositories;
 using Docary.Models;
 
 using Moq;
+using Docary.Repositories.EF;
 
 namespace Docary.Services.Tests
 {  
@@ -41,6 +42,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                                 .Returns(new TimelineColor("#FFF"));
@@ -54,7 +56,8 @@ namespace Docary.Services.Tests
                 locationRepository.Object,
                 tagRepository.Object,
                 timeLineServiceStub.Object,
-                timeServiceStub.Object);        
+                timeServiceStub.Object,
+                contextStub.Object);        
 
             var newEntry = new Entry() {
                 Location = new Location() { Name = "Unresolvable_Location_Name" },
@@ -75,6 +78,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                                 .Returns(new TimelineColor("#FFF"));
@@ -88,7 +92,8 @@ namespace Docary.Services.Tests
                 locationRepository.Object,
                 tagRepository.Object,
                 timeLineServiceStub.Object,
-                timeServiceStub.Object);                 
+                timeServiceStub.Object,
+                contextStub.Object);                 
 
             var newEntry = new Entry()
             {
@@ -110,6 +115,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
           
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(false);
@@ -121,7 +127,8 @@ namespace Docary.Services.Tests
                locationRepository.Object,
                tagRepository.Object,
                timeLineServiceStub.Object,
-               timeServiceStub.Object);   
+               timeServiceStub.Object,
+               contextStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -143,6 +150,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
 
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(false);
@@ -156,7 +164,8 @@ namespace Docary.Services.Tests
                locationRepository.Object,
                tagRepository.Object,
                timeLineServiceStub.Object,
-               timeServiceStub.Object);   
+               timeServiceStub.Object,
+               contextStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -178,6 +187,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                             .Returns(new TimelineColor("#FFF"));
@@ -189,7 +199,8 @@ namespace Docary.Services.Tests
                locationRepository.Object,
                tagRepository.Object,
                timeLineServiceStub.Object,
-               timeServiceStub.Object);   
+               timeServiceStub.Object,
+               contextStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -211,6 +222,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                             .Returns(new TimelineColor("#FFF"));
@@ -222,7 +234,8 @@ namespace Docary.Services.Tests
                locationRepository.Object,
                tagRepository.Object,
                timeLineServiceStub.Object,
-               timeServiceStub.Object);
+               timeServiceStub.Object,
+               contextStub.Object);
 
             var newEntry = new Entry()
             {
@@ -243,13 +256,15 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
 
             var entryService = new EntryService(
                 entryRepository.Object,
                 locationRepository.Object,
                 tagRepository.Object,
                 timeLineServiceStub.Object,
-                timeServiceStub.Object);
+                timeServiceStub.Object,
+                contextStub.Object);
 
             return entryService;
         }

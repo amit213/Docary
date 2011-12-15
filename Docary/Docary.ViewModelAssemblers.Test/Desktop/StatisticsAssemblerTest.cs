@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Docary.ViewModelAssemblers.Desktop;
-using Moq;
-using Docary.Services;
 using Docary.Models;
+using Docary.Services;
+using Docary.ViewModelAssemblers.Desktop;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Docary.ViewModelAssemblers.Test.Desktop
 {

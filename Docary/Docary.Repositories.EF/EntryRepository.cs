@@ -56,9 +56,7 @@ namespace Docary.Repositories.EF
             entryToUpdate.LocationId = item.LocationId;
             entryToUpdate.StoppedOn = item.StoppedOn;
             entryToUpdate.TagId = item.TagId;
-            entryToUpdate.UserId = item.UserId;
-
-            Context.SaveChanges();
+            entryToUpdate.UserId = item.UserId;            
         }
 
         public bool IsEmpty(string userId)

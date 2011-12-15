@@ -6,6 +6,7 @@ using System.Linq;
 
 using Docary.Models;
 using Docary.Repositories;
+using Docary.Repositories.EF;
 
 namespace Docary.Services
 {
@@ -16,18 +17,21 @@ namespace Docary.Services
         private ITagRepository _tagRepository;
         private ITimelineColorService _timelineColorService;
         private ITimeService _timeService;
+        private DocaryContext _context;
 
         public EntryService(IEntryRepository entryRepository, 
                             ILocationRepository locationRepository, 
                             ITagRepository tagRepository,
                             ITimelineColorService timelineColorService,
-                            ITimeService timeService)
+                            ITimeService timeService,
+                            DocaryContext context)
         {
             _entryRepository = entryRepository;
             _locationRepository = locationRepository;
             _tagRepository = tagRepository;
             _timelineColorService = timelineColorService;
-            _timeService = timeService;            
+            _timeService = timeService;
+            _context = context;
         }
 
         public IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId)
@@ -78,6 +82,8 @@ namespace Docary.Services
             entry.CreatedOn = _timeService.GetNow();            
 
             _entryRepository.Add(entry);
+
+            _context.SaveChanges();
         }       
 
         private Location AddLocationBasedOnEntry(Entry entry)
