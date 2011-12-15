@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Desktop\HomeAssemblerTests.cs" />
+    <Compile Include="Desktop\StatisticsAssemblerTest.cs" />
     <Compile Include="Mobile\HomeAssemblerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
