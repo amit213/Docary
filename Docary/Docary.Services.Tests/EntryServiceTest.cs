@@ -2,12 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
-
 using Docary.Repositories;
 using Docary.Models;
-
-using Moq;
 using Docary.Repositories.EF;
+using Moq;
 
 namespace Docary.Services.Tests
 {  
@@ -215,7 +213,7 @@ namespace Docary.Services.Tests
         }
 
         [TestMethod]
-        public void Test_Add_Adds_Also_Adds_OffTheGridEntry_When_Empty_EntryRepository()
+        public void Test_Add_Adds_And_Also_Adds_OffTheGridEntry_When_Empty_EntryRepository()
         {
             var entryRepository = new Mock<IEntryRepository>();
             var locationRepository = new Mock<ILocationRepository>();
@@ -247,7 +245,30 @@ namespace Docary.Services.Tests
             entryService.Object.AddEntry(newEntry);
 
             entryRepository.Verify(e => e.Add(It.IsAny<Entry>()), Times.Exactly(2));
-        }         
+        }
+
+        [TestMethod]
+        public void Test_GetNumberOfEntries_Returns_The_Number_Of_Entries()
+        {
+            var entryRepository = new Mock<IEntryRepository>();
+            var locationRepository = new Mock<ILocationRepository>();
+            var tagRepository = new Mock<ITagRepository>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();
+            var timeServiceStub = new Mock<ITimeService>();
+            var contextStub = new Mock<DocaryContext>();
+
+            entryRepository.Setup(e => e.Count(It.IsAny<string>())).Returns(5);
+
+            var entryService = new Mock<EntryService>(
+               entryRepository.Object,
+               locationRepository.Object,
+               tagRepository.Object,
+               timeLineServiceStub.Object,
+               timeServiceStub.Object,
+               contextStub.Object);
+
+            Assert.AreEqual(5, entryService.Object.GetNumberOfEntries("1"));
+        }
        
         private IEntryService SetupReallyBasicEntryService()
         {

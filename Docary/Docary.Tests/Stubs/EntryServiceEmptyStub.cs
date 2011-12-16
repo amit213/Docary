@@ -37,5 +37,10 @@ namespace Docary.Tests.Stubs
         {
             return new Entry();
         }
+
+        public int GetNumberOfEntries(string userId)
+        {
+            return 0;
+        }
     }
 }

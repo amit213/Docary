@@ -84,7 +84,12 @@ namespace Docary.Services
             _entryRepository.Add(entry);
 
             _context.SaveChanges();
-        }       
+        }
+
+        public int GetNumberOfEntries(string userId)
+        {
+            return _entryRepository.Count(userId);
+        }
 
         private Location AddLocationBasedOnEntry(Entry entry)
         {

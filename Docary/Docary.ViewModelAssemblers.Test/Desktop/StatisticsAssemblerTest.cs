@@ -81,5 +81,21 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             Assert.IsFalse(statisticsViewModel.HasFirstEntry);
             Assert.IsNull(statisticsViewModel.FirstEntry);
         }
+
+        [TestMethod]
+        public void Test_AssembleHomeStatisticsViewModel_Fills_In_Number_Of_Entries()
+        {
+            var entryService = new Mock<IEntryService>();
+
+            entryService
+                .Setup(e => e.GetNumberOfEntries(It.IsAny<string>()))
+                .Returns(5);
+
+            var statisticsAssembler = new StatisticsAssembler(entryService.Object);
+
+            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+
+            Assert.AreEqual(5, statisticsViewModel.NumberOfEntries);
+        }
     }
 }

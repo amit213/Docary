@@ -42,7 +42,7 @@ namespace Docary.Repositories.EF
         }
 
         public int Count()
-        { 
+        {
             return Context.Set<TEntity>().Count();
         }
     }

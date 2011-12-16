@@ -15,6 +15,8 @@ namespace Docary.Services
 
         Entry GetFirstRealEntry(string userId);
 
-        void AddEntry(Entry entry);        
+        void AddEntry(Entry entry);
+
+        int GetNumberOfEntries(string userId);
     }
 }

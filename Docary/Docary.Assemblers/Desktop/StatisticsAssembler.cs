@@ -25,6 +25,7 @@ namespace Docary.ViewModelAssemblers.Desktop
 
             homeStatisticsViewModel.LatestEntry = latestEntry == null ? (DateTime?)null : latestEntry.CreatedOn;
             homeStatisticsViewModel.FirstEntry = firstEntry == null ? (DateTime?)null : firstEntry.CreatedOn;
+            homeStatisticsViewModel.NumberOfEntries = _entryService.GetNumberOfEntries(userId);
 
             return homeStatisticsViewModel;
         }

@@ -64,6 +64,11 @@ namespace Docary.Repositories.EF
             return !Context.Entries.Any(e => e.UserId == userId);
         }
 
+        public int Count(string userId)
+        {
+            return Get().Count(e => e.UserId == userId);
+        }
+
         public Entry GetFirstRealEntry(string userId)
         {
             return Context.Entries
