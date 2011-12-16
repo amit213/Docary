@@ -26,8 +26,16 @@ namespace Docary.ViewModelAssemblers.Desktop
             homeStatisticsViewModel.LatestEntry = latestEntry == null ? (DateTime?)null : latestEntry.CreatedOn;
             homeStatisticsViewModel.FirstEntry = firstEntry == null ? (DateTime?)null : firstEntry.CreatedOn;
             homeStatisticsViewModel.NumberOfEntries = _entryService.GetNumberOfEntries(userId);
+            homeStatisticsViewModel.PerTag = AssembleHomeStatisticsPerTagViewModel(userId);
 
             return homeStatisticsViewModel;
+        }
+
+        private HomeStatisticsPerTagViewModel AssembleHomeStatisticsPerTagViewModel(string userId)
+        {
+            var homeStatisticsPerTagViewModel = new HomeStatisticsPerTagViewModel();            
+
+            return homeStatisticsPerTagViewModel;
         }
     }
 }

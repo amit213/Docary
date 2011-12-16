@@ -8,7 +8,7 @@
     @{ Html.RenderPartial("_MenuLoggedOn"); }
 }
 
-<h2>Statistics</h2>
+<p>Number of entries: @Model.NumberOfEntries</p>
 
 @if (Model.HasFirstEntry)
 {
