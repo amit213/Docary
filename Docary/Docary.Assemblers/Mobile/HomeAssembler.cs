@@ -21,7 +21,7 @@ namespace Docary.ViewModelAssemblers.Mobile
         {
             var indexViewModel = new HomeIndexViewModel();
 
-            var entries = _entryService.GetEntries(createdOnMin, createdOnMax, userId);
+            var entries = _entryService.GetEntries(createdOnMin, createdOnMax, userId).OrderByDescending(e => e.CreatedOn);
             var groups = entries.GroupBy(e => e.CreatedOn.Date);
 
             indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();

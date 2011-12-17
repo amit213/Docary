@@ -33,8 +33,8 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
 
-            Assert.AreEqual(1, firstEntryGroup.Entries.Count());
-            Assert.AreEqual(2, secondEntryGroup.Entries.Count());
+            Assert.AreEqual(2, firstEntryGroup.Entries.Count());
+            Assert.AreEqual(1, secondEntryGroup.Entries.Count());
         }
 
         private IEntryService GetEntryServiceStubForTestingEntryGroups()
