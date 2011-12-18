@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Docary.Services;
 
-using Docary.ViewModelAssemblers.Desktop;
+using Docary.Services;
 using Docary.ViewModels.Desktop;
 using Docary.Models;
 
@@ -14,16 +12,25 @@ namespace Docary.ViewModelAssemblers.Desktop
     {
         private IEntryService _entryService;
         private ITimeService _timeService;
+        private IUserSettingService _userSettingService;
 
-        public HomeAssembler(IEntryService entryService, ITimeService timeService)
+        public HomeAssembler(
+            IEntryService entryService, 
+            ITimeService timeService,
+            IUserSettingService userSettingService)
         {
             _entryService = entryService;
             _timeService = timeService;
+            _userSettingService = userSettingService;
         }
 
         public HomeIndexViewModel AssembleHomeIndexViewModel(string userId)
         {
-            var input = new HomeIndexViewModel(GetDefaultFromDate(), GetDefaultToDate());
+            var userTimeZone = _userSettingService.Get(userId).TimeZone;
+            var defaultFrom = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultFromDate(), userTimeZone).Date;
+            var defaultTo = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultToDate(), userTimeZone).Date;
+
+            var input = new HomeIndexViewModel(defaultFrom, defaultTo);
 
             return AssembleHomeIndexViewModel(input, userId);
         }      
@@ -31,73 +38,86 @@ namespace Docary.ViewModelAssemblers.Desktop
         // TODO: Wow, this got ugly fast. Can this be simplified?
         public HomeIndexViewModel AssembleHomeIndexViewModel(HomeIndexViewModel homeIndexViewModelIn, string userId)
         {
-            var indexViewModelResult = new HomeIndexViewModel(homeIndexViewModelIn.From, homeIndexViewModelIn.To);
+            var indexViewModelResult = new HomeIndexViewModel(
+                homeIndexViewModelIn.From, 
+                homeIndexViewModelIn.To);
+            indexViewModelResult.EntryGroups = new List<HomeIndexViewModelEntryGroup>();       
 
-            if (!indexViewModelResult.From.HasValue)
-                indexViewModelResult.From = GetDefaultFromDate();
-            if (!indexViewModelResult.To.HasValue)
-                indexViewModelResult.To = GetDefaultToDate();
+            var userTimeZone = _userSettingService.Get(userId).TimeZone;
+
+            SetDefaultDatesWhenEmpty(indexViewModelResult, userTimeZone);
+
+            var entries = _entryService.GetEntries(
+                indexViewModelResult.From.Value.ToUniversalTime(),
+                indexViewModelResult.To.Value.ToUniversalTime(),
+                userId);
 
             var start = indexViewModelResult.From.Value;
-            var stop = indexViewModelResult.To.Value;           
-            var sourceEntries = _entryService.GetEntries(indexViewModelResult.From.Value, indexViewModelResult.To.Value, userId);
-
-            indexViewModelResult.EntryGroups = new List<HomeIndexViewModelEntryGroup>();
-       
+            var stop = indexViewModelResult.To.Value;            
+           
             while (start < stop)
             {
                 var startOfTheDay = start.Date;
                 var endOfTheDay = start.Date.AddDays(1);
                 
-                foreach (var sourceEntry in sourceEntries)
+                foreach (var entry in entries)
                 {
-                    var entryToAdd = new HomeIndexViewModelEntry();
+                    var entryCreatedOnLoc = TimeZoneInfo.ConvertTimeFromUtc(entry.CreatedOn, userTimeZone);
+                    var entryStoppedOnLoc = (DateTime?)null;
+                    if (entry.StoppedOn.HasValue)
+                        entryStoppedOnLoc = TimeZoneInfo.ConvertTimeFromUtc(entry.StoppedOn.Value, userTimeZone);
 
-                    entryToAdd.Tag = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Name;
+                    var entryToAdd = new HomeIndexViewModelEntry();                    
 
-                    if (sourceEntry.StoppedOn < startOfTheDay || sourceEntry.CreatedOn > endOfTheDay)
+                    if (entryStoppedOnLoc < startOfTheDay || 
+                        entryCreatedOnLoc > endOfTheDay)
                         continue;
 
-                    if (!sourceEntry.StoppedOn.HasValue)
-                        sourceEntry.StoppedOn = DateTime.MaxValue;
-                    
-                    if (sourceEntry.CreatedOn <= startOfTheDay && sourceEntry.StoppedOn >= endOfTheDay)
+                    if (!entryStoppedOnLoc.HasValue)
+                        entryStoppedOnLoc = DateTime.MaxValue;
+
+                    // Entry spans full day
+                    if (entryCreatedOnLoc <= startOfTheDay && entryStoppedOnLoc >= endOfTheDay)
                     {                       
                         entryToAdd.Start = startOfTheDay;
                         entryToAdd.End = endOfTheDay;
                         entryToAdd.Percentage = 100;
                     }
-                    else if (sourceEntry.CreatedOn <= startOfTheDay)
+                    // Entry started before the current day
+                    else if (entryCreatedOnLoc <= startOfTheDay)
                     {
-                        var diff = sourceEntry.StoppedOn.Value.Subtract(startOfTheDay);
+                        var diff = entryStoppedOnLoc.Value.Subtract(startOfTheDay);
                         var diffPercent = diff.TotalSeconds / (24 * 3600);
 
                         entryToAdd.Percentage = diffPercent * 100;
                         entryToAdd.Start = startOfTheDay;
-                        entryToAdd.End = sourceEntry.StoppedOn.Value;                        
+                        entryToAdd.End = entryStoppedOnLoc.Value;                     
                     }
-                    else if (sourceEntry.StoppedOn.Value >= endOfTheDay)
+                    // Entry stopped stopped after the current day
+                    else if (entryStoppedOnLoc.Value >= endOfTheDay)
                     {
-                        var diff = endOfTheDay.Subtract(sourceEntry.CreatedOn);
+                        var diff = endOfTheDay.Subtract(entryCreatedOnLoc);
                         var diffPercent = diff.TotalSeconds / (24 * 3600);
 
                         entryToAdd.Percentage = diffPercent * 100;
-                        entryToAdd.Start = sourceEntry.CreatedOn;
+                        entryToAdd.Start = entryCreatedOnLoc;
                         entryToAdd.End = endOfTheDay;                        
                     }
+                    // Entry spans a part of the day
                     else
                     {
-                        var diff = sourceEntry.StoppedOn.Value.Subtract(sourceEntry.CreatedOn);
+                        var diff = entryStoppedOnLoc.Value.Subtract(entryCreatedOnLoc);
                         var diffPercent = diff.TotalSeconds / (24 * 3600);
 
                         entryToAdd.Percentage = diffPercent * 100;
-                        entryToAdd.Start = sourceEntry.CreatedOn;
-                        entryToAdd.End = sourceEntry.StoppedOn.Value;                        
+                        entryToAdd.Start = entryCreatedOnLoc;
+                        entryToAdd.End = entryStoppedOnLoc.Value;                        
                     }
 
-                    entryToAdd.Color = sourceEntry.Tag == null ? string.Empty : sourceEntry.Tag.Color;
+                    entryToAdd.Tag = entry.Tag == null ? string.Empty : entry.Tag.Name;
+                    entryToAdd.Color = entry.Tag == null ? string.Empty : entry.Tag.Color;
                     entryToAdd.Title = string.Format("{0} ({1}-{2}): {3}", 
-                        new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString(), sourceEntry.Description });
+                        new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString(), entry.Description });
 
                     if (indexViewModelResult.EntryGroups.Any(eg => eg.Date == startOfTheDay))
                     {
@@ -127,6 +147,14 @@ namespace Docary.ViewModelAssemblers.Desktop
             }
 
             return indexViewModelResult;
+        }
+
+        private void SetDefaultDatesWhenEmpty(HomeIndexViewModel indexViewModelResult, TimeZoneInfo userTimeZone)
+        {
+            if (!indexViewModelResult.From.HasValue)
+                indexViewModelResult.From = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultFromDate(), userTimeZone);
+            if (!indexViewModelResult.To.HasValue)
+                indexViewModelResult.To = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultToDate(), userTimeZone);
         }       
 
         private DateTime GetDefaultFromDate()

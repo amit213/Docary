@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Docary.Models.Account;
 using System.Web.Security;
+
+using Docary.ViewModels.Shared.Account;
 
 namespace Docary.Areas.Shared.Controllers
 {
@@ -124,8 +125,7 @@ namespace Docary.Areas.Shared.Controllers
         {
             return View();
         }
-
-        #region Status Codes
+ 
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for
@@ -162,8 +162,6 @@ namespace Docary.Areas.Shared.Controllers
                 default:
                     return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
-        }
-        #endregion
-
+        }    
     }
 }

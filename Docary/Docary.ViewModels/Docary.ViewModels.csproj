@@ -46,6 +46,9 @@
     <Compile Include="Desktop\HomeStatisticsViewModel.cs" />
     <Compile Include="Mobile\HomeIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\Account\ChangePasswordModel.cs" />
+    <Compile Include="Shared\Account\LogOnModel.cs" />
+    <Compile Include="Shared\Account\RegisterModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Docary.Models\Docary.Models.csproj">

@@ -9,7 +9,7 @@ namespace Docary.Services
     {
         public DateTime GetNow()
         {
-            return DateTime.Now;
+            return DateTime.UtcNow;
         }
     }
 }

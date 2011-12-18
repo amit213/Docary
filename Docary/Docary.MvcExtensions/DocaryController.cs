@@ -15,6 +15,6 @@ namespace Docary.MvcExtensions
             {
                 return Convert.ToString(Membership.GetUser(HttpContext.User.Identity.Name).ProviderUserKey);
             }
-        }
+        }      
     }
 }

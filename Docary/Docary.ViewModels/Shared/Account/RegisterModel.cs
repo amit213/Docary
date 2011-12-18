@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 
-namespace Docary.Models.Account
+namespace Docary.ViewModels.Shared.Account
 {
     public class RegisterModel
     {

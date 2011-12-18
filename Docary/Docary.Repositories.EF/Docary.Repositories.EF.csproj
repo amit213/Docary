@@ -52,6 +52,7 @@
     <Compile Include="LocationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimelineColorRepository.cs" />
+    <Compile Include="UserSettingRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\EntityFramework.dll" />

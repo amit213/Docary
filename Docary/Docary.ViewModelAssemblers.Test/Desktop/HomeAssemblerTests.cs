@@ -1,19 +1,20 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Docary.ViewModelAssemblers.Desktop;
-using Docary.Services;
 using Docary.Models;
-using Moq;
+using Docary.Services;
+using Docary.ViewModelAssemblers.Desktop;
 using Docary.ViewModels.Desktop;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Docary.ViewModelAssemblers.Test.Desktop
 {
     [TestClass]
     public class HomeAssemblerTests
-    {       
+    {
+        private const string TIMEZONE = "W. Europe Standard Time";
+
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Defaults_Dates()
         {        
@@ -26,8 +27,8 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
         {           
-            var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0);
-            var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0);
+            var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0, DateTimeKind.Local);
+            var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0, DateTimeKind.Local);
 
             var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
 
@@ -44,9 +45,9 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
       
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Calculates_EntryPercentages_Correctly()
-        {         
-            var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0);
-            var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0);
+        {
+            var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0, DateTimeKind.Local);
+            var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0, DateTimeKind.Local);
 
             var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
 
@@ -56,17 +57,20 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
             var thirdEntryGroup = actual.EntryGroups.ElementAt(2);
 
-            Assert.AreEqual(94, Convert.ToInt32(firstEntryGroup.Entries.First().Percentage));
-            Assert.AreEqual(6, Convert.ToInt32(secondEntryGroup.Entries.First().Percentage));
+            Assert.AreEqual(85, Convert.ToInt32(firstEntryGroup.Entries.First().Percentage));           
+            Assert.AreEqual(15, Convert.ToInt32(secondEntryGroup.Entries.First().Percentage));
             Assert.AreEqual(50, Convert.ToInt32(secondEntryGroup.Entries.ElementAt(1).Percentage)); 
-            Assert.AreEqual(44, Convert.ToInt32(secondEntryGroup.Entries.ElementAt(2).Percentage));
+            Assert.AreEqual(35, Convert.ToInt32(secondEntryGroup.Entries.ElementAt(2).Percentage));
             Assert.AreEqual(100, Convert.ToInt32(thirdEntryGroup.Entries.First().Percentage));
         }
 
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Populates_The_Tag_Property()
         {
-            var homeIndexViewModel = new HomeIndexViewModel(DateTime.Now.AddDays(-7), DateTime.Now);
+            var createdOnMin = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
+            var createdOnMax = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(3), TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
+
+            var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
 
             var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, It.IsAny<string>());
 
@@ -79,7 +83,20 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
         private HomeAssembler GetHomeAssembler()
         {
-            return new HomeAssembler(GetEntryServiceStubForTestingEntryGroups(), GetTimeServiceStub());
+            return new HomeAssembler(
+                GetEntryServiceStub(), 
+                GetTimeServiceStub(),
+                GetUserSettingStub());
+        }
+
+        private IUserSettingService GetUserSettingStub()
+        {
+            var userSettingStub = new Mock<IUserSettingService>();
+
+            userSettingStub.Setup(u => u.Get(It.IsAny<string>()))
+                            .Returns(new UserSetting() { UserId = "1", TimeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time") });
+
+            return userSettingStub.Object;
         }
 
         private ITimeService GetTimeServiceStub()
@@ -92,9 +109,9 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             return timeServiceStub.Object;
         }
 
-        private IEntryService GetEntryServiceStubForTestingEntryGroups()
+        private IEntryService GetEntryServiceStub()
         {
-            var createdOnBase = new DateTime(2011, 10, 18, 1, 30, 30);
+            var createdOnBase = new DateTime(2011, 10, 18, 1, 30, 30, DateTimeKind.Utc);
 
             var entries = new List<Entry>()
             {

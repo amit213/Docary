@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Docary.Models;
 
 namespace Docary.Services
 {
-    public interface ITimeService
+    public interface IUserSettingService
     {
-        DateTime GetNow();        
+        UserSetting Get(string userId);
     }
 }

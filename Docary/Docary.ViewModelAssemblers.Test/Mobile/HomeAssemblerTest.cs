@@ -16,25 +16,41 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Initializes_EntryGroups()
         {
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
+            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups(), GetUserSettingStub());
 
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, string.Empty);
+            var createdOnMin = new DateTime(2011, 10, 17, 0, 0, 0, DateTimeKind.Local);
+            var createdOnMax = new DateTime(2011, 10, 20, 0, 0, 0, DateTimeKind.Local);
 
+            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, string.Empty);
+          
             Assert.IsNotNull(actual.EntryGroups);
         }
 
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
-        {            
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups());
+        {
+            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups(), GetUserSettingStub());
 
-            var actual = target.AssembleHomeIndexViewModel(DateTime.MinValue, DateTime.MaxValue, string.Empty);
+            var createdOnMin = new DateTime(2011, 10, 17, 0, 0, 0, DateTimeKind.Local);
+            var createdOnMax = new DateTime(2011, 10, 20, 0, 0, 0, DateTimeKind.Local);
+
+            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, string.Empty);
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
 
             Assert.AreEqual(2, firstEntryGroup.Entries.Count());
             Assert.AreEqual(1, secondEntryGroup.Entries.Count());
+        }
+
+        private IUserSettingService GetUserSettingStub()
+        {
+            var userSettingStub = new Mock<IUserSettingService>();
+
+            userSettingStub.Setup(u => u.Get(It.IsAny<string>()))
+                            .Returns(new UserSetting() { UserId = "1", TimeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time") });
+
+            return userSettingStub.Object;
         }
 
         private IEntryService GetEntryServiceStubForTestingEntryGroups()

@@ -105,7 +105,7 @@ namespace Docary.Services
 
             var offTheGridEntry = new Entry()
             {
-                CreatedOn = new DateTime(2010, 1, 1),
+                CreatedOn = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                 Description = "Off the grid",
                 Location = offTheGridLocation,
                 StoppedOn = stoppedOn,

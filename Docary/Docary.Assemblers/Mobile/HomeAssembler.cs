@@ -5,26 +5,44 @@ using System.Text;
 
 using Docary.ViewModels.Mobile;
 using Docary.Services;
+using Docary.Models;
 
 namespace Docary.ViewModelAssemblers.Mobile 
 {
     public class HomeAssembler : IHomeAssembler
     {
         private IEntryService _entryService;
+        private IUserSettingService _userSettingService;
 
-        public HomeAssembler(IEntryService entryService)
+        public HomeAssembler(
+            IEntryService entryService,
+            IUserSettingService userSettingservice)
         {
             _entryService = entryService;
+            _userSettingService = userSettingservice;
         }
 
         public HomeIndexViewModel AssembleHomeIndexViewModel(DateTime createdOnMin, DateTime createdOnMax, string userId)
         {
             var indexViewModel = new HomeIndexViewModel();
 
-            var entries = _entryService.GetEntries(createdOnMin, createdOnMax, userId).OrderByDescending(e => e.CreatedOn);
+            var userTimeZone = _userSettingService.Get(userId).TimeZone;
+            var universalEntries = _entryService.GetEntries(createdOnMin, createdOnMax, userId);
+            
+            var localizedEntries = new List<Entry>();
+
+            foreach(var entry in universalEntries) 
+            {
+                entry.CreatedOn = TimeZoneInfo.ConvertTimeFromUtc(entry.CreatedOn, userTimeZone);
+                if (entry.StoppedOn.HasValue)
+                    entry.StoppedOn = TimeZoneInfo.ConvertTimeFromUtc(entry.StoppedOn.Value, userTimeZone);
+                localizedEntries.Add(entry);                
+            }
+                                        
+            var entries = localizedEntries.OrderByDescending(e => e.CreatedOn);
             var groups = entries.GroupBy(e => e.CreatedOn.Date);
 
-            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();
+            indexViewModel.EntryGroups = new List<HomeIndexViewModelEntryGroup>();            
 
             foreach (var group in groups)
             {
