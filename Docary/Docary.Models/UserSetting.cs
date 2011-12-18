@@ -8,6 +8,15 @@ namespace Docary.Models
     public class UserSetting
     {
         public string UserId { get; set; }
-        public TimeZoneInfo TimeZone { get; set; }
+        public string TimeZoneId { get; set; }
+
+        public TimeZoneInfo TimeZone
+        {
+            get
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId);
+            }
+        }
+
     }
 }

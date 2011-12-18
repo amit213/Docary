@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Docary.Models;
 using Docary.Repositories;
 
@@ -17,7 +18,7 @@ namespace Docary.Repositories.EF
 
         public UserSetting Get(string userId)
         {
-            return new UserSetting() { UserId = userId, TimeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time") };
+            return new UserSetting() { UserId = userId, TimeZoneId = "W. Europe Standard Time" };
         }
     }
 }

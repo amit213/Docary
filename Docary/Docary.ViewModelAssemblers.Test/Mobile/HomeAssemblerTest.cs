@@ -48,7 +48,7 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
             var userSettingStub = new Mock<IUserSettingService>();
 
             userSettingStub.Setup(u => u.Get(It.IsAny<string>()))
-                            .Returns(new UserSetting() { UserId = "1", TimeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time") });
+                            .Returns(new UserSetting() { UserId = "1", TimeZoneId = "W. Europe Standard Time" });
 
             return userSettingStub.Object;
         }
