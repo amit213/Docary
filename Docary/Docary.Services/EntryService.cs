@@ -17,21 +17,21 @@ namespace Docary.Services
         private ITagRepository _tagRepository;
         private ITimelineColorService _timelineColorService;
         private ITimeService _timeService;
-        private DocaryContext _context;
+        private IUnitOfWork _unitOfWork;
 
         public EntryService(IEntryRepository entryRepository, 
                             ILocationRepository locationRepository, 
                             ITagRepository tagRepository,
                             ITimelineColorService timelineColorService,
                             ITimeService timeService,
-                            DocaryContext context)
+                            IUnitOfWork unitOfWork)
         {
             _entryRepository = entryRepository;
             _locationRepository = locationRepository;
             _tagRepository = tagRepository;
             _timelineColorService = timelineColorService;
             _timeService = timeService;
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public IEnumerable<Entry> GetEntries(DateTime createdOnMin, DateTime createdOnMax, string userId)
@@ -83,7 +83,7 @@ namespace Docary.Services
 
             _entryRepository.Add(entry);
 
-            _context.SaveChanges();
+            _unitOfWork.Commit();
         }
 
         public int GetNumberOfEntries(string userId)

@@ -68,8 +68,10 @@ namespace Docary.App_Start
             kernel.Bind<ITagRepository>().To<TagRepository>();
             kernel.Bind<ITimelineColorRepository>().To<TimelineColorRepository>();
             kernel.Bind<IUserSettingRepository>().To<UserSettingRepository>();
+            
+            kernel.Bind<DocaryContext>().ToSelf().InRequestScope();
 
-            kernel.Bind<DocaryContext>().ToSelf().InRequestScope();           
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }
     }
 }
