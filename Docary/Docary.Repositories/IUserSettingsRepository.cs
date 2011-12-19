@@ -7,8 +7,8 @@ using Docary.Models;
 
 namespace Docary.Repositories
 {
-    public interface IUserSettingRepository : IBaseRepository<UserSetting>
+    public interface IUserSettingsRepository : IBaseRepository<UserSettings>
     {
-        UserSetting Get(string userId);
+        UserSettings Get(string userId);
     }
 }

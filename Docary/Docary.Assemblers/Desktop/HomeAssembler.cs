@@ -12,21 +12,21 @@ namespace Docary.ViewModelAssemblers.Desktop
     {
         private IEntryService _entryService;
         private ITimeService _timeService;
-        private IUserSettingService _userSettingService;
+        private IUserSettingsService _userSettingsService;
 
         public HomeAssembler(
             IEntryService entryService, 
             ITimeService timeService,
-            IUserSettingService userSettingService)
+            IUserSettingsService userSettingService)
         {
             _entryService = entryService;
             _timeService = timeService;
-            _userSettingService = userSettingService;
+            _userSettingsService = userSettingService;
         }
 
         public HomeIndexViewModel AssembleHomeIndexViewModel(string userId)
         {
-            var userTimeZone = _userSettingService.Get(userId).TimeZone;
+            var userTimeZone = _userSettingsService.Get(userId).TimeZone;
             var defaultFrom = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultFromDate(), userTimeZone).Date;
             var defaultTo = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultToDate(), userTimeZone).Date;
 
@@ -43,7 +43,7 @@ namespace Docary.ViewModelAssemblers.Desktop
                 homeIndexViewModelIn.To);
             indexViewModelResult.EntryGroups = new List<HomeIndexViewModelEntryGroup>();       
 
-            var userTimeZone = _userSettingService.Get(userId).TimeZone;
+            var userTimeZone = _userSettingsService.Get(userId).TimeZone;
 
             SetDefaultDatesWhenEmpty(indexViewModelResult, userTimeZone);
 

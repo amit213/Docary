@@ -86,17 +86,17 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             return new HomeAssembler(
                 GetEntryServiceStub(), 
                 GetTimeServiceStub(),
-                GetUserSettingStub());
+                GetUserSettingsServiceStub());
         }
 
-        private IUserSettingService GetUserSettingStub()
+        private IUserSettingsService GetUserSettingsServiceStub()
         {
-            var userSettingStub = new Mock<IUserSettingService>();
+            var userSettingsServiceStub = new Mock<IUserSettingsService>();
 
-            userSettingStub.Setup(u => u.Get(It.IsAny<string>()))
-                            .Returns(new UserSetting() { UserId = "1", TimeZoneId = "W. Europe Standard Time" });
+            userSettingsServiceStub.Setup(u => u.Get(It.IsAny<string>()))
+                                    .Returns(new UserSettings() { UserId = "1", TimeZoneId = "W. Europe Standard Time" });
 
-            return userSettingStub.Object;
+            return userSettingsServiceStub.Object;
         }
 
         private ITimeService GetTimeServiceStub()

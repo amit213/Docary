@@ -40,6 +40,12 @@
                 @Html.ValidationMessageFor(m => m.ConfirmPassword)
             </div>
 
+            <div data-role="fieldcontain">
+                @Html.LabelFor(m => m.TimeZones)     
+                @Html.DropDownListFor(m => m.TimeZoneId, new SelectList(Model.TimeZones, "Id", "DisplayName"))
+                @Html.ValidationMessageFor(m => m.TimeZoneId)
+            </div>
+
             <p>
                 <input type="submit" value="Register" />
             </p>

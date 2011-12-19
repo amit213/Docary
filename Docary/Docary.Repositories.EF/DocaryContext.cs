@@ -16,5 +16,6 @@ namespace Docary.Repositories.EF
         public IDbSet<Entry> Entries { get; set; }
         public IDbSet<Location> Locations { get; set; }
         public IDbSet<TimelineColor> TimelineColors { get; set; }
+        public IDbSet<UserSettings> UserSettings { get; set; }
     }
 }

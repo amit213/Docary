@@ -12,11 +12,11 @@ namespace Docary.ViewModelAssemblers.Mobile
     public class HomeAssembler : IHomeAssembler
     {
         private IEntryService _entryService;
-        private IUserSettingService _userSettingService;
+        private IUserSettingsService _userSettingService;
 
         public HomeAssembler(
             IEntryService entryService,
-            IUserSettingService userSettingservice)
+            IUserSettingsService userSettingservice)
         {
             _entryService = entryService;
             _userSettingService = userSettingservice;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Docary.ViewModels.Shared.Account
 {
@@ -26,5 +27,11 @@ namespace Docary.ViewModels.Shared.Account
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Time zone")]
+        public IEnumerable<TimeZoneInfo> TimeZones { get; set; }
+        
+        [Required]        
+        public string TimeZoneId { get; set; }
     }
 }

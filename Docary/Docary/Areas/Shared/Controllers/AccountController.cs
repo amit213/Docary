@@ -6,11 +6,21 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 using Docary.ViewModels.Shared.Account;
+using Docary.Services;
+using Docary.Models;
+using Docary.MvcExtensions;
 
 namespace Docary.Areas.Shared.Controllers
 {
-    public abstract class AccountController : Controller
+    public abstract class AccountController : DocaryController
     {
+        private IUserSettingsService _userSettingsService;
+
+        public AccountController(IUserSettingsService userSettingsService)
+        {
+            _userSettingsService = userSettingsService;
+        }
+
         public ActionResult LogOn()
         {
             return View();
@@ -53,30 +63,40 @@ namespace Docary.Areas.Shared.Controllers
 
         public ActionResult Register()
         {
+            var registerViewModel = new RegisterModel()
+            {
+                TimeZones = TimeZoneInfo.GetSystemTimeZones()
+            };
+
+            ViewData.Model = registerViewModel; 
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
+            model.TimeZones = TimeZoneInfo.GetSystemTimeZones();                            
+
             if (ModelState.IsValid)
-            {
-                // Attempt to register the user
+            {               
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+                var user = Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+                    FormsAuthentication.SetAuthCookie(model.UserName, createPersistentCookie: false);
+
+                    _userSettingsService.Add(new UserSettings() { UserId = user.ProviderUserKey.ToString(), TimeZoneId = model.TimeZoneId });
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                    ModelState.AddModelError(string.Empty, ErrorCodeToString(createStatus));
                 }
             }
-
-            // If we got this far, something failed, redisplay form
+                        
             return View(model);
         }
 
@@ -92,7 +112,6 @@ namespace Docary.Areas.Shared.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 // ChangePassword will throw an exception rather
                 // than return false in certain failure scenarios.
                 bool changePasswordSucceeded;

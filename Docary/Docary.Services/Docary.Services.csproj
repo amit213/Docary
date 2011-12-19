@@ -51,11 +51,11 @@
     <Compile Include="IEntryService.cs" />
     <Compile Include="ITimelineColorService.cs" />
     <Compile Include="ITimeService.cs" />
-    <Compile Include="IUserSettingService.cs" />
+    <Compile Include="IUserSettingsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimelineColorService.cs" />
     <Compile Include="TimeService.cs" />
-    <Compile Include="UserSettingService.cs" />
+    <Compile Include="UserSettingsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Docary.Models\Docary.Models.csproj">

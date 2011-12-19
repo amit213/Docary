@@ -6,8 +6,10 @@ using Docary.Models;
 
 namespace Docary.Services
 {
-    public interface IUserSettingService
+    public interface IUserSettingsService
     {
-        UserSetting Get(string userId);
+        UserSettings Get(string userId);
+
+        UserSettings Add(UserSettings userSettings);
     }
 }

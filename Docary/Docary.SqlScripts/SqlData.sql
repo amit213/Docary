@@ -92,5 +92,14 @@ INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
 
 GO
 
+-- EdmMetaData
+
+TRUNCATE TABLE EdmMetaData
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[EdmMetadata]
+           ([ModelHash])
+     VALUES
+           ('97E81C19CE79C88761217E3072E23A3A32D9F19F109356B74AD19B2752577318')
+GO
 
 

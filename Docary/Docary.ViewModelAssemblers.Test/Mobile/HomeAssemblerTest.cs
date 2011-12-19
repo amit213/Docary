@@ -43,12 +43,12 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
             Assert.AreEqual(1, secondEntryGroup.Entries.Count());
         }
 
-        private IUserSettingService GetUserSettingStub()
+        private IUserSettingsService GetUserSettingStub()
         {
-            var userSettingStub = new Mock<IUserSettingService>();
+            var userSettingStub = new Mock<IUserSettingsService>();
 
             userSettingStub.Setup(u => u.Get(It.IsAny<string>()))
-                            .Returns(new UserSetting() { UserId = "1", TimeZoneId = "W. Europe Standard Time" });
+                            .Returns(new UserSettings() { UserId = "1", TimeZoneId = "W. Europe Standard Time" });
 
             return userSettingStub.Object;
         }
