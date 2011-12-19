@@ -32,7 +32,7 @@ namespace Docary.Repositories.EF
 
             if (firstResult != null)
             {
-                firstResult.CreatedOn = createdOnMin;
+                firstResult.CreatedOn = createdOnMin.Date;
 
                 results.RemoveAt(0);
                 results.Add(firstResult);
