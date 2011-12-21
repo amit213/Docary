@@ -19,3 +19,11 @@
 {
     <p>Last entry: @Model.LatestEntry</p>
 }
+
+@if (Model.HasFirstEntry)
+{
+    foreach (var item in Model.PerTag.Items)
+    {
+        <p>@item.Tag.Name: @item.Percentage (@item.Hours)</p>
+    }
+}

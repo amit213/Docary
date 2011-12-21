@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEntryViewModel.cs" />
+    <Compile Include="Shared\AddEntryViewModel.cs" />
     <Compile Include="Desktop\HomeIndexViewModel.cs" />
     <Compile Include="Desktop\HomeStatisticsViewModel.cs" />
     <Compile Include="Mobile\HomeIndexViewModel.cs" />

@@ -40,8 +40,8 @@ namespace Docary.ViewModels.Desktop
 
     public class HomeStatisticsPerTagItem
     {
-        public int Percentage { get; set; }
-        public int Hours { get; set; }
+        public double Percentage { get; set; }
+        public double Hours { get; set; }
         public EntryTag Tag { get; set; }
     }
 }
