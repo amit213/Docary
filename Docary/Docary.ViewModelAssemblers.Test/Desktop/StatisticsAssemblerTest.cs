@@ -107,8 +107,62 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
         [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_PerTag_ViewModel_Is_Calculated_Correctly()
+        {                   
+            var statisticsAssembler = new StatisticsAssembler(
+                GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
+
+            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+
+            var firstPerTag = statisticsViewModel.PerTag.Items.First();
+            var secondPerTag = statisticsViewModel.PerTag.Items.ElementAt(1);
+
+            Assert.AreEqual(1, firstPerTag.Time.Days);
+            Assert.AreEqual(13, firstPerTag.Time.Hours);
+            Assert.AreEqual(76.0, Math.Ceiling(firstPerTag.Percentage));
+            Assert.AreEqual("Commuting", firstPerTag.Tag.Name);
+            Assert.AreEqual(0, secondPerTag.Time.Days);
+            Assert.AreEqual(12, secondPerTag.Time.Hours);
+            Assert.AreEqual(25, Math.Ceiling(secondPerTag.Percentage));
+            Assert.AreEqual("Work", secondPerTag.Tag.Name);
+        }
+
+        [TestMethod]
+        public void Test_AssembleHomeStatisticsViewModel_Orders_PerTag_Items_Descending()
         {
-            var baseDateTime = new DateTime(2011, 11, 8, 0, 0, 0, DateTimeKind.Local);            
+            var statisticsAssembler = new StatisticsAssembler(
+                GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
+
+            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+
+            var firstPerTag = statisticsViewModel.PerTag.Items.First();
+            var secondPerTag = statisticsViewModel.PerTag.Items.ElementAt(1);
+
+            Assert.IsTrue(firstPerTag.Percentage > secondPerTag.Percentage);
+        }
+
+        private Mock<IUserSettingsService> GetDefaultUserSettingsService()
+        {
+            var userSettingsServiceMock = new Mock<IUserSettingsService>();
+            userSettingsServiceMock
+                .Setup(u => u.Get(It.IsAny<string>()))
+                .Returns(new UserSettings() { TimeZoneId = "W. Europe Standard Time" });
+
+            return userSettingsServiceMock;                   
+        }
+
+        private Mock<ITimeService> GetDefaultTimeService() 
+        {
+            var timeServiceMock = new Mock<ITimeService>();
+            timeServiceMock
+                .Setup(t => t.GetNow())
+                .Returns(new DateTime(2011, 11, 10, 0, 0, 0));
+
+            return timeServiceMock;
+        }
+
+        private Mock<IEntryService> GetEntryService()
+        {
+            var baseDateTime = new DateTime(2011, 11, 8, 0, 0, 0, DateTimeKind.Local);
 
             var entries = new List<Entry>() {
                 new Entry() 
@@ -155,34 +209,9 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
                 .Returns(entries.Last());
             entryService
                 .Setup(e => e.GetFirstRealEntry(It.IsAny<string>()))
-                .Returns(entries.First());               
-                  
-            var statisticsAssembler = new StatisticsAssembler(
-                entryService.Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
+                .Returns(entries.First());
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
-
-            Assert.Inconclusive("Still need to add useful assertions");
+            return entryService;
         }
-
-        private Mock<IUserSettingsService> GetDefaultUserSettingsService()
-        {
-            var userSettingsServiceMock = new Mock<IUserSettingsService>();
-            userSettingsServiceMock
-                .Setup(u => u.Get(It.IsAny<string>()))
-                .Returns(new UserSettings() { TimeZoneId = "W. Europe Standard Time" });
-
-            return userSettingsServiceMock;                   
-        }
-
-        private Mock<ITimeService> GetDefaultTimeService() 
-        {
-            var timeServiceMock = new Mock<ITimeService>();
-            timeServiceMock
-                .Setup(t => t.GetNow())
-                .Returns(new DateTime(2011, 11, 10, 5, 30, 30));
-
-            return timeServiceMock;
-        }    
     }
 }

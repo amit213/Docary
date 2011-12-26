@@ -69,17 +69,17 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                 item.Tag = entryGroup.First().Tag;
 
-                double secondsPerGroup = 0;
-                foreach (var entry in entryGroup)                
-                    secondsPerGroup += entry.StoppedOn.Value.Subtract(entry.CreatedOn).TotalSeconds;
-                
-                item.Hours = secondsPerGroup / 3600;
-                item.Percentage = (secondsPerGroup / secondsTotal) * 100;
+                TimeSpan timePerGroup = new TimeSpan();
+                foreach (var entry in entryGroup)
+                    timePerGroup += entry.StoppedOn.Value.Subtract(entry.CreatedOn);
+
+                item.Time = timePerGroup;
+                item.Percentage = (timePerGroup.TotalSeconds / secondsTotal) * 100;
 
                 items.Add(item);
             }
 
-            homeStatisticsPerTagViewModel.Items = items;
+            homeStatisticsPerTagViewModel.Items = items.OrderByDescending(i => i.Percentage);
 
             return homeStatisticsPerTagViewModel;
         }

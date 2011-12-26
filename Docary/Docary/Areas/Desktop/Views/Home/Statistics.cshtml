@@ -21,9 +21,10 @@
 }
 
 @if (Model.HasFirstEntry)
-{
+{    
     foreach (var item in Model.PerTag.Items)
     {
-        <p>@item.Tag.Name: @item.Percentage (@item.Hours)</p>
-    }
+        <div><b>@item.Tag.Name:</b> @item.Percentage (@item.Time.Days day(s), @item.Time.Hours hour(s), @item.Time.Minutes minute(s))</div>
+        <br />
+    }    
 }
