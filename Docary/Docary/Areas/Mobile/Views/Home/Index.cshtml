@@ -5,8 +5,14 @@
 @model Docary.ViewModels.Mobile.HomeIndexViewModel
 
 <div id="entries">
-    @Html.ActionLink("Add new entry", "Add", "Entry")
-
+    <div id="menucontainer">
+        <ul data-role="listview" data-theme="g">                
+            <li>@Html.ActionLink("Add new entry", "Add", "Entry")</li>            
+        </ul> 
+    </div>
+    <br />
+    <h3>Latest entries</h3>
+        
     @if (Model.HasEntries)
     {   
         Html.RenderPartial("_List");   
@@ -16,3 +22,7 @@
         <p>No entries the last 7 days.</p>
     }    
 </div> 
+
+@section Footer {
+    @{ Html.RenderPartial("_FooterLoggedOn"); }
+}
