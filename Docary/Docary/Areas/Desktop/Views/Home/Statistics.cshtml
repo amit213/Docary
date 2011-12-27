@@ -8,23 +8,32 @@
     @{ Html.RenderPartial("_MenuLoggedOn"); }
 }
 
-<p>Number of entries: @Model.NumberOfEntries</p>
-
-@if (Model.HasFirstEntry)
+@if (Model.HasFirstEntry && Model.HasLatestEntry)
 {
-    <p>First entry: @Model.FirstEntry</p>
+    <p>You have added @Model.NumberOfEntries entries so far. The first one was at @Model.FirstEntry and the last one at @Model.LatestEntry.</p>
 }
-
-@if (Model.HasLatestEntry)
+else
 {
-    <p>Last entry: @Model.LatestEntry</p>
+    <p>There are no entries yet!</p>
 }
 
 @if (Model.HasFirstEntry)
-{    
-    foreach (var item in Model.PerTag.Items)
-    {
-        <div><b>@item.Tag.Name:</b> @item.Percentage (@item.Time.Days day(s), @item.Time.Hours hour(s), @item.Time.Minutes minute(s))</div>
-        <br />
-    }    
+{
+    var biggestPercentage = Convert.ToInt32(Model.PerTag.Items.Max(i => i.Percentage));
+    
+    <table>    
+        @foreach (var item in Model.PerTag.Items)
+        {
+            var itemPercentage = Convert.ToInt32(Math.Ceiling(item.Percentage));
+            var width = (1000 / biggestPercentage) * itemPercentage;
+            var widthPx = width.ToString() + "px";
+        
+            <tr>
+                <td class="timeline-header">@item.Tag.Name</td>
+                <td class="timelineblock" width="@widthPx" >
+                    <div style="background-color:@item.Tag.Color" title="(@item.Time.Days day(s), @item.Time.Hours hour(s), @item.Time.Minutes minute(s))">&nbsp;</div>
+                </td>
+            </tr>  
+        }    
+    </table>
 }

@@ -117,8 +117,8 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var secondPerTag = statisticsViewModel.PerTag.Items.ElementAt(1);
 
             Assert.AreEqual(1, firstPerTag.Time.Days);
-            Assert.AreEqual(13, firstPerTag.Time.Hours);
-            Assert.AreEqual(76.0, Math.Ceiling(firstPerTag.Percentage));
+            Assert.AreEqual(12, firstPerTag.Time.Hours);
+            Assert.AreEqual(75.0, Math.Ceiling(firstPerTag.Percentage));
             Assert.AreEqual("Commuting", firstPerTag.Tag.Name);
             Assert.AreEqual(0, secondPerTag.Time.Days);
             Assert.AreEqual(12, secondPerTag.Time.Hours);

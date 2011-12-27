@@ -165,16 +165,14 @@ strong {
 -----------------------------------------------------------*/
 
 .timeline {
-   width: 1200px;     
-   
+   width: 1200px;        
 }
 
 .timeline-header {
     font-weight: bold;
     color: #000;    
     text-align: right;
-    float:left;
-    width: 80px;
+    float:left;    
     display:inline;  
     padding-right: 7px;
     margin-right: 2px;  

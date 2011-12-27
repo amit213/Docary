@@ -15,6 +15,8 @@ namespace Docary.ViewModelAssemblers.Desktop
         private ITimeService _timeService;
         private IUserSettingsService _userSettingsService;
 
+        private UserSettings _userSettings;
+
         public StatisticsAssembler(
             IEntryService entryService,
             ITimeService timeService,
@@ -29,11 +31,21 @@ namespace Docary.ViewModelAssemblers.Desktop
         {
             var homeStatisticsViewModel = new HomeStatisticsViewModel();
 
+            var userSettings = GetUserSettings(userId);
+
             var latestEntry = _entryService.GetLatestEntry(userId);
             var firstEntry = _entryService.GetFirstRealEntry(userId);
 
-            homeStatisticsViewModel.LatestEntry = latestEntry == null ? (DateTime?)null : latestEntry.CreatedOn;
-            homeStatisticsViewModel.FirstEntry = firstEntry == null ? (DateTime?)null : firstEntry.CreatedOn;
+            if (latestEntry != null)
+            {                
+                var createdOn = new DateTime(latestEntry.CreatedOn.Ticks, DateTimeKind.Utc);
+                homeStatisticsViewModel.LatestEntry = TimeZoneInfo.ConvertTimeFromUtc(createdOn, userSettings.TimeZone);
+            }
+            if (firstEntry != null)
+            {
+                var createdOn = new DateTime(firstEntry.CreatedOn.Ticks, DateTimeKind.Utc);
+                homeStatisticsViewModel.FirstEntry = TimeZoneInfo.ConvertTimeFromUtc(createdOn, userSettings.TimeZone);
+            }           
             homeStatisticsViewModel.NumberOfEntries = _entryService.GetNumberOfEntries(userId);
 
             if (firstEntry != null && latestEntry != null)
@@ -47,14 +59,14 @@ namespace Docary.ViewModelAssemblers.Desktop
             var homeStatisticsPerTagViewModel = new HomeStatisticsPerTagViewModel();
             var items = new List<HomeStatisticsPerTagItem>();
 
-            var userSettings = _userSettingsService.Get(userId);
+            var userSettings = GetUserSettings(userId);
             var entries = _entryService.GetEntries(firstEntry.CreatedOn, latestEntry.CreatedOn, userId);
             var sanitizedEntries = new List<Entry>();
 
             foreach (var entry in entries)
             {
                 if (!entry.StoppedOn.HasValue)
-                    entry.StoppedOn = TimeZoneInfo.ConvertTimeFromUtc(_timeService.GetNow(), userSettings.TimeZone);
+                    entry.StoppedOn = _timeService.GetNow();
                 sanitizedEntries.Add(entry);
             }
 
@@ -82,6 +94,13 @@ namespace Docary.ViewModelAssemblers.Desktop
             homeStatisticsPerTagViewModel.Items = items.OrderByDescending(i => i.Percentage);
 
             return homeStatisticsPerTagViewModel;
+        }
+
+        private UserSettings GetUserSettings(string userId)
+        {
+            if (_userSettings == null)            
+                _userSettings = _userSettingsService.Get(userId);             
+            return _userSettings;
         }
     }
 }
