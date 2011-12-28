@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
+using Docary.MvcExtensions;
 
 using Docary.Services;
-using Docary.ViewModels;
-using Docary.ViewModelAssemblers;
-using Docary.MvcExtensions;
 using Docary.ViewModelAssemblers.Mobile;
-
-using Ninject;
 
 namespace Docary.Areas.Mobile.Controllers
 {
     public class HomeController : DocaryController
     {        
-        private IHomeAssembler _homeAssembler;
-        private ITimeService _timeService;              
+        private IHomeAssembler _homeAssembler;        
 
-        public HomeController(
-            IHomeAssembler homeAssembler,          
-            ITimeService timeService) 
+        public HomeController(IHomeAssembler homeAssembler)             
         {     
-            _homeAssembler = homeAssembler;
-            _timeService = timeService;
+            _homeAssembler = homeAssembler;            
         }
 
         public ActionResult Index()
