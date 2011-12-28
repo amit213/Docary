@@ -12,6 +12,7 @@ using Docary.Areas.Mobile.Controllers;
 
 namespace Docary.Tests
 {    
+    // TODO: Debug problems in these test. Unit test adapter threw exception..
     [TestClass()]
     public class EntryControllerTest
     {                

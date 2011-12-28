@@ -49,6 +49,7 @@ namespace Docary.Repositories.EF
 
         public void Update(Entry item)
         {
+            // Todo: Fund a way to move this to the generic repository
             var entryToUpdate = Context.Entries.Where(e => e.Id == item.Id).First();
 
             entryToUpdate.CreatedOn = item.CreatedOn;

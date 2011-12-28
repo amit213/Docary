@@ -9,6 +9,7 @@ using Moq;
 
 namespace Docary.Services.Tests
 {  
+    // TODO: Find a cleaner way to build all these mocks and stubs
     [TestClass()]
     public class EntryServiceTest
     {   
