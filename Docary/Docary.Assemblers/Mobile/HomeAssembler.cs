@@ -13,20 +13,29 @@ namespace Docary.ViewModelAssemblers.Mobile
     {
         private IEntryService _entryService;
         private IUserSettingsService _userSettingService;
+        private ITimeService _timeService;
+
+        private const int DAYS_PER_LIST_PAGE = 4;
 
         public HomeAssembler(
             IEntryService entryService,
-            IUserSettingsService userSettingservice)
+            IUserSettingsService userSettingservice,
+            ITimeService timeService)
         {
             _entryService = entryService;
             _userSettingService = userSettingservice;
+            _timeService = timeService;
         }
 
-        public HomeIndexViewModel AssembleHomeIndexViewModel(DateTime createdOnMin, DateTime createdOnMax, string userId)
+        public HomeIndexViewModel AssembleHomeIndexViewModel(string userId)
         {
             var indexViewModel = new HomeIndexViewModel();
 
             var userTimeZone = _userSettingService.Get(userId).TimeZone;
+
+            var createdOnMin = _timeService.GetNow().Date.AddDays(-DAYS_PER_LIST_PAGE);
+            var createdOnMax = DateTime.MaxValue;
+
             var universalEntries = _entryService.GetEntries(createdOnMin, createdOnMax, userId);
             
             var localizedEntries = new List<Entry>();

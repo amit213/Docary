@@ -15,20 +15,14 @@ using Ninject;
 namespace Docary.Areas.Mobile.Controllers
 {
     public class HomeController : DocaryController
-    {
-        private IEntryService _entryService;
+    {        
         private IHomeAssembler _homeAssembler;
-        private ITimeService _timeService;
-
-        // TODO: Move to Settings
-        private const int DAYS_PER_LIST_PAGE = 7;
+        private ITimeService _timeService;              
 
         public HomeController(
-            IHomeAssembler homeAssembler, 
-            IEntryService entryService,
+            IHomeAssembler homeAssembler,          
             ITimeService timeService) 
-        {
-            _entryService = entryService;
+        {     
             _homeAssembler = homeAssembler;
             _timeService = timeService;
         }
@@ -37,8 +31,7 @@ namespace Docary.Areas.Mobile.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                var model = _homeAssembler.AssembleHomeIndexViewModel(
-                    _timeService.GetNow().Date.AddDays(-DAYS_PER_LIST_PAGE), DateTime.MaxValue, UserId);
+                var model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
 
                 ViewData.Model = model;
                 ViewBag.EntryGroups = model.EntryGroups;

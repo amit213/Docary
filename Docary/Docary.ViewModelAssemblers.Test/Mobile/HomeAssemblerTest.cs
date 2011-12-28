@@ -16,12 +16,12 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Initializes_EntryGroups()
         {
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups(), GetUserSettingStub());
-
-            var createdOnMin = new DateTime(2011, 10, 17, 0, 0, 0, DateTimeKind.Local);
-            var createdOnMax = new DateTime(2011, 10, 20, 0, 0, 0, DateTimeKind.Local);
-
-            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, string.Empty);
+            var target = new HomeAssembler(
+                GetEntryServiceStubForTestingEntryGroups(), 
+                GetUserSettingStub(),
+                GetTimeServiceStub());           
+            
+            var actual = target.AssembleHomeIndexViewModel(string.Empty);
           
             Assert.IsNotNull(actual.EntryGroups);
         }
@@ -29,18 +29,29 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
         [TestMethod()]
         public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
         {
-            var target = new HomeAssembler(GetEntryServiceStubForTestingEntryGroups(), GetUserSettingStub());
+            var target = new HomeAssembler(
+                GetEntryServiceStubForTestingEntryGroups(), 
+                GetUserSettingStub(),
+                GetTimeServiceStub());            
 
-            var createdOnMin = new DateTime(2011, 10, 17, 0, 0, 0, DateTimeKind.Local);
-            var createdOnMax = new DateTime(2011, 10, 20, 0, 0, 0, DateTimeKind.Local);
-
-            var actual = target.AssembleHomeIndexViewModel(createdOnMin, createdOnMax, string.Empty);
+            var actual = target.AssembleHomeIndexViewModel(string.Empty);
 
             var firstEntryGroup = actual.EntryGroups.First();
             var secondEntryGroup = actual.EntryGroups.ElementAt(1);
 
             Assert.AreEqual(2, firstEntryGroup.Entries.Count());
             Assert.AreEqual(1, secondEntryGroup.Entries.Count());
+        }
+
+        private ITimeService GetTimeServiceStub()
+        {
+            var timeServiceStub = new Mock<ITimeService>();
+
+            timeServiceStub
+                .Setup(t => t.GetNow())
+                .Returns(new DateTime(2011, 10, 17, 0, 0, 0, DateTimeKind.Utc));
+
+            return timeServiceStub.Object;
         }
 
         private IUserSettingsService GetUserSettingStub()
