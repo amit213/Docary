@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-using Docary.ViewModelAssemblers;
-using Docary.Services;
 using Docary.MvcExtensions;
+using Docary.Services;
 using Docary.ViewModelAssemblers.Desktop;
 using Docary.ViewModels.Desktop;
 
@@ -16,16 +11,13 @@ namespace Docary.Areas.Desktop.Controllers
     {
         private IHomeAssembler _homeAssembler;
         private IStatisticsAssembler _statisticsAssembler;
-        private IEntryService _entryService;
      
         public HomeController(
             IHomeAssembler homeAssembler, 
-            IStatisticsAssembler statisticsAssembler,
-            IEntryService entryService)
+            IStatisticsAssembler statisticsAssembler)            
         {
             _homeAssembler = homeAssembler;
-            _statisticsAssembler = statisticsAssembler;
-            _entryService = entryService;
+            _statisticsAssembler = statisticsAssembler;            
         }
        
         [HttpGet]
