@@ -46,7 +46,7 @@
     <Compile Include="IEntryRepository.cs" />
     <Compile Include="ILocationRepository.cs" />
     <Compile Include="ITimelineColorRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IScope.cs" />
     <Compile Include="IUserSettingsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

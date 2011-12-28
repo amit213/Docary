@@ -71,7 +71,7 @@ namespace Docary.App_Start
             
             kernel.Bind<DocaryContext>().ToSelf().InRequestScope();
 
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IScope>().To<Scope>();
         }
     }
 }

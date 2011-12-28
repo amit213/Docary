@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Docary.Repositories
 {
-    public interface IUnitOfWork
+    public interface IScope
     {
         void Commit();
     }

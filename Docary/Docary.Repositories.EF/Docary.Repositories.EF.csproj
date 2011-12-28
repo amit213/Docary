@@ -52,7 +52,7 @@
     <Compile Include="LocationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimelineColorRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Scope.cs" />
     <Compile Include="UserSettingsRepository.cs" />
   </ItemGroup>
   <ItemGroup>

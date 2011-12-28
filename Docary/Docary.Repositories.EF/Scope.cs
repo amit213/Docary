@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Docary.Repositories.EF
 {
-    public class UnitOfWork : IUnitOfWork
+    public class Scope : IScope
     {
         private DocaryContext _context;
 
-        public UnitOfWork(DocaryContext docaryContext) 
+        public Scope(DocaryContext docaryContext) 
         {
             _context = docaryContext;
         }

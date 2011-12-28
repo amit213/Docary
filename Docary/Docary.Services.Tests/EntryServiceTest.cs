@@ -40,7 +40,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                                 .Returns(new TimelineColor("#FFF"));
@@ -55,7 +55,7 @@ namespace Docary.Services.Tests
                 tagRepository.Object,
                 timeLineServiceStub.Object,
                 timeServiceStub.Object,
-                unitOfWorkStub.Object);        
+                scopeStub.Object);        
 
             var newEntry = new Entry() {
                 Location = new Location() { Name = "Unresolvable_Location_Name" },
@@ -76,7 +76,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                                 .Returns(new TimelineColor("#FFF"));
@@ -91,7 +91,7 @@ namespace Docary.Services.Tests
                 tagRepository.Object,
                 timeLineServiceStub.Object,
                 timeServiceStub.Object,
-                unitOfWorkStub.Object);                 
+                scopeStub.Object);                 
 
             var newEntry = new Entry()
             {
@@ -113,7 +113,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
           
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(false);
@@ -126,7 +126,7 @@ namespace Docary.Services.Tests
                tagRepository.Object,
                timeLineServiceStub.Object,
                timeServiceStub.Object,
-               unitOfWorkStub.Object);   
+               scopeStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -148,7 +148,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
 
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(false);
@@ -163,7 +163,7 @@ namespace Docary.Services.Tests
                tagRepository.Object,
                timeLineServiceStub.Object,
                timeServiceStub.Object,
-               unitOfWorkStub.Object);   
+               scopeStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -185,7 +185,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                             .Returns(new TimelineColor("#FFF"));
@@ -198,7 +198,7 @@ namespace Docary.Services.Tests
                tagRepository.Object,
                timeLineServiceStub.Object,
                timeServiceStub.Object,
-               unitOfWorkStub.Object);   
+               scopeStub.Object);   
 
             var newEntry = new Entry()
             {
@@ -220,7 +220,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                             .Returns(new TimelineColor("#FFF"));
@@ -233,7 +233,7 @@ namespace Docary.Services.Tests
                tagRepository.Object,
                timeLineServiceStub.Object,
                timeServiceStub.Object,
-               unitOfWorkStub.Object);
+               scopeStub.Object);
 
             var newEntry = new Entry()
             {
@@ -255,7 +255,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
 
             entryRepository.Setup(e => e.Count(It.IsAny<string>())).Returns(5);
 
@@ -265,7 +265,7 @@ namespace Docary.Services.Tests
                tagRepository.Object,
                timeLineServiceStub.Object,
                timeServiceStub.Object,
-               unitOfWorkStub.Object);
+               scopeStub.Object);
 
             Assert.AreEqual(5, entryService.Object.GetNumberOfEntries("1"));
         }
@@ -277,7 +277,7 @@ namespace Docary.Services.Tests
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
             var timeServiceStub = new Mock<ITimeService>();
-            var unitOfWorkStub = new Mock<IUnitOfWork>();
+            var scopeStub = new Mock<IScope>();
 
             var entryService = new EntryService(
                 entryRepository.Object,
@@ -285,7 +285,7 @@ namespace Docary.Services.Tests
                 tagRepository.Object,
                 timeLineServiceStub.Object,
                 timeServiceStub.Object,
-                unitOfWorkStub.Object);
+                scopeStub.Object);
 
             return entryService;
         }

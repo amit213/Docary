@@ -11,14 +11,14 @@ namespace Docary.Services
     public class UserSettingsService : IUserSettingsService
     {
         private IUserSettingsRepository _userSettingsRepository;
-        private IUnitOfWork _unitOfWork;
+        private IScope _scope;
 
         public UserSettingsService(
             IUserSettingsRepository userSettingRepository,
-            IUnitOfWork unitOfWork)
+            IScope scope)
         {
             _userSettingsRepository = userSettingRepository;
-            _unitOfWork = unitOfWork;
+            _scope = scope;
         }
 
         public UserSettings Get(string userId)
@@ -30,7 +30,7 @@ namespace Docary.Services
         {
             var userSettingAdded = _userSettingsRepository.Add(usersSetting);
 
-            _unitOfWork.Commit();
+            _scope.Commit();
 
             return userSettingAdded;
         }
