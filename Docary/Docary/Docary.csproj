@@ -181,7 +181,6 @@
     <Content Include="Areas\Desktop\Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Areas\Desktop\Views\Account\LogOn.cshtml" />
     <Content Include="Areas\Desktop\Views\Account\Register.cshtml" />
-    <Content Include="Areas\Mobile\Views\Home\Index.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Web.config" />
@@ -254,7 +253,7 @@
     <Content Include="Areas\Desktop\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Desktop\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Desktop\Views\Home\Overview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Desktop\Views\Home\Welcome.cshtml" />

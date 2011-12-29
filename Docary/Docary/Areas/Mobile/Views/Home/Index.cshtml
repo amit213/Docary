@@ -7,7 +7,7 @@
 <div id="entries">
     <div id="menucontainer">
         <ul data-role="listview" data-theme="g">                
-            <li>@Html.ActionLink("Add new entry", "Add", "Entry")</li>            
+            <li>@Html.ActionLink("Add new entry", "Add", "Entry", null, new Dictionary<string, object>() { { "data-ajax", "false" } })</li>            
         </ul> 
     </div>
     <br />
