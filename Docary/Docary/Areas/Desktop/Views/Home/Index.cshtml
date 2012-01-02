@@ -47,7 +47,7 @@
 @foreach (var entryGroup in Model.EntryGroups)
 {    
     <div>
-    <div class="timeline-header">@entryGroup.Date.ToShortDateString()</div>
+    <div class="header-base timeline-header">@entryGroup.Date.ToShortDateString()</div>
         @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
         {
             int width = Convert.ToInt32(entry.Percentage * 10);
