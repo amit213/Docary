@@ -16,7 +16,7 @@ namespace Docary.Tests
     [TestClass()]
     public class EntryControllerTest
     {                
-        //[TestMethod()]        
+        [TestMethod()]        
         public void Test_Add_Redirects_To_Home_Index_Route_When_Entry_SuccessFully_Added()
         {
             var addActionResult = (RedirectToRouteResult)GetEntryControllerWithEmptyEntryServiceStub().Add(GetEmptyAddEntryViewModel());
