@@ -8,8 +8,7 @@ html, body {
     font-family: "lucida grande", arial, sans-serif;  
 }
 
-.wrapper 
-{   
+.wrapper {   
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
@@ -21,8 +20,7 @@ html, body {
 	background-color: #EEEEEC;	
 }
 
-.content 
-{
+.content {
     padding-top: 30px;
     padding-left: 10px;  
     padding-bottom: 30px;
@@ -34,8 +32,7 @@ html, body {
 	height: 60px; /* .push must be the same height as .footer */	
 }
 
-.push 
-{
+.push {
     background-color: #EEEEEC;
 }
 
@@ -46,21 +43,18 @@ html, body {
 	background-color: #EEEEEC;	
 }
 
-.menu 
-{
+.menu {
     background-color: #EEEEEC;  
     font-weight:  bold;
     border-bottom: 1px solid;    
 }
 
-.menu ul 
-{
+.menu ul {
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-.menu li
-{    
+.menu li {    
     background-color: #000;    
     color: #FFFFFF;    
     display: inline;    
@@ -74,19 +68,16 @@ html, body {
     margin-right: 2px;    
 }
 
-.menu li a
-{
+.menu li a {
     color: #FFFFFF;
     text-decoration: none;     
 }
 
-.menu li a:hover
-{
+.menu li a:hover {
     color: #eee9e9;        
 }
 
-h1 
-{    
+h1 {    
     font-size: 65px;	
     font-weight: bold;
 }
@@ -102,8 +93,7 @@ p {
 	
 }
 
-ul 
-{
+ul {
     padding-left: 20px;
     list-style-type:  circle;
 }
@@ -136,13 +126,11 @@ strong {
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error
-{
+.field-validation-error {
     color: #ff0000;
 }
 
-.field-validation-valid
-{
+.field-validation-valid {
     display: none;
 }
 

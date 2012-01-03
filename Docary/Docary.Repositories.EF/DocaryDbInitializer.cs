@@ -9,11 +9,11 @@ using Docary.Models;
 namespace Docary.Repositories.EF
 {
     public class DocaryDbInitializer : CreateDatabaseIfNotExists<DocaryContext> 
-    {
+    {      
         protected override void Seed(DocaryContext context)
         {
-            SeedTimelineColors(context);
-         
+            SeedTimelineColors(context);       
+            
             base.Seed(context);
         }     
 
