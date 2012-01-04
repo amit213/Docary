@@ -119,12 +119,24 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             Assert.AreEqual(1, firstPerTag.Time.Days);
             Assert.AreEqual(12, firstPerTag.Time.Hours);
             Assert.AreEqual(75.0, Math.Ceiling(firstPerTag.Percentage));
-            Assert.AreEqual("Commuting", firstPerTag.TagName);
+            
             Assert.AreEqual(0, secondPerTag.Time.Days);
             Assert.AreEqual(12, secondPerTag.Time.Hours);
-            Assert.AreEqual(25, Math.Ceiling(secondPerTag.Percentage));
-            Assert.AreEqual("Work", secondPerTag.TagName);
+            Assert.AreEqual(25, Math.Ceiling(secondPerTag.Percentage));            
         }
+
+        [TestMethod]
+        public void Test_AssembleHomeStatisticsViewModel_Uses_TitleCased_Names_For_The_TagNames() 
+        {
+            var statisticsAssembler = new StatisticsAssembler(
+                GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
+
+            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+
+            var firstPerTag = statisticsViewModel.PerTag.Items.First();
+
+            Assert.AreEqual("Commuting", firstPerTag.TagName);
+        }        
 
         [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_Orders_PerTag_Items_Descending()
@@ -138,7 +150,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var secondPerTag = statisticsViewModel.PerTag.Items.ElementAt(1);
 
             Assert.IsTrue(firstPerTag.Percentage > secondPerTag.Percentage);
-        }
+        }        
 
         private Mock<IUserSettingsService> GetDefaultUserSettingsService()
         {
@@ -172,7 +184,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
                         Id = 1,
                         Location = new Location("Brussels", "1"),
                         StoppedOn = baseDateTime.AddHours(6),
-                        Tag = new EntryTag("Commuting", "#FFFHHH", "1"),
+                        Tag = new EntryTag("ComMuting", "#FFFHHH", "1"),
                         TagId = 1,
                         UserId = "1"
                     },
@@ -194,7 +206,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
                         Id = 1,
                         Location = new Location("Geel", "1"),
                         StoppedOn = null,
-                        Tag = new EntryTag("Commuting", "#FFF000", "1"),
+                        Tag = new EntryTag("ComMuting", "#FFF000", "1"),
                         TagId = 1,
                         UserId = "1"
                     }

@@ -81,6 +81,19 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             }
         }
 
+        [TestMethod()]
+        public void Test_AssembleHomeIndexViewModel_Uses_TitleCased_Names_For_The_TagNames()
+        {
+            var createdOnMin = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
+            var createdOnMax = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(3), TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
+
+            var homeIndexViewModel = new HomeIndexViewModel(createdOnMin, createdOnMax);
+
+            var actual = GetHomeAssembler().AssembleHomeIndexViewModel(homeIndexViewModel, It.IsAny<string>());
+
+            actual.EntryGroups.First().Entries.First().Tag = "Test1";
+        }
+
         private HomeAssembler GetHomeAssembler()
         {
             return new HomeAssembler(
@@ -115,7 +128,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
 
             var entries = new List<Entry>()
             {
-                new Entry() { CreatedOn = createdOnBase, StoppedOn = createdOnBase.AddHours(24), Id = 1, UserId = "1", Tag = new EntryTag() { Name = "Test1" } },
+                new Entry() { CreatedOn = createdOnBase, StoppedOn = createdOnBase.AddHours(24), Id = 1, UserId = "1", Tag = new EntryTag() { Name = "TeST1" } },
                 new Entry() { CreatedOn = createdOnBase.AddHours(24), StoppedOn = createdOnBase.AddHours(36), Id = 2, UserId = "1", Tag = new EntryTag() { Name = "Test2" } },
                 new Entry() { CreatedOn = createdOnBase.AddHours(36), Id = 1, UserId = "1", Tag = new EntryTag() { Name = "Test3" } }
             };

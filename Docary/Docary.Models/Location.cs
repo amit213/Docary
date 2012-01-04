@@ -22,16 +22,6 @@ namespace Docary.Models
         public string Name { get; set; }
         [Required]
         public string UserId { get; set; }
-
-        public string TitleCasedName
-        {
-            get
-            {
-                if (Name == null)
-                    return string.Empty;
-
-                return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Name);
-            }
-        }
+       
     }
 }
