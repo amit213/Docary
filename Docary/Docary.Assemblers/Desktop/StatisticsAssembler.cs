@@ -79,7 +79,9 @@ namespace Docary.ViewModelAssemblers.Desktop
             {
                 var item = new HomeStatisticsPerTagItem();
 
-                item.Tag = entryGroup.First().Tag;
+                var firstTag = entryGroup.First().Tag;
+                item.TagName = firstTag.TitleCasedName;
+                item.TagColor = firstTag.Color;
 
                 TimeSpan timePerGroup = new TimeSpan();
                 foreach (var entry in entryGroup)

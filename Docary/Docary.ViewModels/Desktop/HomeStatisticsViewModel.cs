@@ -42,6 +42,7 @@ namespace Docary.ViewModels.Desktop
     {
         public double Percentage { get; set; }
         public TimeSpan Time { get; set; }
-        public EntryTag Tag { get; set; }
+        public string TagName { get; set; }
+        public string TagColor { get; set; }
     }
 }

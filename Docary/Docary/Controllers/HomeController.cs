@@ -11,7 +11,7 @@ namespace Docary.Controllers
     {
         public ActionResult Index()
         {                                   
-            return RedirectToAction("Index", "Home", new { Area = AreaUtil.ResolveArea(Request) });            
+            return RedirectToAction("Index", "Home", new { Area = Request.ResolveArea() });            
         }
     }
 }

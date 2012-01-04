@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaUtil.cs" />
+    <Compile Include="RequestExtensions.cs" />
     <Compile Include="DocaryController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

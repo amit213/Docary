@@ -117,7 +117,7 @@ namespace Docary.ViewModelAssemblers.Desktop
                         entryToAdd.End = entryStoppedOnLoc.Value;                        
                     }
 
-                    entryToAdd.Tag = entry.Tag == null ? string.Empty : entry.Tag.Name;
+                    entryToAdd.Tag = entry.Tag == null ? string.Empty : entry.Tag.TitleCasedName;
                     entryToAdd.Color = entry.Tag == null ? string.Empty : entry.Tag.Color;
                     entryToAdd.Title = string.Format("{0} ({1}-{2}): {3}", 
                         new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString(), entry.Description });

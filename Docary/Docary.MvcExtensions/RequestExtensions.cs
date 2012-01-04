@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Docary.MvcExtensions
 {
-    public class AreaUtil
+    public static class RequestExtensions
     {
-        public static string ResolveArea(HttpRequestBase request)
+        public static string ResolveArea(this HttpRequestBase request)
         {
             return request.Browser.IsMobileDevice ? "Mobile" : "Desktop";
         }
