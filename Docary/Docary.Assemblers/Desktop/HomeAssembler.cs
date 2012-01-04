@@ -43,12 +43,15 @@ namespace Docary.ViewModelAssemblers.Desktop
                 homeIndexViewModelIn.To);
             indexViewModelResult.EntryGroups = new List<HomeIndexViewModelEntryGroup>();       
 
-            var userTimeZone = _userSettingsService.Get(userId).TimeZone;
+            var userTimeZone = _userSettingsService.Get(userId).TimeZone;            
 
-            SetDefaultDatesWhenEmpty(indexViewModelResult, userTimeZone);
+            SetDefaultDatesWhenEmpty(indexViewModelResult, userTimeZone);            
+
+            var userTimeZoneOffsetToTakeIntoAccount = 
+                userTimeZone.BaseUtcOffset.TotalSeconds < 0 ? new TimeSpan() : userTimeZone.BaseUtcOffset;
 
             var entries = _entryService.GetEntries(
-                indexViewModelResult.From.Value.ToUniversalTime(),
+                indexViewModelResult.From.Value.ToUniversalTime().Subtract(userTimeZoneOffsetToTakeIntoAccount),
                 indexViewModelResult.To.Value.ToUniversalTime(),
                 userId);
 
