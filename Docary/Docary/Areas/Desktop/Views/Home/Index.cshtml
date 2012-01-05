@@ -50,8 +50,9 @@
     <div class="header-base timeline-header">@entryGroup.Date.ToShortDateString()</div>
         @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
         {
-            int width = Convert.ToInt32(entry.Percentage * 10);
-            string divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);        
+            var maxWidth = 1100;
+            var width = Convert.ToInt32(entry.Percentage * (maxWidth / 100));
+            var divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);        
             
             <div style="@divstyle" class="timelineblock" title="@entry.Title"></div>
         }

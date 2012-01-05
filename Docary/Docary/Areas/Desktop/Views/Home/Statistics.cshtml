@@ -24,8 +24,9 @@ else
     <table>    
         @foreach (var item in Model.PerTag.Items)
         {
+            var maxWidth = 1100;
             var itemPercentage = item.Percentage;
-            var width = Convert.ToInt32((1000 / biggestPercentage) * itemPercentage);
+            var width = Convert.ToInt32((maxWidth / biggestPercentage) * itemPercentage);
             var widthPx = width == 0 ? "1px" : width.ToString() + "px";
         
             <tr>
