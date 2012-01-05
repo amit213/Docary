@@ -24,9 +24,9 @@ else
     <table>    
         @foreach (var item in Model.PerTag.Items)
         {
-            var itemPercentage = Convert.ToInt32(Math.Ceiling(item.Percentage));
-            var width = (1000 / biggestPercentage) * itemPercentage;
-            var widthPx = width.ToString() + "px";
+            var itemPercentage = item.Percentage;
+            var width = Convert.ToInt32((1000 / biggestPercentage) * itemPercentage);
+            var widthPx = width == 0 ? "1px" : width.ToString() + "px";
         
             <tr>
                 <td class="header-base statistics-line-header">@item.TagName</td>
