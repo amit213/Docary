@@ -26,11 +26,11 @@ namespace Docary.ViewModelAssemblers.Desktop
 
         public HomeIndexViewModel AssembleHomeIndexViewModel(string userId)
         {
-            var userTimeZone = _userSettingsService.Get(userId).TimeZone;
-            var defaultFrom = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultFromDate(), userTimeZone).Date;
-            var defaultTo = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultToDate(), userTimeZone).Date;
+            var userTimeZone = _userSettingsService.Get(userId).TimeZone;          
+            
+            var input = new HomeIndexViewModel();
 
-            var input = new HomeIndexViewModel(defaultFrom, defaultTo);
+            SetDefaultDatesWhenEmpty(input, userTimeZone);
 
             return AssembleHomeIndexViewModel(input, userId);
         }      
@@ -154,20 +154,14 @@ namespace Docary.ViewModelAssemblers.Desktop
 
         private void SetDefaultDatesWhenEmpty(HomeIndexViewModel indexViewModelResult, TimeZoneInfo userTimeZone)
         {
+            var nowDate = _timeService.GetNow();
+            var fromDate = nowDate.AddDays(-14);
+            var toDate = nowDate.AddDays(1);
+
             if (!indexViewModelResult.From.HasValue)
-                indexViewModelResult.From = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultFromDate(), userTimeZone);
+                indexViewModelResult.From = TimeZoneInfo.ConvertTimeFromUtc(fromDate, userTimeZone).Date;
             if (!indexViewModelResult.To.HasValue)
-                indexViewModelResult.To = TimeZoneInfo.ConvertTimeFromUtc(GetDefaultToDate(), userTimeZone);
-        }       
-
-        private DateTime GetDefaultFromDate()
-        {
-            return _timeService.GetNow().Date.AddDays(-14);
-        }
-
-        private DateTime GetDefaultToDate()
-        {
-            return _timeService.GetNow().Date.AddDays(1);
-        }
+                indexViewModelResult.To = TimeZoneInfo.ConvertTimeFromUtc(toDate, userTimeZone).Date;
+        }              
     }
 }
