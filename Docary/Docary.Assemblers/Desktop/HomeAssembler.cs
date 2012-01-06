@@ -47,12 +47,14 @@ namespace Docary.ViewModelAssemblers.Desktop
 
             SetDefaultDatesWhenEmpty(indexViewModelResult, userTimeZone);            
 
-            var userTimeZoneOffsetToTakeIntoAccount = 
+            var userTimeZoneOffsetToTakeIntoAccountFrom = 
                 userTimeZone.BaseUtcOffset.TotalSeconds < 0 ? new TimeSpan() : userTimeZone.BaseUtcOffset;
+            var userTimeZoneOffsetToTakeIntoAccountTo = 
+                userTimeZone.BaseUtcOffset.TotalSeconds > 0 ? new TimeSpan() : userTimeZone.BaseUtcOffset;
 
             var entries = _entryService.GetEntries(
-                indexViewModelResult.From.Value.ToUniversalTime().Subtract(userTimeZoneOffsetToTakeIntoAccount),
-                indexViewModelResult.To.Value.ToUniversalTime().Add(userTimeZoneOffsetToTakeIntoAccount),
+                indexViewModelResult.From.Value.ToUniversalTime().Subtract(userTimeZoneOffsetToTakeIntoAccountFrom),
+                indexViewModelResult.To.Value.ToUniversalTime().Add(userTimeZoneOffsetToTakeIntoAccountTo),
                 userId);
 
             var start = indexViewModelResult.From.Value;
