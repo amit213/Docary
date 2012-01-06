@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 using Docary.MvcExtensions;
 using Docary.Services;
@@ -22,7 +23,7 @@ namespace Docary.Areas.Desktop.Controllers
        
         [HttpGet]
         public ActionResult Index()
-        {
+        {           
             if (!Request.IsAuthenticated)
                 return RedirectToAction("Welcome");
 

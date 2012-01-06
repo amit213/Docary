@@ -13,13 +13,7 @@ namespace Docary
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : System.Web.HttpApplication
-    {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {           
-
-            filters.Add(new HandleErrorAttribute());
-        }
-
+    {       
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -30,14 +24,12 @@ namespace Docary
                 new { controller = "Home", action = "Index" }, // Parameter defaults
                 new[] { "Docary.Controllers" }
             );
-
         }
 
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            RegisterGlobalFilters(GlobalFilters.Filters);
+            
             RegisterRoutes(RouteTable.Routes);            
         }
     }

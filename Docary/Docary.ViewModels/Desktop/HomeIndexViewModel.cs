@@ -9,10 +9,14 @@ namespace Docary.ViewModels.Desktop
 {
     public class HomeIndexViewModel
     {
-        public HomeIndexViewModel() { }
+        public HomeIndexViewModel() 
+        {
+            EntryGroups = new List<HomeIndexViewModelEntryGroup>();       
+        }
 
         public HomeIndexViewModel(DateTime? from, DateTime? to)
         {
+            EntryGroups = new List<HomeIndexViewModelEntryGroup>();       
             From = from;
             To = to;
         }
@@ -36,6 +40,12 @@ namespace Docary.ViewModels.Desktop
 
     public class HomeIndexViewModelEntryGroup
     {
+        public HomeIndexViewModelEntryGroup(DateTime date)
+        {
+            Entries = new List<HomeIndexViewModelEntry>();
+            Date = date;
+        }
+
         public DateTime Date { get; set; }
         public List<HomeIndexViewModelEntry> Entries { get; set; }
     }
