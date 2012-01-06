@@ -52,7 +52,7 @@ namespace Docary.ViewModelAssemblers.Desktop
 
             var entries = _entryService.GetEntries(
                 indexViewModelResult.From.Value.ToUniversalTime().Subtract(userTimeZoneOffsetToTakeIntoAccount),
-                indexViewModelResult.To.Value.ToUniversalTime(),
+                indexViewModelResult.To.Value.ToUniversalTime().Add(userTimeZoneOffsetToTakeIntoAccount),
                 userId);
 
             var start = indexViewModelResult.From.Value;
