@@ -8,8 +8,7 @@ using Docary.Repositories.EF;
 using Moq;
 
 namespace Docary.Services.Tests
-{  
-    // TODO: Find a cleaner way to build all these mocks and stubs
+{      
     [TestClass()]
     public class EntryServiceTest
     {   
@@ -17,7 +16,9 @@ namespace Docary.Services.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_AddEntry_Throws_ArgumentNullException_On_Null_Entry()
         {
-            SetupReallyBasicEntryService().AddEntry(null);            
+            EntryServiceFactory
+                .SetupEntryService()
+                .AddEntry(null);            
         }
 
         [TestMethod()]
@@ -30,7 +31,9 @@ namespace Docary.Services.Tests
                 Tag = new EntryTag() { Name = "Test" }
             };
 
-            SetupReallyBasicEntryService().AddEntry(newEntryWithoutUserId);
+            EntryServiceFactory
+                .SetupEntryService()
+                .AddEntry(newEntryWithoutUserId);
         }
        
         [TestMethod]
@@ -39,24 +42,14 @@ namespace Docary.Services.Tests
             var entryRepository = new Mock<IEntryRepository>();
             var locationRepository = new Mock<ILocationRepository>();
             var tagRepository = new Mock<ITagRepository>();
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();            
 
             timeLineServiceStub.Setup(t => t.GetRandom())
-                                .Returns(new TimelineColor("#FFF"));
+                               .Returns(new TimelineColor("#FFF"));
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
-                            .Returns(false);
+                           .Returns(false);
             locationRepository.Setup(l => l.Find(It.IsAny<string>(), It.IsAny<string>()))
-                                .Returns((Location)null);
-                                
-            var entryService = new Mock<EntryService>(
-                entryRepository.Object,
-                locationRepository.Object,
-                tagRepository.Object,
-                timeLineServiceStub.Object,
-                timeServiceStub.Object,
-                scopeStub.Object);        
+                              .Returns((Location)null);                               
 
             var newEntry = new Entry() {
                 Location = new Location() { Name = "Unresolvable_Location_Name" },
@@ -64,7 +57,11 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            entryService.Object.AddEntry(newEntry);
+            EntryServiceFactory.SetupEntryService(
+                entryRepository,
+                locationRepository,
+                tagRepository,
+                timeLineServiceStub).AddEntry(newEntry);
 
             locationRepository.Verify(r => r.Add(It.IsAny<Location>()), Times.Once());           
         }
@@ -75,9 +72,7 @@ namespace Docary.Services.Tests
             var entryRepository = new Mock<IEntryRepository>();
             var locationRepository = new Mock<ILocationRepository>();
             var tagRepository = new Mock<ITagRepository>();
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();                        
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                                 .Returns(new TimelineColor("#FFF"));
@@ -86,13 +81,11 @@ namespace Docary.Services.Tests
             locationRepository.Setup(l => l.Find(It.IsAny<string>(), It.IsAny<string>()))
                                 .Returns(new Location());
 
-            var entryService = new Mock<EntryService>(
-                entryRepository.Object,
-                locationRepository.Object,
-                tagRepository.Object,
-                timeLineServiceStub.Object,
-                timeServiceStub.Object,
-                scopeStub.Object);                 
+            var entryService = EntryServiceFactory.SetupEntryService(
+                entryRepository,
+                locationRepository,
+                tagRepository,
+                timeLineServiceStub);
 
             var newEntry = new Entry()
             {
@@ -101,7 +94,7 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            entryService.Object.AddEntry(newEntry);
+            entryService.AddEntry(newEntry);
 
             locationRepository.Verify(l => l.Add(It.IsAny<Location>()), Times.Never());
         }
@@ -112,22 +105,18 @@ namespace Docary.Services.Tests
             var entryRepository = new Mock<IEntryRepository>();
             var locationRepository = new Mock<ILocationRepository>();
             var tagRepository = new Mock<ITagRepository>();
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();                  
           
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(false);
             tagRepository.Setup(l => l.Find(It.IsAny<string>(), It.IsAny<string>()))
                                 .Returns(new EntryTag());
 
-            var entryService = new Mock<EntryService>(
-               entryRepository.Object,
-               locationRepository.Object,
-               tagRepository.Object,
-               timeLineServiceStub.Object,
-               timeServiceStub.Object,
-               scopeStub.Object);   
+            var entryService = EntryServiceFactory.SetupEntryService(
+                entryRepository,
+                locationRepository,
+                tagRepository,
+                timeLineServiceStub);
 
             var newEntry = new Entry()
             {
@@ -136,7 +125,7 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            entryService.Object.AddEntry(newEntry);
+            entryService.AddEntry(newEntry);
 
             tagRepository.Verify(e => e.Add(It.IsAny<EntryTag>()), Times.Never());
         }
@@ -147,9 +136,7 @@ namespace Docary.Services.Tests
             var entryRepository = new Mock<IEntryRepository>();
             var locationRepository = new Mock<ILocationRepository>();
             var tagRepository = new Mock<ITagRepository>();
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();            
 
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(false);
@@ -158,13 +145,11 @@ namespace Docary.Services.Tests
             timeLineServiceStub.Setup(t => t.GetRandom())
                             .Returns(new TimelineColor("#FFF"));
 
-            var entryService = new Mock<EntryService>(
-               entryRepository.Object,
-               locationRepository.Object,
-               tagRepository.Object,
-               timeLineServiceStub.Object,
-               timeServiceStub.Object,
-               scopeStub.Object);   
+            var entryService = EntryServiceFactory.SetupEntryService(
+                entryRepository,
+                locationRepository,
+                tagRepository,
+                timeLineServiceStub); 
 
             var newEntry = new Entry()
             {
@@ -173,7 +158,7 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            entryService.Object.AddEntry(newEntry);
+            entryService.AddEntry(newEntry);
 
             tagRepository.Verify(e => e.Add(It.IsAny<EntryTag>()), Times.Once());
         }            
@@ -184,22 +169,18 @@ namespace Docary.Services.Tests
             var entryRepository = new Mock<IEntryRepository>();
             var locationRepository = new Mock<ILocationRepository>();
             var tagRepository = new Mock<ITagRepository>();
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();                       
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                             .Returns(new TimelineColor("#FFF"));
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(false);
 
-            var entryService = new Mock<EntryService>(
-               entryRepository.Object,
-               locationRepository.Object,
-               tagRepository.Object,
-               timeLineServiceStub.Object,
-               timeServiceStub.Object,
-               scopeStub.Object);   
+            var entryService = EntryServiceFactory.SetupEntryService(
+                entryRepository,
+                locationRepository,
+                tagRepository,
+                timeLineServiceStub);               
 
             var newEntry = new Entry()
             {
@@ -208,7 +189,7 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            entryService.Object.AddEntry(newEntry);
+            entryService.AddEntry(newEntry);
 
             entryRepository.Verify(e => e.Add(It.IsAny<Entry>()), Times.Once());
         }
@@ -219,22 +200,18 @@ namespace Docary.Services.Tests
             var entryRepository = new Mock<IEntryRepository>();
             var locationRepository = new Mock<ILocationRepository>();
             var tagRepository = new Mock<ITagRepository>();
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
+            var timeLineServiceStub = new Mock<ITimelineColorService>();                 
 
             timeLineServiceStub.Setup(t => t.GetRandom())
                             .Returns(new TimelineColor("#FFF"));
             entryRepository.Setup(e => e.IsEmpty(It.IsAny<string>()))
                             .Returns(true);
 
-            var entryService = new Mock<EntryService>(
-               entryRepository.Object,
-               locationRepository.Object,
-               tagRepository.Object,
-               timeLineServiceStub.Object,
-               timeServiceStub.Object,
-               scopeStub.Object);
+            var entryService = EntryServiceFactory.SetupEntryService(
+                entryRepository,
+                locationRepository,
+                tagRepository,
+                timeLineServiceStub);
 
             var newEntry = new Entry()
             {
@@ -243,7 +220,7 @@ namespace Docary.Services.Tests
                 UserId = "1"
             };
 
-            entryService.Object.AddEntry(newEntry);
+            entryService.AddEntry(newEntry);
 
             entryRepository.Verify(e => e.Add(It.IsAny<Entry>()), Times.Exactly(2));
         }
@@ -255,60 +232,17 @@ namespace Docary.Services.Tests
             var locationRepository = new Mock<ILocationRepository>();
             var tagRepository = new Mock<ITagRepository>();
             var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
-
+                   
             entryRepository.Setup(e => e.Count(It.IsAny<string>())).Returns(5);
 
-            var entryService = new Mock<EntryService>(
-               entryRepository.Object,
-               locationRepository.Object,
-               tagRepository.Object,
-               timeLineServiceStub.Object,
-               timeServiceStub.Object,
-               scopeStub.Object);
+            var entryService = EntryServiceFactory.SetupEntryService(
+                entryRepository,
+                locationRepository,
+                tagRepository,
+                timeLineServiceStub);
 
-            Assert.AreEqual(5, entryService.Object.GetNumberOfEntries("1"));
-        }
-       
-        private IEntryService SetupReallyBasicEntryService()
-        {
-            var entryRepository = new Mock<IEntryRepository>();
-            var locationRepository = new Mock<ILocationRepository>();
-            var tagRepository = new Mock<ITagRepository>();
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-            var timeServiceStub = new Mock<ITimeService>();
-            var scopeStub = new Mock<IScope>();
-
-            var entryService = new EntryService(
-                entryRepository.Object,
-                locationRepository.Object,
-                tagRepository.Object,
-                timeLineServiceStub.Object,
-                timeServiceStub.Object,
-                scopeStub.Object);
-
-            return entryService;
-        }
-
-        private Mock<ITimelineColorService> SetupTimelineColorServiceStub()
-        {
-            var timeLineServiceStub = new Mock<ITimelineColorService>();
-
-            timeLineServiceStub
-                .Setup(s => s.GetRandom())
-                .Returns(new TimelineColor("Color") { Id = 1 });
-
-            return timeLineServiceStub;
-        }
-
-        private Mock<ITimeService> SetUpTimeServiceStub()
-        {
-            var timeServiceStub =  new Mock<ITimeService>();
-
-            timeServiceStub.Setup(ts => ts.GetNow()).Returns(new DateTime(2011, 10, 18, 15, 30, 4));
-
-            return timeServiceStub;
-        }
+            Assert.AreEqual(5, entryService.GetNumberOfEntries("1"));
+        }      
+        
     }
 }
