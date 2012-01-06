@@ -50,7 +50,7 @@ namespace Docary.ViewModelAssemblers.Desktop
             var userTimeZoneOffsetToTakeIntoAccountFrom = 
                 userTimeZone.BaseUtcOffset.TotalSeconds < 0 ? new TimeSpan() : userTimeZone.BaseUtcOffset;
             var userTimeZoneOffsetToTakeIntoAccountTo = 
-                userTimeZone.BaseUtcOffset.TotalSeconds > 0 ? new TimeSpan() : userTimeZone.BaseUtcOffset;
+                userTimeZone.BaseUtcOffset.TotalSeconds > 0 ? userTimeZone.BaseUtcOffset : new TimeSpan();
 
             var entries = _entryService.GetEntries(
                 indexViewModelResult.From.Value.ToUniversalTime().Subtract(userTimeZoneOffsetToTakeIntoAccountFrom),
