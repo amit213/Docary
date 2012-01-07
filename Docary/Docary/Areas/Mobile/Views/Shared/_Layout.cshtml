@@ -3,17 +3,43 @@
 <head>
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+     @{    
+        // This is not bulletproof, but how often do we expect these CDN's to be available?    
+        var jQueryLocal = @Url.Content("~/Scripts/jquery-1.6.4.min.js");
+        var jQueryValidateLocal = @Url.Content("~/Scripts/jquery.validate.min.js");
+        var jQueryValidateUnobtrusiveLocal = @Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js");
+        var jQueryMobile = @Url.Content("~/Scripts/jquery.mobile-1.0.min.js");
+    }
     <link href="@Url.Content("~/Content/jquery.mobile-1.0rc1.min.css")" rel="stylesheet" type="text/css" /> 
     <link href="@Url.Content("~/Content/screen.mobile.css")" rel="stylesheet" type="text/css" />  
-    <script src="@Url.Content("~/Scripts/jquery-1.6.4.min.js")" type="text/javascript"></script>        
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        if (typeof jQuery == 'undefined') {
+            document.write(unescape("%3Cscript src='@jQueryLocal' type='text/javascript'%3E%3C/script%3E"));
+        }
+    </script>   
     <script type="text/javascript">
         $(document).bind("mobileinit", function () {
-            $.extend($.mobile, { ajaxEnabled: false });
+            $.extend($.mobile, { ajaxEnabled: true });
         });       
     </script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.mobile-1.0rc1.min.js")" type="text/javascript"></script>     
+    <script type="text/javascript">
+         if (typeof jQuery.validator == 'undefined') {
+             document.write(unescape("%3Cscript src='@jQueryValidateLocal' type='text/javascript'%3E%3C/script%3E"));
+         }
+    </script>          
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        if (typeof jQuery.validator.unobtrusive == 'undefined') {
+            document.write(unescape("%3Cscript src='@jQueryValidateUnobtrusiveLocal' type='text/javascript'%3E%3C/script%3E"));
+        }
+    </script>    
+    <script src="@Url.Content("http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.0/jquery.mobile-1.0.min.js")" type="text/javascript"></script>     
+    <script type="text/javascript">
+        if (typeof jQuery.mobile == 'undefined') {
+            document.write(unescape("%3Cscript src='@jQueryMobile' type='text/javascript'%3E%3C/script%3E"));
+        }
+    </script>
     @RenderSection("Head", false)
 </head>
 <body>
