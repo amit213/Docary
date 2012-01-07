@@ -44,18 +44,21 @@
 
 <br />
 
+<table>
 @foreach (var entryGroup in Model.EntryGroups)
-{    
-    <div>
-    <div class="header-base timeline-header">@entryGroup.Date.ToShortDateString()</div>
-        @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
-        {
-            var maxWidth = 1000;
-            var width = Convert.ToInt32(entry.Percentage * (maxWidth / 100));
-            var divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);        
+{
+    var maxWidth = 1100;
+    <tr>
+        <td class="header-base timeline-header">@entryGroup.Date.ToShortDateString()</td>
+        <td>
+            @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
+            {                                
+                var width = Convert.ToInt32(entry.Percentage * (maxWidth / 100));
+                var divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);        
             
-            <div style="@divstyle" class="timelineblock" title="@entry.Title"></div>
-        }
-    </div>
-    <br />
+                <div style="@divstyle" class="timelineblock" title="@entry.Title"></div>
+            }
+        </td>
+    </tr>
 }
+</table>
