@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-using Docary.Services;
+using LowercaseRoutesMVC;
 
 namespace Docary
 {
@@ -18,7 +18,7 @@ namespace Docary
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
+            routes.MapRouteLowercase(
                 "Default", // Route name
                 "{controller}/{action}", // URL with parameters
                 new { controller = "Home", action = "Index" }, // Parameter defaults

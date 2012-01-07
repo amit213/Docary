@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 
+using LowercaseRoutesMVC;
+
 namespace Docary.Areas.Mobile
 {
     public class MobileAreaRegistration : AreaRegistration
@@ -14,7 +16,7 @@ namespace Docary.Areas.Mobile
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            context.MapRoute(
+            context.MapRouteLowercase(
                 "Mobile_default",
                 "Mobile/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
