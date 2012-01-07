@@ -45,14 +45,16 @@ namespace Docary.ViewModelAssemblers.Desktop
             var userTimeZone = _userSettingsService.Get(userId).TimeZone;            
 
             SetDefaultDatesWhenEmpty(indexViewModelResult, userTimeZone);            
-
-            // You have to take the userTimeZoneOffset into account, otherwise we end up with too little data
-            var userTimeZoneOffsetToTakeIntoAccount = 
+            
+            // You have to take the userTimeZoneOffset into account, otherwise we end up with too little data           
+            var userTimeZoneOffsetToTakeIntoAccountFrom = 
                 userTimeZone.BaseUtcOffset.TotalSeconds < 0 ? new TimeSpan() : userTimeZone.BaseUtcOffset;
+            var userTimeZoneOffsetToTakeIntoAccountTo = 
+                userTimeZone.BaseUtcOffset.TotalSeconds > 0 ? userTimeZone.BaseUtcOffset : new TimeSpan();
             // Get the entries based on universal time
             var entries = _entryService.GetEntries(
-                indexViewModelResult.From.Value.ToUniversalTime().Subtract(userTimeZoneOffsetToTakeIntoAccount),
-                indexViewModelResult.To.Value.ToUniversalTime(),
+                indexViewModelResult.From.Value.ToUniversalTime().Subtract(userTimeZoneOffsetToTakeIntoAccountFrom),
+                indexViewModelResult.To.Value.ToUniversalTime().Add(userTimeZoneOffsetToTakeIntoAccountTo),
                 userId);
             var start = indexViewModelResult.From.Value;
             var stop = indexViewModelResult.To.Value;            
