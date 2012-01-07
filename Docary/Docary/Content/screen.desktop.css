@@ -15,7 +15,7 @@ html, body {
 	margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
 	position: relative;
 	width: 1240px;
-	font-size: 0.9em;	
+	font-size: 14px;	
 	text-align: left;	
 	background-color: #EEEEEC;	
 }
