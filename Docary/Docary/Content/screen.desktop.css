@@ -2,10 +2,13 @@
 	margin: 0;
 }
 
+* {
+  font-family: "lucida grande", arial, sans-serif;    
+}
+
 html, body {
 	height: 100%;
-	background-color: #EEEEEC;    
-    font-family: "lucida grande", arial, sans-serif;  
+	background-color: #EEEEEC;        
 }
 
 .wrapper {   
