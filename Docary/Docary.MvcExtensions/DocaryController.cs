@@ -5,6 +5,9 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Security;
 
+using Docary.MvcExtensions;
+using System.Web;
+
 namespace Docary.MvcExtensions
 {
     public class DocaryController : Controller
@@ -15,6 +18,6 @@ namespace Docary.MvcExtensions
             {
                 return Convert.ToString(Membership.GetUser(HttpContext.User.Identity.Name).ProviderUserKey);
             }
-        }     
+        }       
     }
 }

@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
+using Docary.MvcExtensions;
+
 using LowercaseRoutesMVC;
+using Docary.Areas.Shared.Controllers;
 
 namespace Docary
 {
@@ -13,9 +16,9 @@ namespace Docary
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : System.Web.HttpApplication
-    {       
+    {        
         public static void RegisterRoutes(RouteCollection routes)
-        {
+        {            
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRouteLowercase(
@@ -26,11 +29,46 @@ namespace Docary
             );
         }
 
+        protected void Application_Error()
+        {
+            var exception = Server.GetLastError();
+            var httpException = exception as HttpException;
+
+            Response.Clear();
+            Server.ClearError();
+
+            var routeData = new RouteData();
+            routeData.DataTokens["area"] = HttpContext.Current.Request.ResolveArea();
+            routeData.Values["controller"] = "Errors";
+            routeData.Values["action"] = "General";
+            routeData.Values["exception"] = exception;
+            
+            Response.StatusCode = 500;
+            
+            if (httpException != null)
+            {
+                Response.StatusCode = httpException.GetHttpCode();
+                switch (Response.StatusCode)
+                {
+                    case 403:
+                        routeData.Values["action"] = "Forbidden";
+                        break;
+                    case 404:
+                        routeData.Values["action"] = "NotFound";
+                        break;
+                }
+            }
+
+            var errorsController = (IController)new ErrorsController();
+            var requestContext = new RequestContext(new HttpContextWrapper(Context), routeData);
+            errorsController.Execute(requestContext);
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             
-            RegisterRoutes(RouteTable.Routes);            
+            RegisterRoutes(RouteTable.Routes);     
         }
     }
 }

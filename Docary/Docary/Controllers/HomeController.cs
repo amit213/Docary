@@ -7,7 +7,7 @@ using Docary.MvcExtensions;
 
 namespace Docary.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : DocaryController
     {
         public ActionResult Index()
         {           

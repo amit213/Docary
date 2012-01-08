@@ -12,5 +12,10 @@ namespace Docary.MvcExtensions
         {
             return request.Browser.IsMobileDevice ? "Mobile" : "Desktop";
         }
+
+        public static string ResolveArea(this HttpRequest request)
+        {
+            return request.Browser.IsMobileDevice ? "Mobile" : "Desktop";
+        }
     }
 }

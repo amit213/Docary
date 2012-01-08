@@ -7,7 +7,7 @@ using Docary.MvcExtensions;
 
 namespace Docary.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : DocaryController
     {       
         public ActionResult LogOn()
         {
