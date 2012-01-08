@@ -11,7 +11,10 @@ namespace Docary.Controllers
     {
         public ActionResult Index()
         {           
-            return RedirectToAction("Index", "Home", new { Area = Request.ResolveArea() });            
+            var view = Request.IsAuthenticated ? "Index" : "Welcome";
+            var area = Request.ResolveArea(); 
+
+            return RedirectToAction(view, "Home", new { Area = area });            
         }
     }
 }

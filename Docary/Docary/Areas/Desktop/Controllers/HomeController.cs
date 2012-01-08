@@ -22,11 +22,9 @@ namespace Docary.Areas.Desktop.Controllers
         }
        
         [HttpGet]
+        [Authorize]
         public ActionResult Index()
-        {           
-            if (!Request.IsAuthenticated)
-                return RedirectToAction("Welcome");
-
+        {         
             var model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
 
             ViewData.Model = model;

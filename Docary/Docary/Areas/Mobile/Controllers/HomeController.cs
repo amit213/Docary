@@ -8,31 +8,25 @@ using Docary.ViewModelAssemblers.Mobile;
 namespace Docary.Areas.Mobile.Controllers
 {
     public class HomeController : DocaryController
-    {        
-        private IHomeAssembler _homeAssembler;        
+    {
+        private IHomeAssembler _homeAssembler;
 
-        public HomeController(IHomeAssembler homeAssembler)             
-        {     
-            _homeAssembler = homeAssembler;            
+        public HomeController(IHomeAssembler homeAssembler)
+        {
+            _homeAssembler = homeAssembler;
         }
 
+        [Authorize]
         public ActionResult Index()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                var model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
+            var model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
 
-                ViewData.Model = model;
-                ViewBag.EntryGroups = model.EntryGroups;
+            ViewData.Model = model;
+            ViewBag.EntryGroups = model.EntryGroups;
 
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Welcome");
-            }
+            return View();
         }
-      
+
         public ActionResult Welcome()
         {
             return View();
