@@ -6,16 +6,16 @@
 html, body {
 	height: 100%;
 	background-color: #B3B3B3;        	
+	font-size: 14px;	
 }
 
 .wrapper {   
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
 	position: relative;
-	width: 1240px;
-	font-size: 14px;	
+	width: 1240px;	
 	text-align: left;	
 	background-color: #B3B3B3;	
 }
@@ -29,7 +29,7 @@ html, body {
 }
 
 .footer, .push {
-	height: 60px; /* .push must be the same height as .footer */	
+	height: 100px; /* .push must be the same height as .footer */	
 }
 
 .push {
@@ -107,18 +107,25 @@ strong {
 	width: 100%;
 }
 
-.footer a {
-	color: #fff;
-	text-decoration: underline;
-	border: 0;	
+.footer-info {
+    color: #ffffff;
+    margin: auto;
+    margin-top: 15px;
+    width: 1240px; /* Same width as wrapper */
 }
 
-.footer p {
-	position: absolute;
-	left: 0;
-	bottom: 4px;	
-	padding: 0;		
-	text-align: center;	
+.footer-info span.title {
+    font-weight:bold;
+}
+
+.footer-info ul {
+    list-style-type: disc;
+    margin-top: 5px;
+}
+
+.footer-info a {
+    color: #eee9e9;
+    text-decoration: none;      
 }
 
 /* Styles for validation helpers

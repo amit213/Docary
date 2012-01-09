@@ -190,7 +190,6 @@
     <Content Include="Areas\Desktop\Views\Account\Register.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\_LogOnPartial.cshtml" />
-    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,12 +247,6 @@
     <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Desktop\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -294,9 +287,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Mobile\Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Desktop\Views\Errors\NotFound.cshtml" />
