@@ -28,12 +28,9 @@ html, body {
     color: #000;      
 }
 
-.footer, .push {
-	height: 100px; /* .push must be the same height as .footer */	
-}
-
 .push {
     background-color: #B3B3B3;
+    height: 100px; /* .push must be the same height as .footer */	
 }
 
 .header {
@@ -100,11 +97,12 @@ strong {
 	font-weight: normal;
 }
 
-.footer {   
-	position: relative;	
-	margin: 0 auto;	
-	background-color: #000;
-	width: 100%;
+.footer {
+    position: relative;
+    margin: 0 auto;
+    background-color: #000;
+    width: 100%;        
+    height: 100px; 
 }
 
 .footer-info {
@@ -127,6 +125,10 @@ strong {
 .footer-info a {
     color: #eee9e9;
     text-decoration: none;      
+}
+
+.footer-info a:hover {
+    text-decoration: underline;
 }
 
 /* Styles for validation helpers
