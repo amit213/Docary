@@ -108,19 +108,20 @@ strong {
 }
 
 .footer-info {
+    padding-top: 10px;
     color: #ffffff;
-    margin: auto;
-    margin-top: 15px;
+    margin: auto;    
     width: 1240px; /* Same width as wrapper */
 }
 
-.footer-info span.title {
-    font-weight:bold;
+.footer-info div.title {
+    font-weight:bold;    
+    padding-bottom: 10px;
 }
 
 .footer-info ul {
-    list-style-type: disc;
-    margin-top: 5px;
+    list-style-type: none;    
+    display: inline;
 }
 
 .footer-info a {
