@@ -31,6 +31,8 @@ namespace Docary
 
         protected void Application_Error()
         {
+            Response.TrySkipIisCustomErrors = true;
+
             var exception = Server.GetLastError();
             var httpException = exception as HttpException;
 
