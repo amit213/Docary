@@ -14,7 +14,7 @@ namespace Docary.Controllers
             var view = Request.IsAuthenticated ? "Index" : "Welcome";
             var area = Request.ResolveArea();             
 
-            return RedirectToAction(view, "Home", new { Area = area });            
+            return RedirectToActionPermanent(view, "Home", new { Area = area });            
         }
     }
 }
