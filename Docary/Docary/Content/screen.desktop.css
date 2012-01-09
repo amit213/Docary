@@ -5,7 +5,7 @@
 
 html, body {
 	height: 100%;
-	background-color: #EEEEEC;        	
+	background-color: #B3B3B3;        	
 }
 
 .wrapper {   
@@ -17,7 +17,7 @@ html, body {
 	width: 1240px;
 	font-size: 14px;	
 	text-align: left;	
-	background-color: #EEEEEC;	
+	background-color: #B3B3B3;	
 }
 
 .content {
@@ -33,18 +33,18 @@ html, body {
 }
 
 .push {
-    background-color: #EEEEEC;
+    background-color: #B3B3B3;
 }
 
 .header {
 	height: 50px;	
 	padding-top: 15px;
 	padding-bottom: 40px;	
-	background-color: #EEEEEC;	
+	background-color: #B3B3B3;	
 }
 
 .menu {
-    background-color: #EEEEEC;  
+    background-color: #B3B3B3;  
     font-weight:  bold;
     border-bottom: 1px solid;    
 }
