@@ -50,15 +50,8 @@ namespace Docary
             if (httpException != null)
             {
                 Response.StatusCode = httpException.GetHttpCode();
-                switch (Response.StatusCode)
-                {
-                    case 403:
-                        routeData.Values["action"] = "Forbidden";
-                        break;
-                    case 404:
-                        routeData.Values["action"] = "NotFound";
-                        break;
-                }
+                if (Response.StatusCode == 403)
+                    routeData.Values["action"] = "Forbidden";
             }
 
             var errorsController = (IController)new ErrorsController();
