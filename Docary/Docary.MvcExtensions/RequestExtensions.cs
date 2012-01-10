@@ -10,12 +10,28 @@ namespace Docary.MvcExtensions
     {
         public static string ResolveArea(this HttpRequestBase request)
         {
-            return request.Browser.IsMobileDevice ? "Mobile" : "Desktop";
+            return ResolveAreaInternal(request.Url.AbsoluteUri, request.Browser.IsMobileDevice);
         }
 
         public static string ResolveArea(this HttpRequest request)
         {
-            return request.Browser.IsMobileDevice ? "Mobile" : "Desktop";
+            return ResolveAreaInternal(request.Url.AbsoluteUri, request.Browser.IsMobileDevice);
+        }
+
+        private static string ResolveAreaInternal(string absoluteUri, bool isMobileDevice)
+        {
+            var mobileArea = "mobile";
+            var desktopArea = "desktop";
+
+            var urlContainsMobile = absoluteUri.IndexOf("mobile", StringComparison.OrdinalIgnoreCase) > -1;
+            if (urlContainsMobile)
+                return mobileArea;
+
+            var urlContainsDesktop = absoluteUri.IndexOf("desktop", StringComparison.OrdinalIgnoreCase) > -1;
+            if (urlContainsDesktop)
+                return desktopArea;
+
+            return isMobileDevice ? mobileArea : desktopArea;
         }
     }
 }
