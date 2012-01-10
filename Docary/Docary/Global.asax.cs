@@ -37,8 +37,8 @@ namespace Docary
             var httpException = exception as HttpException;
 
             Response.Clear();
-            Server.ClearError();
-
+            Server.ClearError();           
+            
             var routeData = new RouteData();
             routeData.DataTokens["area"] = HttpContext.Current.Request.ResolveArea();
             routeData.Values["controller"] = "Errors";
