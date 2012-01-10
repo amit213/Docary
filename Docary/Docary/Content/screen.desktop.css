@@ -118,11 +118,6 @@ strong {
     padding-bottom: 10px;
 }
 
-.footer-info ul {
-    list-style-type: none;    
-    display: inline;
-}
-
 .footer-info a {    
     color: #eee9e9;         
     text-decoration: none; 
