@@ -40,7 +40,7 @@ namespace Docary
             Server.ClearError();           
             
             var routeData = new RouteData();
-            routeData.DataTokens["area"] = HttpContext.Current.Request.ResolveArea();
+            routeData.DataTokens["area"] = HttpContext.Current.Request.ResolveDestinationArea();
             routeData.Values["controller"] = "Errors";
             routeData.Values["action"] = "General";
             routeData.Values["exception"] = exception;

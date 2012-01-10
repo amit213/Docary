@@ -8,17 +8,17 @@ namespace Docary.MvcExtensions
 {
     public static class RequestExtensions
     {
-        public static string ResolveArea(this HttpRequestBase request)
+        public static string ResolveDestinationArea(this HttpRequestBase request)
         {
-            return ResolveAreaInternal(request.Url.AbsoluteUri, request.Browser.IsMobileDevice);
+            return ResolveDestinationAreaInternal(request.Url.AbsoluteUri, request.Browser.IsMobileDevice);
         }
 
-        public static string ResolveArea(this HttpRequest request)
+        public static string ResolveDestinationArea(this HttpRequest request)
         {
-            return ResolveAreaInternal(request.Url.AbsoluteUri, request.Browser.IsMobileDevice);
+            return ResolveDestinationAreaInternal(request.Url.AbsoluteUri, request.Browser.IsMobileDevice);
         }
 
-        private static string ResolveAreaInternal(string absoluteUri, bool isMobileDevice)
+        private static string ResolveDestinationAreaInternal(string absoluteUri, bool isMobileDevice)
         {
             var mobileArea = "mobile";
             var desktopArea = "desktop";

@@ -11,7 +11,7 @@ namespace Docary.Controllers
     {       
         public ActionResult LogOn()
         {
-            return RedirectToAction("LogOn", "Account", new { Area = Request.ResolveArea() });      
+            return RedirectToAction("LogOn", "Account", new { Area = Request.ResolveDestinationArea() });      
         }
     }
 }
