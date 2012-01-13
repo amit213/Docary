@@ -52,6 +52,8 @@ namespace Docary
                 Response.StatusCode = httpException.GetHttpCode();
                 if (Response.StatusCode == 403)
                     routeData.Values["action"] = "Forbidden";
+                if (Response.StatusCode == 404)
+                    routeData.Values["action"] = "NotFound";
             }
 
             var errorsController = (IController)new ErrorsController();
