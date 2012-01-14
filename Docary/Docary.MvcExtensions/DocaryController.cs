@@ -34,19 +34,20 @@ namespace Docary.MvcExtensions
                                     .Distinct();
 
                 var actionDistanceDic = allActionNames
-                    .Select(a => new 
+                    .Select(a => new  
                         { 
                             Action = a.ToLower(), 
                             Distance = Levenshtein.CalculateDistance(a.ToLower(), actionName.ToLower()) 
                         })
                     .Where(v => v.Distance <= 3)
-                    .ToDictionary(v => v.Action);
+                    .ToDictionary(k => k.Action, v => v.Distance);
 
                 if (actionDistanceDic.Any())
                 {
-                    var actionShortestDistance = actionDistanceDic.OrderBy(v => v.Value).First().Key;
+                    var shortestDistance = actionDistanceDic.Select(v => v.Value).Min();
+                    var nearestAction = actionDistanceDic.Where(i => i.Value == shortestDistance).First().Key;
 
-                    ControllerContext.RouteData.Values["action"] = actionShortestDistance;
+                    ControllerContext.RouteData.Values["action"] = nearestAction;
 
                     new RedirectResult(Url.RouteUrl(RouteData.Values), permanent: true).ExecuteResult(ControllerContext);                    
                 }
