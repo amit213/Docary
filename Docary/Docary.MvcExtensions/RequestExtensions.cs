@@ -23,11 +23,12 @@ namespace Docary.MvcExtensions
             var mobileArea = "mobile";
             var desktopArea = "desktop";
 
-            var valueToSearchIn = absoluteUri;
+            var uri = new Uri(absoluteUri);
+            var valueToSearchIn = uri.GetLeftPart(UriPartial.Path);
             
-            var loginUrl = HttpUtility.ParseQueryString(new Uri(absoluteUri).Query).Get("returnUrl");
-            if (!string.IsNullOrEmpty(loginUrl))
-                valueToSearchIn = loginUrl;
+            var returnUrl = HttpUtility.ParseQueryString(uri.Query).Get("returnUrl");
+            if (!string.IsNullOrEmpty(returnUrl))
+                valueToSearchIn = returnUrl;
 
             var urlContainsMobile = valueToSearchIn.IndexOf("mobile", StringComparison.OrdinalIgnoreCase) > -1;
             if (urlContainsMobile)
