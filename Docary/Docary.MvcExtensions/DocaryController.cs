@@ -53,9 +53,9 @@ namespace Docary.MvcExtensions
             throw new HttpException(404, string.Format("{0}.{1} is an unknown action.", GetType(), actionName)); 
         }
 
-        private Dictionary<string, int> CalculateLevenshteinDistance(IEnumerable<string> list, string actionName)
+        private Dictionary<string, int> CalculateLevenshteinDistance(IEnumerable<string> actionList, string actionName)
         {
-            return list
+            return actionList
                     .Select(a => new
                     {
                         Action = a.ToLower(),
