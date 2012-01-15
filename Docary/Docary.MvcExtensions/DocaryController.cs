@@ -23,43 +23,56 @@ namespace Docary.MvcExtensions
 
         protected override void HandleUnknownAction(string actionName)
         {
-            if (HttpContext.Request.HttpMethod == "GET")
-            {
-                var allActionNames = GetType()
-                                    .GetMethods(BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Instance)
-                                    .Where(m => m.ReturnType == typeof(ActionResult) &&
-                                                !m.IsSpecialName &&
-                                                !m.GetCustomAttributes(true).Contains(typeof(HttpPostAttribute)))
-                                    .Select(m => m.Name)
-                                    .Distinct();
+            if (!HttpContext.Request.HttpMethod.Equals("GET", StringComparison.OrdinalIgnoreCase))
+                Throw404HttpException(actionName);
+            
+            TryToRedirectToAnActionNearby(actionName);           
+        }
 
-                var actionDistanceDic = allActionNames
-                    .Select(a => new  
-                        { 
-                            Action = a.ToLower(), 
-                            Distance = Levenshtein.CalculateDistance(a.ToLower(), actionName.ToLower()) 
-                        })
-                    .Where(v => v.Distance <= 3)
+        private void TryToRedirectToAnActionNearby(string actionName)
+        {
+            var httpGetActionNames = GetAllHttpGetActionNames();
+            if (!httpGetActionNames.Any())
+                Throw404HttpException(actionName);
+
+            var actionDistanceMap = CalculateLevenshteinDistance(httpGetActionNames, actionName)
+                                        .Where(i => i.Value <= 3);
+            if (!actionDistanceMap.Any())
+                Throw404HttpException(actionName);
+
+            var shortestDistance = actionDistanceMap.Select(v => v.Value).Min();
+            var nearestAction = actionDistanceMap.Where(i => i.Value == shortestDistance).First().Key;
+
+            ControllerContext.RouteData.Values["action"] = nearestAction;
+
+            new RedirectResult(Url.RouteUrl(RouteData.Values), permanent: true).ExecuteResult(ControllerContext);
+        }
+
+        private void Throw404HttpException(string actionName)
+        {
+            throw new HttpException(404, string.Format("{0}.{1} is an unknown action.", GetType(), actionName)); 
+        }
+
+        private Dictionary<string, int> CalculateLevenshteinDistance(IEnumerable<string> list, string actionName)
+        {
+            return list
+                    .Select(a => new
+                    {
+                        Action = a.ToLower(),
+                        Distance = Levenshtein.CalculateDistance(a.ToLower(), actionName.ToLower())
+                    })                    
                     .ToDictionary(k => k.Action, v => v.Distance);
+        }
 
-                if (actionDistanceDic.Any())
-                {
-                    var shortestDistance = actionDistanceDic.Select(v => v.Value).Min();
-                    var nearestAction = actionDistanceDic.Where(i => i.Value == shortestDistance).First().Key;
-
-                    ControllerContext.RouteData.Values["action"] = nearestAction;
-
-                    new RedirectResult(Url.RouteUrl(RouteData.Values), permanent: true).ExecuteResult(ControllerContext);                    
-                }
-                else
-                {
-                    base.HandleUnknownAction(actionName);
-                }
-            }
-            else
-            {
-                base.HandleUnknownAction(actionName);
-            }
+        private IEnumerable<string> GetAllHttpGetActionNames()
+        {
+            return GetType()
+                    .GetMethods(BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(m => m.ReturnType == typeof(ActionResult) &&
+                                !m.IsSpecialName &&
+                                !m.GetCustomAttributes(true).Contains(typeof(HttpPostAttribute)))
+                    .Select(m => m.Name)
+                    .Distinct();
         }
     }
 }
