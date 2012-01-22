@@ -164,8 +164,7 @@ strong {
     padding-bottom: 5px;
 }
 
-.legenda-container li  {
-    border: 1px solid black;
+.legenda-container li  {    
     display: inline;    
     font-size: 12px;
     list-style-type: none;
