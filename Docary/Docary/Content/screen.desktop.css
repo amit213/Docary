@@ -156,7 +156,7 @@ strong {
 -----------------------------------------------------------*/
 
 .legenda-container {
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
 .legenda-container ul {
@@ -164,7 +164,8 @@ strong {
     padding-bottom: 5px;
 }
 
-.legenda-container li  {    
+.legenda-container li  {
+    border: 1px dashed #1F1F1F;
     display: inline;    
     font-size: 12px;
     list-style-type: none;
