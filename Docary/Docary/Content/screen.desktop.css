@@ -159,21 +159,15 @@ strong {
     padding-top: 15px;
 }
 
-.legenda-container ul {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.legenda-container li  {
-    border: 1px dashed #1F1F1F;
+.legenda-tag {
+    border: 1px solid #000;
+    width: 7px;    
     display: inline;    
-    font-size: 12px;
-    list-style-type: none;
-    padding-right: 10px;
-    padding-left: 10px; 
-    padding-bottom: 3px;
-    padding-top: 3px;
-    margin-right: 2px;    
+    font-size: 12px;    
+    padding-right: 8px;
+    padding-left: 8px;    
+    margin-right: 6px;    
+    margin-left: 4px;
 }
 
 .header-base {

@@ -62,13 +62,11 @@
     </tr>
 }
 </table>
-<div class="legenda-container">    
-    <ul>
-        @foreach (var legendaTag in Model.Legenda)
-        {
-            var divStyle = string.Format("background-color:{0}", legendaTag.Color);
+<div class="legenda-container">       
+    @foreach (var legendaTag in Model.Legenda)
+    {
+        var divStyle = string.Format("background-color:{0}", legendaTag.Color);
     
-            <li style="@divStyle">@legendaTag.Name</li>
-        }
-    </ul>
+        <div class="legenda-tag" style="@divStyle">&nbsp;</div><span>@legendaTag.Name</span>
+    }   
 </div>
