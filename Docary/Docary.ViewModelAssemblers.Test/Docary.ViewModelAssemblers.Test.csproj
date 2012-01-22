@@ -56,6 +56,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Desktop\HomeAssemblerFactory.cs" />
     <Compile Include="Desktop\HomeAssemblerTests.cs" />
     <Compile Include="Desktop\StatisticsAssemblerTest.cs" />
     <Compile Include="Mobile\HomeAssemblerTest.cs" />

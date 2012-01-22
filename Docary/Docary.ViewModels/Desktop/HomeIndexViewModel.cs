@@ -11,12 +11,14 @@ namespace Docary.ViewModels.Desktop
     {
         public HomeIndexViewModel() 
         {
-            EntryGroups = new List<HomeIndexViewModelEntryGroup>();       
+            EntryGroups = new List<HomeIndexViewModelEntryGroup>();
+            Legenda = new List<HomeIndexViewModelLegendaTag>();
         }
 
         public HomeIndexViewModel(DateTime? from, DateTime? to)
         {
-            EntryGroups = new List<HomeIndexViewModelEntryGroup>();       
+            EntryGroups = new List<HomeIndexViewModelEntryGroup>();
+            Legenda = new List<HomeIndexViewModelLegendaTag>();
             From = from;
             To = to;
         }
@@ -36,6 +38,8 @@ namespace Docary.ViewModels.Desktop
 
         [Required]       
         public DateTime? To { get; set; }
+
+        public List<HomeIndexViewModelLegendaTag> Legenda { get; set; }
     }
 
     public class HomeIndexViewModelEntryGroup
@@ -58,5 +62,17 @@ namespace Docary.ViewModels.Desktop
         public string Color { get; set; }
         public string Tag { get; set; }
         public string Title { get; set; }
+    }
+
+    public class HomeIndexViewModelLegendaTag
+    {
+        public HomeIndexViewModelLegendaTag(string name, string color)
+        {
+            Name = name;
+            Color = color;
+        }
+
+        public string Name { get; set; }
+        public string Color { get; set; }
     }
 }

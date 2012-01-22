@@ -57,7 +57,9 @@ namespace Docary.ViewModelAssemblers.Desktop
                 indexViewModelResult.To.Value.ToUniversalTime().Add(userTimeZoneOffsetToTakeIntoAccountTo),
                 userId);
             var start = indexViewModelResult.From.Value;
-            var stop = indexViewModelResult.To.Value;            
+            var stop = indexViewModelResult.To.Value;
+
+            LoadLegenda(indexViewModelResult, entries);
            
             while (start < stop)
             {
@@ -157,6 +159,13 @@ namespace Docary.ViewModelAssemblers.Desktop
                 indexViewModelResult.From = TimeZoneInfo.ConvertTimeFromUtc(defaultFromDate, userTimeZone).Date;
             if (!indexViewModelResult.To.HasValue)
                 indexViewModelResult.To = TimeZoneInfo.ConvertTimeFromUtc(defaultToDate, userTimeZone).Date;
-        }    
+        }
+
+        private void LoadLegenda(HomeIndexViewModel indexViewModel, IEnumerable<Entry> entries)
+        {
+            var tags =  entries.Select(e => e.Tag).Distinct();
+
+            indexViewModel.Legenda = tags.Select(t => new HomeIndexViewModelLegendaTag(t.TitleCasedName, t.Color)).ToList();
+        }
     }
 }
