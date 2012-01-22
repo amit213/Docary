@@ -160,6 +160,7 @@ strong {
 }
 
 .legenda-tag {
+    line-height: 21px;
     border: 1px solid #000;
     width: 7px;    
     display: inline;    
