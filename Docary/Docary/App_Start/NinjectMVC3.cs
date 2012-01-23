@@ -19,7 +19,7 @@ namespace Docary.App_Start
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         public static void Start()
-        {
+        {           
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestModule));
             DynamicModuleUtility.RegisterModule(typeof(HttpApplicationInitializationModule));
             bootstrapper.Initialize(CreateKernel);
@@ -28,16 +28,16 @@ namespace Docary.App_Start
         public static void Stop()
         {
             bootstrapper.ShutDown();
-        }
+        }        
 
-        private static IKernel CreateKernel()
+        public static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
             
             Register(kernel);
 
             return kernel;
-        }
+        }        
 
         private static void Register(IKernel kernel)
         {

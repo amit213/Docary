@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.MvcExtensions", "Doc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.MvcExtensions.Test", "Docary.MvcExtensions.Test\Docary.MvcExtensions.Test.csproj", "{5E58375A-2D5E-4443-9FBB-A40751559AC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docary.Tests", "Docary.Tests\Docary.Tests.csproj", "{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Docary.vsmdi
@@ -177,6 +179,16 @@ Global
 		{5E58375A-2D5E-4443-9FBB-A40751559AC6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5E58375A-2D5E-4443-9FBB-A40751559AC6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5E58375A-2D5E-4443-9FBB-A40751559AC6}.Release|x86.ActiveCfg = Release|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3399E548-D6B8-4B33-AF9A-C3ADAD4BE269}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
