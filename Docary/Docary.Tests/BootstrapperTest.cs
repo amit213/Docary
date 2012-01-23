@@ -17,7 +17,7 @@ namespace Docary.Tests
     {
         private IKernel _kernel;
 
-        [ClassInitialize]
+        [TestInitialize]
         public void Setup()
         {
             _kernel = NinjectMVC3.CreateKernel();
@@ -97,7 +97,7 @@ namespace Docary.Tests
 
         [TestMethod]
         public void Test_DocaryContext_Has_An_Implementation()
-        {
+        {            
             _kernel.Get<DocaryContext>();            
         }
     }
