@@ -4,9 +4,45 @@
 
 @model Docary.ViewModels.Desktop.HomeStatisticsViewModel
 
+@section JavaScript {
+    <script type="text/javascript">
+        $(function () {
+            $("#From").datepicker();
+            $("#To").datepicker();
+        });
+    </script>
+}
+
 @section Menu {
     @{ Html.RenderPartial("_MenuLoggedOn"); }
 }
+
+@using (Html.BeginForm("Statistics", "Home"))
+{               
+     <div class="form-container">                        
+        <div class="form-label">
+            From
+        </div>   
+        <div class="form-input"> 
+           @Html.TextBox("From", Model.From.Value.ToShortDateString())
+           @Html.ValidationMessageFor(m => m.From)
+        </div>
+
+        <div class="form-label">
+            To
+        </div>
+        <div class="form-input">
+            @Html.TextBox("To", Model.To.Value.ToShortDateString())
+            @Html.ValidationMessageFor(m => m.To)
+        </div>
+    
+        <div class="form-actions">
+            <input type="submit" value="Search" />    
+        </div>
+    </div>       
+}
+
+<br />
 
 @if (Model.HasFirstEntry && Model.HasLatestEntry)
 {

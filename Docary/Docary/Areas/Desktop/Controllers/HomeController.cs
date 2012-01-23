@@ -55,6 +55,17 @@ namespace Docary.Areas.Desktop.Controllers
             return View();
         }
 
+        [HttpPost]
+        [Authorize]
+        public ActionResult Statistics(HomeStatisticsViewModel statisticsViewModel)
+        {
+            var model = _statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, UserId);
+
+            ViewData.Model = model;
+
+            return View();
+        }
+
         public ActionResult Welcome()
         {
             return View();

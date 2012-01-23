@@ -6,16 +6,19 @@ using Docary.ViewModelAssemblers.Desktop;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
+using Docary.ViewModels.Desktop;
 
 namespace Docary.ViewModelAssemblers.Test.Desktop
 {
     [TestClass]
     public class StatisticsAssemblerTest
     {
+        private DateTime _baseDateTime = new DateTime(2011, 11, 8, 0, 0, 0, DateTimeKind.Local);
+
         [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_Fills_In_LatestEntry()
         {
-            var entryService = new Mock<IEntryService>();
+            var entryService = GetEntryService();
 
             var anyEntry = new Entry() { CreatedOn = new DateTime(2010, 10, 8) };
             
@@ -26,16 +29,17 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 entryService.Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            Assert.IsTrue(statisticsViewModel.HasLatestEntry);
-            Assert.IsNotNull(statisticsViewModel.LatestEntry);
+            Assert.IsTrue(statisticsViewModelResult.HasLatestEntry);
+            Assert.IsNotNull(statisticsViewModelResult.LatestEntry);
         }
 
         [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_Fills_In_Null_When_LatestEntry_Is_Null()
         {
-            var entryService = new Mock<IEntryService>();            
+            var entryService = GetEntryService();           
 
             entryService
                 .Setup(e => e.GetLatestEntry(It.IsAny<string>()))
@@ -44,16 +48,17 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 entryService.Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            Assert.IsFalse(statisticsViewModel.HasLatestEntry);
-            Assert.IsNull(statisticsViewModel.LatestEntry);
+            Assert.IsFalse(statisticsViewModelResult.HasLatestEntry);
+            Assert.IsNull(statisticsViewModelResult.LatestEntry);
         }
 
         [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_Fills_In_FirstEntry()
         {
-            var entryService = new Mock<IEntryService>();
+            var entryService = GetEntryService();
 
             var anyEntry = new Entry() { CreatedOn = new DateTime(2010, 10, 8) };
 
@@ -64,16 +69,17 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 entryService.Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            Assert.IsTrue(statisticsViewModel.HasFirstEntry);
-            Assert.IsNotNull(statisticsViewModel.FirstEntry);
+            Assert.IsTrue(statisticsViewModelResult.HasFirstEntry);
+            Assert.IsNotNull(statisticsViewModelResult.FirstEntry);
         }
 
         [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_Fills_In_Null_When_FirstEntry_Is_Null()
         {
-            var entryService = new Mock<IEntryService>();            
+            var entryService = GetEntryService();        
 
             entryService
                 .Setup(e => e.GetFirstRealEntry(It.IsAny<string>()))
@@ -82,16 +88,17 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 entryService.Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            Assert.IsFalse(statisticsViewModel.HasFirstEntry);
-            Assert.IsNull(statisticsViewModel.FirstEntry);
+            Assert.IsFalse(statisticsViewModelResult.HasFirstEntry);
+            Assert.IsNull(statisticsViewModelResult.FirstEntry);
         }
 
         [TestMethod]
         public void Test_AssembleHomeStatisticsViewModel_Fills_In_Number_Of_Entries()
         {
-            var entryService = new Mock<IEntryService>();
+            var entryService = GetEntryService();
 
             entryService
                 .Setup(e => e.GetNumberOfEntries(It.IsAny<string>()))
@@ -100,9 +107,10 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 entryService.Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            Assert.AreEqual(5, statisticsViewModel.NumberOfEntries);
+            Assert.AreEqual(5, statisticsViewModelResult.NumberOfEntries);
         }
 
         [TestMethod]
@@ -111,10 +119,11 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            var firstPerTag = statisticsViewModel.PerTag.Items.First();
-            var secondPerTag = statisticsViewModel.PerTag.Items.ElementAt(1);
+            var firstPerTag = statisticsViewModelResult.PerTag.Items.First();
+            var secondPerTag = statisticsViewModelResult.PerTag.Items.ElementAt(1);
 
             Assert.AreEqual(1, firstPerTag.Time.Days);
             Assert.AreEqual(12, firstPerTag.Time.Hours);
@@ -131,9 +140,10 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            var firstPerTag = statisticsViewModel.PerTag.Items.First();
+            var firstPerTag = statisticsViewModelResult.PerTag.Items.First();
 
             Assert.AreEqual("Commuting", firstPerTag.TagName);
         }        
@@ -144,10 +154,11 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
             var statisticsAssembler = new StatisticsAssembler(
                 GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
 
-            var statisticsViewModel = statisticsAssembler.AssembleHomeStatisticsViewModel(It.IsAny<string>());
+            var statisticsViewModel = new HomeStatisticsViewModel(_baseDateTime, _baseDateTime.AddDays(3));
+            var statisticsViewModelResult = statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, It.IsAny<string>());
 
-            var firstPerTag = statisticsViewModel.PerTag.Items.First();
-            var secondPerTag = statisticsViewModel.PerTag.Items.ElementAt(1);
+            var firstPerTag = statisticsViewModelResult.PerTag.Items.First();
+            var secondPerTag = statisticsViewModelResult.PerTag.Items.ElementAt(1);
 
             Assert.IsTrue(firstPerTag.Percentage > secondPerTag.Percentage);
         }        

@@ -8,6 +8,18 @@ namespace Docary.ViewModels.Desktop
 {
     public class HomeStatisticsViewModel
     {
+        public HomeStatisticsViewModel() { }
+
+        public HomeStatisticsViewModel(DateTime? from, DateTime? to)
+        {
+            From = from;
+            To = to;
+        }
+
+        public DateTime? From { get; set; }
+
+        public DateTime? To { get; set; }
+
         public HomeStatisticsPerTagViewModel PerTag { get; set; }
 
         public DateTime? FirstEntry { get; set; }

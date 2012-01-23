@@ -29,38 +29,45 @@ namespace Docary.ViewModelAssemblers.Desktop
 
         public HomeStatisticsViewModel AssembleHomeStatisticsViewModel(string userId)
         {
-            var homeStatisticsViewModel = new HomeStatisticsViewModel();
+            var defaultStatisticsModel = new HomeStatisticsViewModel();            
 
+            var userSettings = GetUserSettings(userId);
+
+            SetDefaultDatesWhenEmpty(defaultStatisticsModel, userSettings.TimeZone);                                          
+
+            return AssembleHomeStatisticsViewModel(defaultStatisticsModel, userId);
+        }
+
+        public HomeStatisticsViewModel AssembleHomeStatisticsViewModel(HomeStatisticsViewModel statisticsViewmodel, string userId)
+        {
             var userSettings = GetUserSettings(userId);
 
             var latestEntry = _entryService.GetLatestEntry(userId);
             var firstEntry = _entryService.GetFirstRealEntry(userId);
 
             if (latestEntry != null)
-            {                
+            {
                 var createdOn = new DateTime(latestEntry.CreatedOn.Ticks, DateTimeKind.Utc);
-                homeStatisticsViewModel.LatestEntry = TimeZoneInfo.ConvertTimeFromUtc(createdOn, userSettings.TimeZone);
+                statisticsViewmodel.LatestEntry = TimeZoneInfo.ConvertTimeFromUtc(createdOn, userSettings.TimeZone);
             }
             if (firstEntry != null)
             {
                 var createdOn = new DateTime(firstEntry.CreatedOn.Ticks, DateTimeKind.Utc);
-                homeStatisticsViewModel.FirstEntry = TimeZoneInfo.ConvertTimeFromUtc(createdOn, userSettings.TimeZone);
-            }           
-            homeStatisticsViewModel.NumberOfEntries = _entryService.GetNumberOfEntries(userId);
+                statisticsViewmodel.FirstEntry = TimeZoneInfo.ConvertTimeFromUtc(createdOn, userSettings.TimeZone);
+            }
+            statisticsViewmodel.NumberOfEntries = _entryService.GetNumberOfEntries(userId);
+            statisticsViewmodel.PerTag = AssembleHomeStatisticsPerTagViewModel(statisticsViewmodel.From.Value, statisticsViewmodel.To.Value, userId);
 
-            if (firstEntry != null && latestEntry != null)
-                homeStatisticsViewModel.PerTag = AssembleHomeStatisticsPerTagViewModel(firstEntry, latestEntry, userId);                        
-
-            return homeStatisticsViewModel;
+            return statisticsViewmodel;
         }
 
-        private HomeStatisticsPerTagViewModel AssembleHomeStatisticsPerTagViewModel(Entry firstEntry, Entry latestEntry, string userId)
+        private HomeStatisticsPerTagViewModel AssembleHomeStatisticsPerTagViewModel(DateTime from, DateTime to, string userId)
         {           
             var homeStatisticsPerTagViewModel = new HomeStatisticsPerTagViewModel();
             var items = new List<HomeStatisticsPerTagItem>();
 
             var userSettings = GetUserSettings(userId);
-            var entries = _entryService.GetEntries(firstEntry.CreatedOn, latestEntry.CreatedOn, userId);
+            var entries = _entryService.GetEntries(from, to, userId);
             var sanitizedEntries = new List<Entry>();
 
             foreach (var entry in entries)
@@ -96,6 +103,18 @@ namespace Docary.ViewModelAssemblers.Desktop
             homeStatisticsPerTagViewModel.Items = items.OrderByDescending(i => i.Percentage);
 
             return homeStatisticsPerTagViewModel;
+        }
+
+        private void SetDefaultDatesWhenEmpty(HomeStatisticsViewModel homeStatisticsViewModel, TimeZoneInfo userTimeZone)
+        {
+            var nowDate = _timeService.GetNow();
+            var defaultFromDate = nowDate.AddDays(-14);
+            var defaultToDate = nowDate.AddDays(1);
+
+            if (!homeStatisticsViewModel.From.HasValue)
+                homeStatisticsViewModel.From = TimeZoneInfo.ConvertTimeFromUtc(defaultFromDate, userTimeZone).Date;
+            if (!homeStatisticsViewModel.To.HasValue)
+                homeStatisticsViewModel.To = TimeZoneInfo.ConvertTimeFromUtc(defaultToDate, userTimeZone).Date;
         }
 
         private UserSettings GetUserSettings(string userId)

@@ -9,5 +9,7 @@ namespace Docary.ViewModelAssemblers.Desktop
     public interface IStatisticsAssembler
     {
         HomeStatisticsViewModel AssembleHomeStatisticsViewModel(string userId);
+
+        HomeStatisticsViewModel AssembleHomeStatisticsViewModel(HomeStatisticsViewModel statisticsViewmodel, string userId);
     }
 }
