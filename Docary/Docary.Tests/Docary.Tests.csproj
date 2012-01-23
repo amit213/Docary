@@ -72,6 +72,9 @@
     <Reference Include="WebActivator">
       <HintPath>..\Docary\Lib\WebActivator.dll</HintPath>
     </Reference>
+    <Reference Include="xunit">
+      <HintPath>..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">

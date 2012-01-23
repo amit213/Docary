@@ -19,86 +19,99 @@ namespace Docary.Tests
 
         [TestInitialize]
         public void Setup()
-        {
+        {         
             _kernel = NinjectMVC3.CreateKernel();
         }       
 
         [TestMethod]        
-        public void Test_Mobile_IHomeAssembler_Has_An_Implementation()
+        public void Test_Mobile_IHomeAssembler_Can_Be_Resolved()
         {
-             _kernel.Get<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>();            
+            Xunit.Assert.DoesNotThrow(
+                (() => _kernel.Get<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>()));
         }
 
         [TestMethod]
-        public void Test_Desktop_IHomeAssembler_Has_An_Implementation()
+        public void Test_Desktop_IHomeAssembler_Can_Be_Resolved()
         {
-            _kernel.Get<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>();
+            Xunit.Assert.DoesNotThrow(
+                (() => _kernel.Get<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>()));
         }
 
         [TestMethod]
-        public void Test_Desktop_IStatisticsAssembler_Has_An_Implementation()
+        public void Test_Desktop_IStatisticsAssembler_Can_Be_Resolved()
         {
-            _kernel.Get<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>();
+            Xunit.Assert.DoesNotThrow(
+                (() => _kernel.Get<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>()));
         }
 
         [TestMethod]
-        public void Test_IEntryService_Has_An_Implementation()
+        public void Test_IEntryService_Can_Be_Resolved()
         {
-            _kernel.Get<IEntryService>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<IEntryService>());
         }
 
         [TestMethod]
-        public void Test_ITimeService_Has_An_Implementation()
+        public void Test_ITimeService_Can_Be_Resolved()
         {
-            _kernel.Get<ITimeService>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<ITimeService>());
         }
 
         [TestMethod]
-        public void Test_ITimelineColorService_Has_An_Implementation()
+        public void Test_ITimelineColorService_Can_Be_Resolved()
         {
-            _kernel.Get<ITimelineColorService>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<ITimelineColorService>());
         }
 
         [TestMethod]
-        public void Test_IUserSettingsService_Has_An_Implementation()
+        public void Test_IUserSettingsService_Can_Be_Resolved()
         {
-            _kernel.Get<IUserSettingsService>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<IUserSettingsService>());
         }
 
         [TestMethod]
-        public void Test_IEntryRepository_Has_An_Implementation()
+        public void Test_IEntryRepository_Can_Be_Resolved()
         {
-            _kernel.Get<IEntryRepository>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<IEntryRepository>());
         }
 
         [TestMethod]
-        public void Test_ILocationRepository_Has_An_Implementation()
+        public void Test_ILocationRepository_Can_Be_Resolved()
         {
-            _kernel.Get<ILocationRepository>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<ILocationRepository>());
         }
 
         [TestMethod]
-        public void Test_ITagRepository_Has_An_Implementation()
+        public void Test_ITagRepository_Can_Be_Resolved()
         {
-            _kernel.Get<ITagRepository>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<ITagRepository>());
         }
         
         [TestMethod]
-        public void Test_ITimelineColorRepository_Has_An_Implementation()
+        public void Test_ITimelineColorRepository_Can_Be_Resolved()
         {
-            _kernel.Get<ITimelineColorRepository>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<ITimelineColorRepository>());
         }
 
         [TestMethod]
-        public void Test_IUserSettingsRepository_Has_An_Implementation()
+        public void Test_IUserSettingsRepository_Can_Be_Resolved()
         {
-            _kernel.Get<IUserSettingsRepository>();
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<IUserSettingsRepository>());
         }
 
         [TestMethod]
-        public void Test_DocaryContext_Has_An_Implementation()
+        public void Test_DocaryContext_Can_Be_Resolved()
         {            
-            _kernel.Get<DocaryContext>();            
+            Xunit.Assert.DoesNotThrow(
+                () => _kernel.Get<DocaryContext>());            
         }
     }
 }

@@ -79,6 +79,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\WebActivator.dll</HintPath>
     </Reference>
+    <Reference Include="xunit">
+      <HintPath>..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DatabaseSetup.cs" />
