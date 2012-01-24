@@ -33,7 +33,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_Mobile_IHomeAssembler_Is_Transient()
         {
-            AssertTransient<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>();
+            AssertNewInstanceIsResolved<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>();
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_Desktop_IHomeAssembler_Is_Transient()
         {
-            AssertTransient<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>();
+            AssertNewInstanceIsResolved<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>();
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_Desktop_IStatisticsAssembler_Is_Transient()
         {
-            AssertTransient<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>();
+            AssertNewInstanceIsResolved<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>();
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_IEntryService_Is_Transient()
         {
-            AssertTransient<IEntryService>();
+            AssertNewInstanceIsResolved<IEntryService>();
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_ITimeService_Is_Transient()
         {
-            AssertTransient<ITimeService>();
+            AssertNewInstanceIsResolved<ITimeService>();
         }
 
         [TestMethod]
@@ -93,7 +93,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_ITimelineColorService_Is_Transient()
         {
-            AssertTransient<ITimelineColorService>();
+            AssertNewInstanceIsResolved<ITimelineColorService>();
         }
 
         [TestMethod]
@@ -105,7 +105,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_IUserSettingsService_Transient()
         {
-            AssertTransient<IUserSettingsService>();
+            AssertNewInstanceIsResolved<IUserSettingsService>();
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_IEntryRepository_Transient()
         {
-            AssertTransient<IEntryRepository>();
+            AssertNewInstanceIsResolved<IEntryRepository>();
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_ILocationRepository_Transient()
         {
-            AssertTransient<ILocationRepository>();
+            AssertNewInstanceIsResolved<ILocationRepository>();
         }
 
         [TestMethod]
@@ -141,7 +141,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_ITagRepository_Transient()
         {
-            AssertTransient<ITagRepository>();
+            AssertNewInstanceIsResolved<ITagRepository>();
         }
         
         [TestMethod]
@@ -153,7 +153,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_ITimelineColorRepository_Transient()
         {
-            AssertTransient<ITimelineColorRepository>();
+            AssertNewInstanceIsResolved<ITimelineColorRepository>();
         }
 
         [TestMethod]
@@ -165,7 +165,7 @@ namespace Docary.Tests
         [TestMethod]
         public void Test_IUserSettingsRepository_Transient()
         {
-            AssertTransient<IUserSettingsRepository>();
+            AssertNewInstanceIsResolved<IUserSettingsRepository>();
         }
 
         [TestMethod]
@@ -179,7 +179,7 @@ namespace Docary.Tests
             Xunit.Assert.DoesNotThrow(() => _kernel.Get<T>());
         }
 
-        private void AssertTransient<T>()
+        private void AssertNewInstanceIsResolved<T>()
         {
             var instance = _kernel.Get<T>();
             var secondInstance = _kernel.Get<T>();
