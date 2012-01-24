@@ -9,6 +9,7 @@ using Docary.ViewModelAssemblers.Desktop;
 using Docary.Services;
 using Docary.Repositories;
 using Docary.Repositories.EF;
+using System.Web;
 
 namespace Docary.Tests
 {
@@ -26,92 +27,164 @@ namespace Docary.Tests
         [TestMethod]        
         public void Test_Mobile_IHomeAssembler_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                (() => _kernel.Get<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>()));
+            AssertDoesNotThrowWhenResolved<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>();
+        }
+
+        [TestMethod]
+        public void Test_Mobile_IHomeAssembler_Is_Transient()
+        {
+            AssertTransient<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>();
         }
 
         [TestMethod]
         public void Test_Desktop_IHomeAssembler_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                (() => _kernel.Get<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>()));
+            AssertDoesNotThrowWhenResolved<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>();
+        }
+
+        [TestMethod]
+        public void Test_Desktop_IHomeAssembler_Is_Transient()
+        {
+            AssertTransient<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>();
         }
 
         [TestMethod]
         public void Test_Desktop_IStatisticsAssembler_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                (() => _kernel.Get<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>()));
+            AssertDoesNotThrowWhenResolved<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>();
+        }
+
+        [TestMethod]
+        public void Test_Desktop_IStatisticsAssembler_Is_Transient()
+        {
+            AssertTransient<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>();
         }
 
         [TestMethod]
         public void Test_IEntryService_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<IEntryService>());
+            AssertDoesNotThrowWhenResolved<IEntryService>();
+        }
+
+        [TestMethod]
+        public void Test_IEntryService_Is_Transient()
+        {
+            AssertTransient<IEntryService>();
         }
 
         [TestMethod]
         public void Test_ITimeService_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<ITimeService>());
+            AssertDoesNotThrowWhenResolved<ITimeService>();
+        }
+
+        [TestMethod]
+        public void Test_ITimeService_Is_Transient()
+        {
+            AssertTransient<ITimeService>();
         }
 
         [TestMethod]
         public void Test_ITimelineColorService_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<ITimelineColorService>());
+            AssertDoesNotThrowWhenResolved<ITimelineColorService>();
+        }
+
+        [TestMethod]
+        public void Test_ITimelineColorService_Is_Transient()
+        {
+            AssertTransient<ITimelineColorService>();
         }
 
         [TestMethod]
         public void Test_IUserSettingsService_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<IUserSettingsService>());
+            AssertDoesNotThrowWhenResolved<IUserSettingsService>();
+        }
+
+        [TestMethod]
+        public void Test_IUserSettingsService_Transient()
+        {
+            AssertTransient<IUserSettingsService>();
         }
 
         [TestMethod]
         public void Test_IEntryRepository_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<IEntryRepository>());
+            AssertDoesNotThrowWhenResolved<IEntryRepository>();
+        }
+
+        [TestMethod]
+        public void Test_IEntryRepository_Transient()
+        {
+            AssertTransient<IEntryRepository>();
         }
 
         [TestMethod]
         public void Test_ILocationRepository_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<ILocationRepository>());
+            AssertDoesNotThrowWhenResolved<ILocationRepository>();
+        }
+
+        [TestMethod]
+        public void Test_ILocationRepository_Transient()
+        {
+            AssertTransient<ILocationRepository>();
         }
 
         [TestMethod]
         public void Test_ITagRepository_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<ITagRepository>());
+            AssertDoesNotThrowWhenResolved<ITagRepository>();
+        }
+
+        [TestMethod]
+        public void Test_ITagRepository_Transient()
+        {
+            AssertTransient<ITagRepository>();
         }
         
         [TestMethod]
         public void Test_ITimelineColorRepository_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<ITimelineColorRepository>());
+            AssertDoesNotThrowWhenResolved<ITimelineColorRepository>();
+        }
+
+        [TestMethod]
+        public void Test_ITimelineColorRepository_Transient()
+        {
+            AssertTransient<ITimelineColorRepository>();
         }
 
         [TestMethod]
         public void Test_IUserSettingsRepository_Can_Be_Resolved()
         {
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<IUserSettingsRepository>());
+           AssertDoesNotThrowWhenResolved<IUserSettingsRepository>();
+        }
+
+        [TestMethod]
+        public void Test_IUserSettingsRepository_Transient()
+        {
+            AssertTransient<IUserSettingsRepository>();
         }
 
         [TestMethod]
         public void Test_DocaryContext_Can_Be_Resolved()
         {            
-            Xunit.Assert.DoesNotThrow(
-                () => _kernel.Get<DocaryContext>());            
+            AssertDoesNotThrowWhenResolved<DocaryContext>();            
+        }        
+
+        private void AssertDoesNotThrowWhenResolved<T>() 
+        {
+            Xunit.Assert.DoesNotThrow(() => _kernel.Get<T>());
         }
+
+        private void AssertTransient<T>()
+        {
+            var instance = _kernel.Get<T>();
+            var secondInstance = _kernel.Get<T>();
+
+            Assert.AreNotSame(instance, secondInstance);
+        }       
     }
 }
