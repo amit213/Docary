@@ -31,7 +31,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_Mobile_IHomeAssembler_Is_Transient()
+        public void Test_Mobile_IHomeAssembler_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<Docary.ViewModelAssemblers.Mobile.IHomeAssembler>();
         }
@@ -43,7 +43,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_Desktop_IHomeAssembler_Is_Transient()
+        public void Test_Desktop_IHomeAssembler_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<Docary.ViewModelAssemblers.Desktop.IHomeAssembler>();
         }
@@ -55,7 +55,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_Desktop_IStatisticsAssembler_Is_Transient()
+        public void Test_Desktop_IStatisticsAssembler_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<Docary.ViewModelAssemblers.Desktop.IStatisticsAssembler>();
         }
@@ -67,7 +67,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_IEntryService_Is_Transient()
+        public void Test_IEntryService_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<IEntryService>();
         }
@@ -79,7 +79,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_ITimeService_Is_Transient()
+        public void Test_ITimeService_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<ITimeService>();
         }
@@ -91,7 +91,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_ITimelineColorService_Is_Transient()
+        public void Test_ITimelineColorService_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<ITimelineColorService>();
         }
