@@ -30,11 +30,11 @@ namespace Docary.MvcExtensions
             if (!string.IsNullOrEmpty(returnUrl))
                 valueToSearchIn = returnUrl;
 
-            var urlContainsMobile = valueToSearchIn.IndexOf("/mobile/", StringComparison.OrdinalIgnoreCase) > -1;
+            var urlContainsMobile = valueToSearchIn.IndexOf("mobile", StringComparison.OrdinalIgnoreCase) > -1;
             if (urlContainsMobile)
                 return mobileArea;
 
-            var urlContainsDesktop = valueToSearchIn.IndexOf("/desktop/", StringComparison.OrdinalIgnoreCase) > -1;
+            var urlContainsDesktop = valueToSearchIn.IndexOf("desktop", StringComparison.OrdinalIgnoreCase) > -1;
             if (urlContainsDesktop)
                 return desktopArea;
 
