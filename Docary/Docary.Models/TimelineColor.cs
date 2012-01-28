@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations;
 namespace Docary.Models
 {
     public class TimelineColor
-    {       
+    {
+        public TimelineColor() { }
 
         public TimelineColor(string value)
         {
