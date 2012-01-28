@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+using Microsoft.Web.Mvc;
 
 namespace Docary.ViewModels.Shared.Account
 {
@@ -15,7 +13,8 @@ namespace Docary.ViewModels.Shared.Account
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email address")]
+        [Display(Name = "Email address")]        
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
