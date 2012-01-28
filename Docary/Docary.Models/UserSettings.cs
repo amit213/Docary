@@ -9,9 +9,12 @@ namespace Docary.Models
     public class UserSettings
     {
         public int Id { get; set; }
+
         [Required]
+        [StringLength(36)]
         public string UserId { get; set; }
-        [Required]
+
+        [Required]        
         public string TimeZoneId { get; set; }
 
         public TimeZoneInfo TimeZone

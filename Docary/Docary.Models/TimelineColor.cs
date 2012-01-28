@@ -16,7 +16,9 @@ namespace Docary.Models
         }
 
         public int Id { get; set; }
+
         [Required]
+        [StringLength(15)]
         public string Value { get; set; }
     }
 }

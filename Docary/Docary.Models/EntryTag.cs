@@ -19,11 +19,17 @@ namespace Docary.Models
         }
 
         public int Id { get; set; }
+        
         [Required]
+        [StringLength(30)]
         public string Name { get; set; }
+
         [Required]
+        [StringLength(15)]
         public string Color { get; set; }
+
         [Required]
+        [StringLength(36)]
         public string UserId { get; set; }
 
         public string TitleCasedName
