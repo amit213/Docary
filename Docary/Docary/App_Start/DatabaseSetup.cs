@@ -13,8 +13,7 @@ namespace Docary.App_Start
     {
         public static void Start()
         {
-            var docarySetup = new DocarySetup();
-            docarySetup.Run();
+            new DocarySetup().Run();            
         }
     }
 }
