@@ -38,6 +38,16 @@ namespace Docary.ViewModelAssemblers.Desktop
             return AssembleHomeStatisticsViewModel(defaultStatisticsModel, userId);
         }
 
+        public HomeStatisticsViewModel AssembleHomeStatisticsViewModel(string userId, DateTime from, DateTime to)
+        {
+            var statisticsModel = new HomeStatisticsViewModel();
+
+            statisticsModel.From = from;
+            statisticsModel.To = to;
+
+            return AssembleHomeStatisticsViewModel(statisticsModel, userId);
+        }
+
         public HomeStatisticsViewModel AssembleHomeStatisticsViewModel(HomeStatisticsViewModel statisticsViewmodel, string userId)
         {
             var userSettings = GetUserSettings(userId);

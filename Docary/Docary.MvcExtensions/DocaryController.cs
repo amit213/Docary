@@ -21,6 +21,23 @@ namespace Docary.MvcExtensions
             }
         }
 
+        public UserSession UserSession
+        {
+            get
+            {
+                var userSession = Session["UserSession"] as UserSession;
+
+                if (userSession == null)
+                    return new UserSession();
+
+                return userSession;
+            }
+            set
+            {
+                Session["UserSession"] = value;
+            }
+        }        
+
         protected override void HandleUnknownAction(string actionName)
         {
             if (!HttpContext.Request.HttpMethod.Equals("GET", StringComparison.OrdinalIgnoreCase))

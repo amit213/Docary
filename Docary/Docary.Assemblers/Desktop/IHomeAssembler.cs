@@ -10,6 +10,8 @@ namespace Docary.ViewModelAssemblers.Desktop
     {
         HomeIndexViewModel AssembleHomeIndexViewModel(string userId);
 
+        HomeIndexViewModel AssembleHomeIndexViewModel(string userId, DateTime from, DateTime to);
+
         HomeIndexViewModel AssembleHomeIndexViewModel(HomeIndexViewModel homeIndexViewModel, string userId);
     }
 }

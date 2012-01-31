@@ -24,8 +24,18 @@ namespace Docary.Areas.Desktop.Controllers
         [HttpGet]
         [Authorize]
         public ActionResult Index()
-        {         
-            var model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
+        {
+            HomeIndexViewModel model = null;            
+
+            if (UserSession.HomeIndexFrom.HasValue && UserSession.HomeIndexTo.HasValue)
+            {
+                model = _homeAssembler.AssembleHomeIndexViewModel(
+                    UserId, UserSession.HomeIndexFrom.Value, UserSession.HomeIndexTo.Value);
+            }
+            else
+            {
+                model = _homeAssembler.AssembleHomeIndexViewModel(UserId);
+            }            
 
             ViewData.Model = model;
             ViewBag.EntryGroups = model.EntryGroups;
@@ -37,10 +47,23 @@ namespace Docary.Areas.Desktop.Controllers
         [Authorize]
         public ActionResult Index(HomeIndexViewModel indexViewModel)
         {
-            var model = _homeAssembler.AssembleHomeIndexViewModel(indexViewModel, UserId);
+            if (ViewData.ModelState.IsValid)
+            {
+                var model = _homeAssembler.AssembleHomeIndexViewModel(indexViewModel, UserId);
 
-            ViewData.Model = model;
-            ViewBag.EntryGroups = model.EntryGroups;
+                ViewData.Model = model;
+                ViewBag.EntryGroups = model.EntryGroups;
+
+                var userSession = UserSession;
+                userSession.HomeIndexFrom = indexViewModel.From;
+                userSession.HomeIndexTo = indexViewModel.To;
+                UserSession = userSession;
+            }
+            else
+            {
+                ViewData.Model = indexViewModel;
+                ViewBag.EntryGroups = indexViewModel.EntryGroups;
+            }
 
             return View();
         }
@@ -48,7 +71,17 @@ namespace Docary.Areas.Desktop.Controllers
         [Authorize]
         public ActionResult Statistics()
         {
-            var model = _statisticsAssembler.AssembleHomeStatisticsViewModel(UserId);
+            HomeStatisticsViewModel model = null;
+
+            if (UserSession.HomeStatisticsFrom.HasValue && UserSession.HomeStatisticsTo.HasValue)
+            {
+                model = _statisticsAssembler.AssembleHomeStatisticsViewModel(
+                    UserId, UserSession.HomeIndexFrom.Value, UserSession.HomeIndexTo.Value);
+            }
+            else
+            {
+                model = _statisticsAssembler.AssembleHomeStatisticsViewModel(UserId);
+            }
 
             ViewData.Model = model;
 
@@ -59,9 +92,21 @@ namespace Docary.Areas.Desktop.Controllers
         [Authorize]
         public ActionResult Statistics(HomeStatisticsViewModel statisticsViewModel)
         {
-            var model = _statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, UserId);
+            if (ModelState.IsValid)
+            {
+                var model = _statisticsAssembler.AssembleHomeStatisticsViewModel(statisticsViewModel, UserId);
 
-            ViewData.Model = model;
+                ViewData.Model = model;
+
+                var userSession = UserSession;
+                userSession.HomeStatisticsFrom = statisticsViewModel.From;
+                userSession.HomeStatisticsTo = statisticsViewModel.To;
+                UserSession = userSession;
+            }
+            else
+            {
+                ViewData.Model = statisticsViewModel;
+            }
 
             return View();
         }

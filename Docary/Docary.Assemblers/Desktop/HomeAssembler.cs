@@ -33,6 +33,13 @@ namespace Docary.ViewModelAssemblers.Desktop
             SetDefaultDatesWhenEmpty(defaultModel, userTimeZone);
 
             return AssembleHomeIndexViewModel(defaultModel, userId);
+        }
+
+        public HomeIndexViewModel AssembleHomeIndexViewModel(string userId, DateTime from, DateTime to)
+        {
+            var homeIndexViewModel = new HomeIndexViewModel(from, to);                                 
+
+            return AssembleHomeIndexViewModel(homeIndexViewModel, userId);
         }        
 
         // TODO: Wow, this got ugly fast. Can this be simplified?
