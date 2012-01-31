@@ -40,6 +40,11 @@ html, body {
 	background-color: #B3B3B3;	
 }
 
+.header-alpha {
+    color: red;
+    font-size: 35px;
+}
+
 .menu {
     background-color: #B3B3B3;  
     font-weight:  bold;

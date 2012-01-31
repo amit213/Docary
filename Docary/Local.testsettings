@@ -10,6 +10,27 @@
       </UnitTestRunConfig>
     </TestTypeSpecific>
     <AgentRule name="LocalMachineDefaultRole">
+      <DataCollectors>
+        <DataCollector uri="datacollector://microsoft/CodeCoverage/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.CodeCoverage.CoveragePlugIn, Microsoft.VisualStudio.QualityTools.Plugins.CodeCoverage, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Code Coverage">
+          <Configuration>
+            <CodeCoverage xmlns="">
+              <Regular>
+                <CodeCoverageItem binaryFile="Docary.Models\bin\Debug\Docary.Models.dll" pdbFile="Docary.Models\bin\Debug\Docary.Models.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Docary.MvcExtensions\bin\Debug\Docary.MvcExtensions.dll" pdbFile="Docary.MvcExtensions\bin\Debug\Docary.MvcExtensions.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Docary.Repositories\bin\Debug\Docary.Repositories.dll" pdbFile="Docary.Repositories\bin\Debug\Docary.Repositories.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Docary.Repositories.EF\bin\Debug\Docary.Repositories.EF.dll" pdbFile="Docary.Repositories.EF\bin\Debug\Docary.Repositories.EF.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Docary.Services\bin\Debug\Docary.Services.dll" pdbFile="Docary.Services\bin\Debug\Docary.Services.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Docary.Assemblers\bin\Debug\Docary.ViewModelAssemblers.dll" pdbFile="Docary.Assemblers\bin\Debug\Docary.ViewModelAssemblers.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Docary.ViewModelExtractors\bin\Debug\Docary.ViewModelExtractors.dll" pdbFile="Docary.ViewModelExtractors\bin\Debug\Docary.ViewModelExtractors.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Docary.ViewModels\bin\Debug\Docary.ViewModels.dll" pdbFile="Docary.ViewModels\bin\Debug\Docary.ViewModels.pdb" instrumentInPlace="true" />
+              </Regular>
+              <AspNet>
+                <AspNetCodeCoverageItem id="32ebef9f-807b-4ea0-afaf-93ee702c82c0" name="Docary" applicationRoot="/" url="http://localhost:0/" />
+              </AspNet>
+            </CodeCoverage>
+          </Configuration>
+        </DataCollector>
+      </DataCollectors>
     </AgentRule>
   </Execution>
 </TestSettings>

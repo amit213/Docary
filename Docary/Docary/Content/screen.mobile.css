@@ -1,3 +1,8 @@
 ﻿.validation-summary-valid { display:none; }
 
 #title a { text-decoration:none; color: White;}
+
+.header-alpha {
+    color: Red;
+    font-size: 75%;
+}
