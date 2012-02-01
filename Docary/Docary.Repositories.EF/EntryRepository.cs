@@ -15,7 +15,9 @@ namespace Docary.Repositories.EF
 
         public override IQueryable<Entry> Get()
         {    
-            return Context.Entries.Include(e => e.Tag).Include(e => e.Location);         
+            return Context.Entries
+                    .Include(e => e.Tag)
+                    .Include(e => e.Location);         
         }
 
         public IEnumerable<Entry> Get(DateTime createdOnMin, DateTime createdOnMax, string userId)
@@ -49,7 +51,7 @@ namespace Docary.Repositories.EF
 
         public void Update(Entry item)
         {
-            // Todo: Fund a way to move this to the generic repository
+            // TODO: Move Update to generic repository
             var entryToUpdate = Context.Entries.Where(e => e.Id == item.Id).First();
 
             entryToUpdate.CreatedOn = item.CreatedOn;

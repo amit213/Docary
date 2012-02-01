@@ -11,10 +11,7 @@ namespace Docary.Repositories.EF
     public class UserSettingsRepository : RepositoryBase<UserSettings>, IUserSettingsRepository
     {
         public UserSettingsRepository(DocaryContext context)
-            : base(context)
-        {
-
-        }
+            : base(context) { }
 
         public UserSettings Get(string userId)
         {

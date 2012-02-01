@@ -18,7 +18,11 @@ namespace Docary.Services
 
         public TimelineColor GetRandom()
         {
-            var uniqueIds = _timelineColorRepository.Get().Select(tc => tc.Id).OrderBy(tc => tc).ToArray();
+            var uniqueIds = _timelineColorRepository
+                .Get()
+                .Select(tc => tc.Id)
+                .OrderBy(tc => tc)
+                .ToArray();
             
             var random = new Random().Next(0, uniqueIds.Length);
             var randomId = uniqueIds[random];

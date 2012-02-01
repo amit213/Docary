@@ -128,11 +128,9 @@ namespace Docary.Services
 
         private EntryTag AddTagBasedOnEntry(Entry entry)
         {
-            var randomColor = _timelineColorService.GetRandom().Value;
+            var randomColor = _timelineColorService.GetRandom().Value;            
 
-            var tag = new EntryTag(entry.Tag.Name, randomColor, entry.UserId);
-
-            return _tagRepository.Add(tag);
+            return _tagRepository.Add(new EntryTag(entry.Tag.Name, randomColor, entry.UserId));
         }       
     }
 }

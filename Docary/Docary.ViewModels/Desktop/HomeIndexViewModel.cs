@@ -56,6 +56,15 @@ namespace Docary.ViewModels.Desktop
 
     public class HomeIndexViewModelEntry
     {
+        public HomeIndexViewModelEntry() { }
+
+        public HomeIndexViewModelEntry(double percentage, DateTime start, DateTime end)
+        {
+            Percentage = percentage;
+            Start = start;
+            End = end;
+        }
+
         public double Percentage { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }

@@ -6,8 +6,5 @@ using System.Web.Mvc;
 
 namespace Docary.Areas.Desktop.Controllers
 {
-    public class ErrorsController : Docary.Areas.Shared.Controllers.ErrorsController
-    {      
-       
-    }
+    public class ErrorsController : Docary.Areas.Shared.Controllers.ErrorsController { }
 }

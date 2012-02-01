@@ -14,6 +14,8 @@ namespace Docary.ViewModelAssemblers.Desktop
         private ITimeService _timeService;
         private IUserSettingsService _userSettingsService;        
 
+        private const int SECONDS_IN_DAY = 24 * 3600;
+
         public HomeAssembler(
             IEntryService entryService, 
             ITimeService timeService,
@@ -26,13 +28,13 @@ namespace Docary.ViewModelAssemblers.Desktop
 
         public HomeIndexViewModel AssembleHomeIndexViewModel(string userId)
         {              
-            var defaultModel = new HomeIndexViewModel();
+            var homeIndexViewModel = new HomeIndexViewModel();
 
             var userTimeZone = _userSettingsService.Get(userId).TimeZone;
 
-            SetDefaultDatesWhenEmpty(defaultModel, userTimeZone);
+            SetDefaultDatesWhenEmpty(homeIndexViewModel, userTimeZone);
 
-            return AssembleHomeIndexViewModel(defaultModel, userId);
+            return AssembleHomeIndexViewModel(homeIndexViewModel, userId);
         }
 
         public HomeIndexViewModel AssembleHomeIndexViewModel(string userId, DateTime from, DateTime to)
@@ -45,9 +47,7 @@ namespace Docary.ViewModelAssemblers.Desktop
         // TODO: Wow, this got ugly fast. Can this be simplified?
         public HomeIndexViewModel AssembleHomeIndexViewModel(HomeIndexViewModel homeIndexViewModelIn, string userId)
         {
-            var indexViewModelResult = new HomeIndexViewModel(
-                homeIndexViewModelIn.From, 
-                homeIndexViewModelIn.To);
+            var indexViewModelResult = new HomeIndexViewModel(homeIndexViewModelIn.From, homeIndexViewModelIn.To);
 
             var userTimeZone = _userSettingsService.Get(userId).TimeZone;            
 
@@ -84,51 +84,41 @@ namespace Docary.ViewModelAssemblers.Desktop
                         entryCreatedOnUserTimeZone > endOfTheDay)
                         continue;
 
-                    var entryToAdd = new HomeIndexViewModelEntry();                    
-
-                    // Entry spans full day
-                    if (entryCreatedOnUserTimeZone <= startOfTheDay && 
-                        entryStoppedOnUserTimeZone >= endOfTheDay)
-                    {                       
-                        entryToAdd.Start = startOfTheDay;
-                        entryToAdd.End = endOfTheDay;
-                        entryToAdd.Percentage = 100;
-                    }
-                    // Entry started before the current day
+                    HomeIndexViewModelEntry viewModelEntry = null;
+                    
+                    if (entryCreatedOnUserTimeZone <= startOfTheDay && entryStoppedOnUserTimeZone >= endOfTheDay)
+                    {                        
+                        viewModelEntry = new HomeIndexViewModelEntry(100, startOfTheDay, endOfTheDay);
+                    }                    
                     else if (entryCreatedOnUserTimeZone <= startOfTheDay)
                     {
                         var diff = entryStoppedOnUserTimeZone.Value.Subtract(startOfTheDay);
-                        var diffPercent = diff.TotalSeconds / (24 * 3600);
+                        var diffPercent = (diff.TotalSeconds / SECONDS_IN_DAY) * 100;
 
-                        entryToAdd.Percentage = diffPercent * 100;
-                        entryToAdd.Start = startOfTheDay;
-                        entryToAdd.End = entryStoppedOnUserTimeZone.Value;                     
-                    }
-                    // Entry stopped after the current day
+                        viewModelEntry = new HomeIndexViewModelEntry(
+                            diffPercent, startOfTheDay, entryStoppedOnUserTimeZone.Value);                        
+                    }                    
                     else if (entryStoppedOnUserTimeZone.Value >= endOfTheDay)
                     {
                         var diff = endOfTheDay.Subtract(entryCreatedOnUserTimeZone);
-                        var diffPercent = diff.TotalSeconds / (24 * 3600);
+                        var diffPercent = (diff.TotalSeconds / SECONDS_IN_DAY) * 100;
 
-                        entryToAdd.Percentage = diffPercent * 100;
-                        entryToAdd.Start = entryCreatedOnUserTimeZone;
-                        entryToAdd.End = endOfTheDay;                        
-                    }
-                    // Entry spans a part of the day
+                        viewModelEntry = new HomeIndexViewModelEntry(
+                            diffPercent, entryCreatedOnUserTimeZone, endOfTheDay);                                   
+                    }                    
                     else
-                    {
+                    {                     
                         var diff = entryStoppedOnUserTimeZone.Value.Subtract(entryCreatedOnUserTimeZone);
-                        var diffPercent = diff.TotalSeconds / (24 * 3600);
+                        var diffPercent = (diff.TotalSeconds / SECONDS_IN_DAY) * 100;
 
-                        entryToAdd.Percentage = diffPercent * 100;
-                        entryToAdd.Start = entryCreatedOnUserTimeZone;
-                        entryToAdd.End = entryStoppedOnUserTimeZone.Value;                        
+                        viewModelEntry = new HomeIndexViewModelEntry(
+                            diffPercent, entryCreatedOnUserTimeZone, entryStoppedOnUserTimeZone.Value);                        
                     }
 
-                    entryToAdd.Tag = entry.Tag == null ? string.Empty : entry.Tag.TitleCasedName;
-                    entryToAdd.Color = entry.Tag == null ? string.Empty : entry.Tag.Color;
-                    entryToAdd.Title = string.Format("{0} ({1}-{2}): {3}", 
-                        new object[] { entryToAdd.Tag, entryToAdd.Start.ToShortTimeString(), entryToAdd.End.ToShortTimeString(), entry.Description });
+                    viewModelEntry.Tag = entry.Tag == null ? string.Empty : entry.Tag.TitleCasedName;
+                    viewModelEntry.Color = entry.Tag == null ? string.Empty : entry.Tag.Color;
+                    viewModelEntry.Title = string.Format("{0} ({1}-{2}): {3}", 
+                        new object[] { viewModelEntry.Tag, viewModelEntry.Start.ToShortTimeString(), viewModelEntry.End.ToShortTimeString(), entry.Description });
 
                     if (indexViewModelResult.EntryGroups.Any(eg => eg.Date == startOfTheDay))
                     {
@@ -136,7 +126,7 @@ namespace Docary.ViewModelAssemblers.Desktop
                         var newEntryGroup = new HomeIndexViewModelEntryGroup(oldEntryGroup.Date);                        
                         
                         newEntryGroup.Entries = oldEntryGroup.Entries;
-                        newEntryGroup.Entries.Add(entryToAdd);
+                        newEntryGroup.Entries.Add(viewModelEntry);
 
                         indexViewModelResult.EntryGroups.RemoveAll(eg => eg.Date == startOfTheDay);
                         indexViewModelResult.EntryGroups.Add(newEntryGroup);
@@ -145,7 +135,7 @@ namespace Docary.ViewModelAssemblers.Desktop
                     {                  
                         var entryGroup = new HomeIndexViewModelEntryGroup(startOfTheDay);                                                
                         
-                        entryGroup.Entries.Add(entryToAdd);
+                        entryGroup.Entries.Add(viewModelEntry);
                         indexViewModelResult.EntryGroups.Add(entryGroup);
                     }
                 }
