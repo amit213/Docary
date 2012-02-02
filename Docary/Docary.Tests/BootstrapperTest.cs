@@ -103,7 +103,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_IUserSettingsService_Transient()
+        public void Test_IUserSettingsService_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<IUserSettingsService>();
         }
@@ -115,7 +115,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_IEntryRepository_Transient()
+        public void Test_IEntryRepository_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<IEntryRepository>();
         }
@@ -127,7 +127,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_ILocationRepository_Transient()
+        public void Test_ILocationRepository_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<ILocationRepository>();
         }
@@ -139,7 +139,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_ITagRepository_Transient()
+        public void Test_ITagRepository_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<ITagRepository>();
         }
@@ -151,7 +151,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_ITimelineColorRepository_Transient()
+        public void Test_ITimelineColorRepository_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<ITimelineColorRepository>();
         }
@@ -163,7 +163,7 @@ namespace Docary.Tests
         }
 
         [TestMethod]
-        public void Test_IUserSettingsRepository_Transient()
+        public void Test_IUserSettingsRepository_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<IUserSettingsRepository>();
         }
