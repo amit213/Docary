@@ -152,8 +152,7 @@ strong {
     color: #0099FF;
 }
 
-/* Styles for validation helpers
------------------------------------------------------------*/
+/* Styles for validation helpers */
 .field-validation-error {
     color: #ff0000;
 }
@@ -177,8 +176,7 @@ strong {
     display: none;
 }
 
-/* Timeline
------------------------------------------------------------*/
+/* Timeline */
 
 .legenda-container {
     padding-top: 15px;
@@ -246,4 +244,10 @@ strong {
 
 .form-input {
     padding-bottom: 3px;
+}
+
+/* Welcome */
+
+.welcome-text {
+    font-size: 15px;
 }
