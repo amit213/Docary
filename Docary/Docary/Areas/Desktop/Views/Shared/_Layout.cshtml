@@ -10,7 +10,10 @@
 <body>
     <div class="wrapper">
 		<div class="header">
-			<h1>@Html.ActionLink("Docary", "Index", "Home")<span class="header-alpha">&#x3B1;lph&#x3B1;</span></h1>
+            @{ 
+                var headerUrl = User.Identity.IsAuthenticated ? Html.ActionLink("Docary", "Index", "Home") : Html.ActionLink("Docary", "Welcome", "Home"); 
+            }
+			<h1>@headerUrl<span class="header-alpha">&#x3B1;lph&#x3B1;</span></h1>
 		</div>
         <div class="menu">
             @RenderSection("Menu", false)            
