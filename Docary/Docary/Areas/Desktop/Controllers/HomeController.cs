@@ -113,8 +113,6 @@ namespace Docary.Areas.Desktop.Controllers
 
         public ActionResult Welcome()
         {
-            throw new Exception("Exception for ELMAH blog post");
-
             return View();
         }      
     }
