@@ -1,3 +1,0 @@
-Analytics
-Refactoring of the desktop home assembler
-Show message when no entries found
