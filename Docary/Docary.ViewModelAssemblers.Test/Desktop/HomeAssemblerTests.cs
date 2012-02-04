@@ -11,7 +11,7 @@ using Moq;
 namespace Docary.ViewModelAssemblers.Test.Desktop
 {
     [TestClass]
-    public class HomeAssemblerTests
+    public class HomeAssemblerAssembleHomeIndexViewModelTests
     {
         private const string TIMEZONE = "W. Europe Standard Time";      
 
@@ -25,7 +25,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
    
         [TestMethod()]
-        public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
+        public void Test_Groups_Entries_Correctly()
         {           
             var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0, DateTimeKind.Local);
             var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0, DateTimeKind.Local);
@@ -44,7 +44,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
       
         [TestMethod()]
-        public void Test_AssembleHomeIndexViewModel_Calculates_EntryPercentages_Correctly()
+        public void Test_Calculates_EntryPercentages_Correctly()
         {
             var createdOnMin = new DateTime(2011, 10, 18, 0, 0, 0, DateTimeKind.Local);
             var createdOnMax = new DateTime(2011, 10, 21, 0, 0, 0, DateTimeKind.Local);
@@ -65,7 +65,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod()]
-        public void Test_AssembleHomeIndexViewModel_Populates_The_Tag_Property()
+        public void Test_Populates_The_Tag_Property()
         {
             var createdOnMin = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
             var createdOnMax = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(3), TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
@@ -82,7 +82,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }       
 
         [TestMethod()]
-        public void Test_AssembleHomeIndexViewModel_Populates_The_Legenda()
+        public void Test_Populates_The_Legenda()
         {
             var createdOnMin = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
             var createdOnMax = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(3), TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
@@ -95,7 +95,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod()]
-        public void Test_AssembleHomeIndexViewModel_Populates_The_Legenda_With_Three_Tags()
+        public void Test_Populates_The_Legenda_With_Three_Tags()
         {
             var createdOnMin = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));
             var createdOnMax = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(3), TimeZoneInfo.FindSystemTimeZoneById(TIMEZONE));

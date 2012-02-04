@@ -11,10 +11,10 @@ using Moq;
 namespace Docary.ViewModelAssemblers.Test.Mobile
 {
     [TestClass()]
-    public class HomeAssemblerTest
+    public class HomeAssemblerAssembleHomeIndexViewModelTest
     {
         [TestMethod()]
-        public void Test_AssembleHomeIndexViewModel_Initializes_EntryGroups()
+        public void Test_Initializes_EntryGroups()
         {
             var target = new HomeAssembler(
                 GetEntryServiceStubForTestingEntryGroups(), 
@@ -27,7 +27,7 @@ namespace Docary.ViewModelAssemblers.Test.Mobile
         }
 
         [TestMethod()]
-        public void Test_AssembleHomeIndexViewModel_Groups_Entries_Correctly()
+        public void Test_Groups_Entries_Correctly()
         {
             var target = new HomeAssembler(
                 GetEntryServiceStubForTestingEntryGroups(), 

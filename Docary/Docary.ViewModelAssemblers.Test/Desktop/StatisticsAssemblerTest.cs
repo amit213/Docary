@@ -11,12 +11,12 @@ using Docary.ViewModels.Desktop;
 namespace Docary.ViewModelAssemblers.Test.Desktop
 {
     [TestClass]
-    public class StatisticsAssemblerTest
+    public class StatisticsAssemblerAssembleHomeStatisticsViewModelTest
     {
         private DateTime _baseDateTime = new DateTime(2011, 11, 8, 0, 0, 0, DateTimeKind.Local);
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_Fills_In_LatestEntry()
+        public void Test_Fills_In_LatestEntry()
         {
             var entryService = GetEntryService();
 
@@ -37,7 +37,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_Fills_In_Null_When_LatestEntry_Is_Null()
+        public void Test_Fills_In_Null_When_LatestEntry_Is_Null()
         {
             var entryService = GetEntryService();           
 
@@ -56,7 +56,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_Fills_In_FirstEntry()
+        public void Test_Fills_In_FirstEntry()
         {
             var entryService = GetEntryService();
 
@@ -77,7 +77,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_Fills_In_Null_When_FirstEntry_Is_Null()
+        public void Test_Fills_In_Null_When_FirstEntry_Is_Null()
         {
             var entryService = GetEntryService();        
 
@@ -96,7 +96,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_Fills_In_Number_Of_Entries()
+        public void Test_Fills_In_Number_Of_Entries()
         {
             var entryService = GetEntryService();
 
@@ -114,7 +114,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_PerTag_ViewModel_Is_Calculated_Correctly()
+        public void Test_PerTag_ViewModel_Is_Calculated_Correctly()
         {                   
             var statisticsAssembler = new StatisticsAssembler(
                 GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
@@ -135,7 +135,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_Uses_TitleCased_Names_For_The_TagNames() 
+        public void Test_Uses_TitleCased_Names_For_The_TagNames() 
         {
             var statisticsAssembler = new StatisticsAssembler(
                 GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
@@ -149,7 +149,7 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }        
 
         [TestMethod]
-        public void Test_AssembleHomeStatisticsViewModel_Orders_PerTag_Items_Descending()
+        public void Test_Orders_PerTag_Items_Descending()
         {
             var statisticsAssembler = new StatisticsAssembler(
                 GetEntryService().Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
