@@ -112,7 +112,7 @@ namespace Docary.Areas.Desktop.Controllers
         }
 
         public ActionResult Welcome()
-        {          
+        {
             return View();
         }      
     }

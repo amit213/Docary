@@ -6,6 +6,14 @@ Technology stack
 - ASP.NET MVC3
 - Entity Framework
 - Ninject
+
+Testing
 - Moq
-- jQuery mobile
+- xUnit (Extra assertions)
+
+Front-End
+- jQuery Mobile
 - jQuery UI
+
+Monitoring
+- Elmah
