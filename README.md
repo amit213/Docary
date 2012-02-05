@@ -2,7 +2,7 @@ Docary
 ======
 
 What is a Docary?
------------------
+------------------
 Basically it's a very straight-forward personal time-tracking application. It does not really aim towards a certain audience or niche. You can use it for whatever you want, there is no way this application tries to focus on the clients you visited, the time you spent studying or the time you spent on certain tasks.
 
 What can I do with it?
