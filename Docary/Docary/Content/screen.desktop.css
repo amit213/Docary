@@ -5,7 +5,7 @@
 
 html, body {
 	height: 100%;
-	background-color: #B3B3B3;        	
+	background-color: #ececec;        	
 	font-size: 14px;	
 }
 
@@ -17,7 +17,7 @@ html, body {
 	position: relative;
 	width: 1240px;	
 	text-align: left;	
-	background-color: #B3B3B3;	
+	background-color: #ececec;	
 }
 
 .content {
@@ -29,7 +29,7 @@ html, body {
 }
 
 .push {
-    background-color: #B3B3B3;
+    background-color: #ececec;
     height: 102px; /* .push must be the same height as .footer */	
 }
 
@@ -37,7 +37,7 @@ html, body {
 	height: 50px;	
 	padding-top: 15px;
 	padding-bottom: 40px;	
-	background-color: #B3B3B3;	
+	background-color: #ececec;	
 }
 
 .header-alpha {
@@ -46,7 +46,7 @@ html, body {
 }
 
 .menu {
-    background-color: #B3B3B3;  
+    background-color: #ececec;  
     font-weight:  bold;
     border-bottom: 1px solid;    
 }
