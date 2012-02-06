@@ -162,7 +162,10 @@ namespace Docary.ViewModelAssemblers.Desktop
         {
             var tags =  entries.Select(e => e.Tag).Distinct();
 
-            indexViewModel.Legenda = tags.Select(t => new HomeIndexViewModelLegendaTag(t.TitleCasedName, t.Color)).ToList();
+            indexViewModel.Legenda = 
+                tags.Select(t => new HomeIndexViewModelLegendaTag(t.TitleCasedName, t.Color))
+                    .OrderBy(t => t.Name)
+                    .ToList();
         }
     }
 }
