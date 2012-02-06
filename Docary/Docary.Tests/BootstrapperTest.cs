@@ -22,7 +22,13 @@ namespace Docary.Tests
         public void Setup()
         {         
             _kernel = NinjectMVC3.CreateKernel();
-        }       
+        }
+
+        [TestMethod]
+        public void Test_ISessionStore_Can_Be_Resolved()
+        {
+            AssertDoesNotThrowWhenResolved<ISessionStore>();
+        }
 
         [TestMethod]        
         public void Test_Mobile_IHomeAssembler_Can_Be_Resolved()
@@ -82,6 +88,12 @@ namespace Docary.Tests
         public void Test_ITimeService_Is_New_Instance()
         {
             AssertNewInstanceIsResolved<ITimeService>();
+        }
+
+        [TestMethod]
+        public void Test_ISessionStore_Is_New_Instance()
+        {
+            AssertNewInstanceIsResolved<ISessionStore>();
         }
 
         [TestMethod]

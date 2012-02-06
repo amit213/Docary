@@ -12,25 +12,30 @@ namespace Docary.Areas.Desktop.Controllers
     {
         private IHomeAssembler _homeAssembler;
         private IStatisticsAssembler _statisticsAssembler;
+        private ISessionStore _sessionStore;
      
         public HomeController(
             IHomeAssembler homeAssembler, 
-            IStatisticsAssembler statisticsAssembler)            
+            IStatisticsAssembler statisticsAssembler,
+            ISessionStore sessionStore)            
         {
             _homeAssembler = homeAssembler;
-            _statisticsAssembler = statisticsAssembler;            
+            _statisticsAssembler = statisticsAssembler;
+            _sessionStore = sessionStore;
         }
        
         [HttpGet]
         [Authorize]
         public ActionResult Index()
         {
-            HomeIndexViewModel model = null;            
+            HomeIndexViewModel model = null;
 
-            if (UserSession.HomeIndexFrom.HasValue && UserSession.HomeIndexTo.HasValue)
+            var userSession = _sessionStore.GetUserSession();
+
+            if (userSession.HomeIndexFrom.HasValue && userSession.HomeIndexTo.HasValue)
             {
                 model = _homeAssembler.AssembleHomeIndexViewModel(
-                    UserId, UserSession.HomeIndexFrom.Value, UserSession.HomeIndexTo.Value);
+                    UserId, userSession.HomeIndexFrom.Value, userSession.HomeIndexTo.Value);
             }
             else
             {
@@ -54,10 +59,10 @@ namespace Docary.Areas.Desktop.Controllers
                 ViewData.Model = model;
                 ViewBag.EntryGroups = model.EntryGroups;
 
-                var userSession = UserSession;
+                var userSession = _sessionStore.GetUserSession();
                 userSession.HomeIndexFrom = indexViewModel.From;
                 userSession.HomeIndexTo = indexViewModel.To;
-                UserSession = userSession;
+                _sessionStore.SaveUserSession(userSession);
             }
             else
             {
@@ -73,10 +78,12 @@ namespace Docary.Areas.Desktop.Controllers
         {
             HomeStatisticsViewModel model = null;
 
-            if (UserSession.HomeStatisticsFrom.HasValue && UserSession.HomeStatisticsTo.HasValue)
+            var userSession = _sessionStore.GetUserSession();
+
+            if (userSession.HomeStatisticsFrom.HasValue && userSession.HomeStatisticsTo.HasValue)
             {
                 model = _statisticsAssembler.AssembleHomeStatisticsViewModel(
-                    UserId, UserSession.HomeIndexFrom.Value, UserSession.HomeIndexTo.Value);
+                    UserId, userSession.HomeIndexFrom.Value, userSession.HomeIndexTo.Value);
             }
             else
             {
@@ -98,10 +105,10 @@ namespace Docary.Areas.Desktop.Controllers
 
                 ViewData.Model = model;
 
-                var userSession = UserSession;
+                var userSession = _sessionStore.GetUserSession();
                 userSession.HomeStatisticsFrom = statisticsViewModel.From;
                 userSession.HomeStatisticsTo = statisticsViewModel.To;
-                UserSession = userSession;
+                _sessionStore.SaveUserSession(userSession);
             }
             else
             {

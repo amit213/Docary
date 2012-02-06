@@ -55,6 +55,7 @@ namespace Docary.App_Start
 
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<ISessionStore>().To<HttpSessionStore>();
             kernel.Bind<IEntryService>().To<EntryService>();
             kernel.Bind<ITimeService>().To<TimeService>();
             kernel.Bind<ITimelineColorService>().To<TimelineColorService>();

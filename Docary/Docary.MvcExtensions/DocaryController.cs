@@ -16,24 +16,7 @@ namespace Docary.MvcExtensions
             {
                 return Convert.ToString(Membership.GetUser(HttpContext.User.Identity.Name).ProviderUserKey);
             }
-        }
-
-        public UserSession UserSession
-        {
-            get
-            {
-                var userSession = Session["UserSession"] as UserSession;
-
-                if (userSession == null)
-                    return new UserSession();
-
-                return userSession;
-            }
-            set
-            {
-                Session["UserSession"] = value;
-            }
-        }        
+        }       
 
         protected override void HandleUnknownAction(string actionName)
         {
