@@ -68,7 +68,7 @@ else
             <tr>
                 <td class="header-base statistics-line-header">@item.TagName</td>
                 <td class="timelineblock" width="@widthPx">
-                    <div style="background-color:@item.TagColor" title="(@item.Time.Days day(s), @item.Time.Hours hour(s), @item.Time.Minutes minute(s))">&nbsp;</div>
+                    <div style="background-color:@item.TagColor" title="(@item.Time.Days day(s), @item.Time.Hours hour(s), @item.Time.Minutes minute(s))">@item.PercentageAsString%</div>
                 </td>
             </tr>  
         }    

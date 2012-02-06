@@ -106,6 +106,7 @@ namespace Docary.ViewModelAssemblers.Desktop
 
                 item.Time = timePerGroup;
                 item.Percentage = (timePerGroup.TotalSeconds / secondsTotal) * 100;
+                item.PercentageAsString = item.Percentage > 0 ? item.Percentage.ToString("f2") : "0";
 
                 items.Add(item);
             }

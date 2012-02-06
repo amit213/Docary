@@ -53,6 +53,7 @@ namespace Docary.ViewModels.Desktop
     public class HomeStatisticsPerTagItem
     {
         public double Percentage { get; set; }
+        public string PercentageAsString { get; set; }
         public TimeSpan Time { get; set; }
         public string TagName { get; set; }
         public string TagColor { get; set; }
