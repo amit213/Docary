@@ -36,5 +36,6 @@ Technology stack
 * jQuery Mobile
 * jQuery UI
 
-### Monitoring
+### Monitoring/Profiling
 * Elmah
+* Mvc Mini Profiler
