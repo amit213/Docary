@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-
-using Docary.MvcExtensions;
-
-using LowercaseRoutesMVC;
 using Docary.Areas.Shared.Controllers;
+using Docary.MvcExtensions;
+using LowercaseRoutesMVC;
+using MvcMiniProfiler;
+using System;
 
 namespace Docary
 {
@@ -28,6 +25,32 @@ namespace Docary
                 new { controller = "Home", action = "Index" }, // Parameter defaults
                 new[] { "Docary.Controllers" }
             );
+        }
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {            
+            filters.Add(new MiniProfileActionAttribute());
+        }
+
+        public static void RegisterProfiler()
+        {
+            MiniProfilerEF.Initialize();
+        }
+
+        protected void Application_BeginRequest()
+        {       
+            MiniProfiler.Start();         
+        }
+
+        protected void Application_AuthorizeRequest(object sender, EventArgs e)
+        {
+            if (User.Identity.Name != "Nemmie")
+                MvcMiniProfiler.MiniProfiler.Stop(true);
+        }
+
+        protected void Application_EndRequest()
+        {         
+            MiniProfiler.Stop();         
         }
 
         protected void Application_Error()
@@ -65,8 +88,10 @@ namespace Docary
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            
-            RegisterRoutes(RouteTable.Routes);     
+
+            RegisterProfiler();            
+            RegisterRoutes(RouteTable.Routes);
+            RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }

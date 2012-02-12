@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvcMiniProfiler">
+      <HintPath>..\packages\MiniProfiler.1.9\lib\net40\MvcMiniProfiler.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -48,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Levenshtein.cs" />
+    <Compile Include="MiniProfilerActionFilter.cs" />
     <Compile Include="RequestExtensions.cs" />
     <Compile Include="DocaryController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

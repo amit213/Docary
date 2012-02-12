@@ -5,7 +5,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>  
     <link href="@Url.Content("~/Content/screen.desktop.css")" rel="stylesheet" type="text/css" />     
-    <link href="@Url.Content("~/Content/themes-jquery-ui/custom/jquery-ui-1.8.16.custom.css")" rel="stylesheet" type="text/css" />        
+    <link href="@Url.Content("~/Content/themes-jquery-ui/custom/jquery-ui-1.8.16.custom.css")" rel="stylesheet" type="text/css" />            
 </head>
 <body>
     <div class="wrapper">
@@ -78,6 +78,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+    @MvcMiniProfiler.MiniProfiler.RenderIncludes()
 </body>
 </html>
 
