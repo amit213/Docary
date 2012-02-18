@@ -76,10 +76,14 @@ namespace Docary.ViewModelAssemblers.Desktop
             var homeStatisticsPerTagViewModel = new HomeStatisticsPerTagViewModel();
             var items = new List<HomeStatisticsPerTagItem>();
 
-            var userSettings = GetUserSettings(userId);
             var entries = _entryService.GetEntries(from, to, userId);
-            var sanitizedEntries = new List<Entry>();
 
+            if (!entries.Any())
+                return homeStatisticsPerTagViewModel;
+
+            var userSettings = GetUserSettings(userId);
+
+            var sanitizedEntries = new List<Entry>();
             foreach (var entry in entries)
             {
                 if (!entry.StoppedOn.HasValue)

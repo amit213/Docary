@@ -47,6 +47,11 @@ namespace Docary.ViewModels.Desktop
 
     public class HomeStatisticsPerTagViewModel
     {
+        public HomeStatisticsPerTagViewModel()
+        {
+            Items = new List<HomeStatisticsPerTagItem>();
+        }
+
         public IEnumerable<HomeStatisticsPerTagItem> Items { get; set; }
     }
 

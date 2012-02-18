@@ -114,6 +114,23 @@ namespace Docary.ViewModelAssemblers.Test.Desktop
         }
 
         [TestMethod]
+        public void Test_Empty_Model_Is_Returned_When_There_Are_No_Entries()
+        {
+            var entryService = new Mock<IEntryService>();
+
+            entryService
+                .Setup(e => e.GetEntries(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<string>()))
+                .Returns(new List<Entry>());
+
+            var statisticsAssembler = new StatisticsAssembler(
+                entryService.Object, GetDefaultTimeService().Object, GetDefaultUserSettingsService().Object);
+
+            var result = statisticsAssembler.AssembleHomeStatisticsViewModel("someUserId");
+
+            Assert.IsTrue(!result.PerTag.Items.Any());
+        }
+
+        [TestMethod]
         public void Test_PerTag_ViewModel_Is_Calculated_Correctly()
         {                   
             var statisticsAssembler = new StatisticsAssembler(
