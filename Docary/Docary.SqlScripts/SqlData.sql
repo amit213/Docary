@@ -92,6 +92,93 @@ INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
 
 GO
 
+UPDATE [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[EntryTags]
+SET Color = '#26418C'
+WHERE Color = '#FF0000'
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#7386BA')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#2CB889')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#518F5E')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#CFD914')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#848A11')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#C5C79F')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#8F7E4D')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#8C6900')
+GO
+
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#8C6900')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#B4C2DE')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#58C4C3')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#4B7D7C')
+GO
+
+INSERT INTO [db17587aeaa0d44dd3adb59fb9008ad4c5].[dbo].[TimelineColors]
+           ([Value])
+     VALUES
+           ('#4B7D70')
+GO
+
+
+
+
+
 -- EdmMetaData
 
 TRUNCATE TABLE EdmMetaData
