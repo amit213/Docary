@@ -44,29 +44,37 @@
 
 <br />
 
-<table>
-@foreach (var entryGroup in Model.EntryGroups)
+@if (Model.HasEntries)
 {
-    var maxWidth = 1100;
-    <tr>
-        <td class="header-base timeline-header">@entryGroup.Date.ToShortDateString()</td>
-        <td>
-            @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
-            {                                
-                var width = Convert.ToInt32(entry.Percentage * (maxWidth / 100));
-                var divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);        
+    <table>
+        @foreach (var entryGroup in Model.EntryGroups)
+        {
+            var maxWidth = 1100;
+            <tr>
+                <td class="header-base timeline-header">@entryGroup.Date.ToShortDateString()</td>
+                <td>
+                    @foreach (var entry in entryGroup.Entries.OrderBy(e => e.Start))
+                    {
+                        var width = Convert.ToInt32(entry.Percentage * (maxWidth / 100));
+                        var divstyle = string.Format("width:{0}px;background-color:{1}", width, entry.Color);        
             
-                <div style="@divstyle" class="timelineblock" title="@entry.Title"></div>
-            }
-        </td>
-    </tr>
-}
-</table>
-<div class="legenda-container">       
-    @foreach (var legendaTag in Model.Legenda)
-    {
-        var divStyle = string.Format("background-color:{0}", legendaTag.Color);
+                        <div style="@divstyle" class="timelineblock" title="@entry.Title"></div>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
     
-        <div class="legenda-tag" style="@divStyle">&nbsp;</div><span>@legendaTag.Name</span>
-    }   
-</div>
+    <div class="legenda-container">       
+        @foreach (var legendaTag in Model.Legenda)
+        {
+            var divStyle = string.Format("background-color:{0}", legendaTag.Color);
+    
+            <div class="legenda-tag" style="@divStyle">&nbsp;</div><span>@legendaTag.Name</span>
+        }   
+    </div>
+}
+else
+{
+    <p>Nothing here yet!</p>
+}

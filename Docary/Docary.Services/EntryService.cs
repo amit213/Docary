@@ -80,7 +80,7 @@ namespace Docary.Services
             entry.Location = location == null ? AddLocationBasedOnEntry(entry) : location;
             entry.Tag = tag == null ? AddTagBasedOnEntry(entry) : tag;
             entry.CreatedOn = _timeService.GetNow();            
-
+            
             _entryRepository.Add(entry);
 
             _scope.Commit();
