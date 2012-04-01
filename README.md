@@ -48,6 +48,6 @@ Some screenshots for the sake of documenting
 ---------------------------------------------
 ![Desktop/Home/Welcome] (https://github.com/JefClaes/Docary/raw/master/Docs/Desktop_Home_Welcome.jpg)
 ![Desktop/Home/Index] (https://github.com/JefClaes/Docary/raw/master/Docs/Desktop_Home_Index.jpg)
-![Desktop/Home/Statistics] (https://github.com/JefClaes/Docary/blob/master/Docs/Desktop_Home_Welcome.jpg)
+![Desktop/Home/Statistics] (https://github.com/JefClaes/Docary/raw/master/Docs/Desktop_Home_Welcome.jpg)
 ![Mobile/Home/Index] (https://github.com/JefClaes/Docary/raw/master/Docs/Mobile_Home_Index.jpg)
-![Mobile/Home/Add] (https://github.com/JefClaes/Docary/blob/master/Docs/Mobile_Home_Add.jpg)
+![Mobile/Home/Add] (https://github.com/JefClaes/Docary/raw/master/Docs/Mobile_Home_Add.jpg)
