@@ -7,8 +7,8 @@
     <link href="@Url.Content("~/Content/screen.desktop.css")" rel="stylesheet" type="text/css" />     
     <link href="@Url.Content("~/Content/themes-jquery-ui/custom/jquery-ui-1.8.16.custom.css")" rel="stylesheet" type="text/css" />            
 </head>
-<body>
-    <div class="wrapper">
+<body>  
+    <div class="wrapper">        
 		<div class="header">
             @{ 
                 var headerUrl = User.Identity.IsAuthenticated ? Html.ActionLink("Docary", "Index", "Home") : Html.ActionLink("Docary", "Welcome", "Home"); 
@@ -19,6 +19,10 @@
             @RenderSection("Menu", false)            
         </div>                
         <div class="content">
+            <div class="byebye">                
+                I will be shutting down this project on 04/14/2011. Thank you so much for giving it a try!
+                If you want your data out, please <a href="http://twitter.com/JefClaes">contact me</a>.         
+            </div>
 		    @RenderBody()            
         </div>
 		<div class="push"></div>
