@@ -1,6 +1,10 @@
 Docary
 ======
 
+**This project is no longer under alive.** 
+
+I will take the lessons learned, pivot and come back with another _better_ idea. 
+
 What is a Docary?
 ------------------
 Basically it's a very straight-forward personal time-tracking application. It does not really aim towards a certain audience or niche. You can use it for whatever you want, this application doesn't try to focus on the clients you visited, the time you spent studying or the time you spent on certain tasks. 
@@ -39,3 +43,11 @@ Technology stack
 ### Monitoring/Profiling
 * Elmah
 * Mvc Mini Profiler
+
+Some screenshots for the sake of documenting
+---------------------------------------------
+![Desktop/Home/Welcome] (https://github.com/JefClaes/Docary/raw/master/Docs/Desktop_Home_Welcome.jpg)
+![Desktop/Home/Index] (https://github.com/JefClaes/Docary/raw/master/Docs/Desktop_Home_Index.jpg)
+![Desktop/Home/Statistics] (https://github.com/JefClaes/Docary/blob/master/Docs/Desktop_Home_Welcome.jpg)
+![Mobile/Home/Index] (https://github.com/JefClaes/Docary/raw/master/Docs/Mobile_Home_Index.jpg)
+![Mobile/Home/Add] (https://github.com/JefClaes/Docary/blob/master/Docs/Mobile_Home_Add.jpg)
