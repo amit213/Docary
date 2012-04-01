@@ -1,7 +1,7 @@
 Docary
 ======
 
-**This project is no longer under alive.** 
+**This project is no longer alive.** 
 
 I will take the lessons learned, pivot and come back with another _better_ idea. 
 
